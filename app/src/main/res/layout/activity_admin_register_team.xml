@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Admin.AdminAddTeam.AdminRegisterTeam">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/edx1_username"
+                style="@android:style/Widget.Holo.Light.EditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="32dp"
+                android:ems="10"
+                android:hint="Username"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+            <EditText
+                android:id="@+id/edx2_pw"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="Password"
+                android:inputType="textPassword"
+                app:layout_constraintEnd_toEndOf="@+id/edx1_username"
+                app:layout_constraintStart_toStartOf="@+id/edx1_username"
+                app:layout_constraintTop_toBottomOf="@+id/edx1_username" />
+
+            <EditText
+                android:id="@+id/ed3_college_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="College name"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="@+id/edx2_pw"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/edx2_pw"
+                app:layout_constraintTop_toBottomOf="@+id/edx2_pw" />
+
+            <EditText
+                android:id="@+id/edx_p1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="Participant 1"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="@+id/ed3_college_name"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/ed3_college_name"
+                app:layout_constraintTop_toBottomOf="@+id/ed3_college_name" />
+
+            <EditText
+                android:id="@+id/edx_p2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="Participant 2"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="@+id/edx_p1"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/edx_p1"
+                app:layout_constraintTop_toBottomOf="@+id/edx_p1" />
+
+            <EditText
+                android:id="@+id/edx_p3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="Participant 3"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="@+id/edx_p2"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/edx_p2"
+                app:layout_constraintTop_toBottomOf="@+id/edx_p2" />
+
+            <EditText
+                android:id="@+id/edx_p4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="Participant 4"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="@+id/edx_p3"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/edx_p3"
+                app:layout_constraintTop_toBottomOf="@+id/edx_p3" />
+
+            <EditText
+                android:id="@+id/edx_p5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:ems="10"
+                android:hint="Participant 5"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="@+id/edx_p4"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/edx_p4"
+                app:layout_constraintTop_toBottomOf="@+id/edx_p4" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.05" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+    <Button
+        android:id="@+id/button_register_team"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:text="Register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

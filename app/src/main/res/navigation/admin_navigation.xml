@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/admin_navigation"
+    app:startDestination="@id/adminHomeFragment">
+
+    <fragment
+        android:id="@+id/adminHomeFragment"
+        android:name="com.example.ignite19.Admin.AdminHomeFragment"
+        android:label="fragment_admin_home"
+        tools:layout="@layout/fragment_admin_home" >
+        <action
+            android:id="@+id/action_adminHomeFragment_to_adminUpdateEventTiming"
+            app:destination="@id/adminUpdateEventTiming" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_adminUpdateLeaderBoard"
+            app:destination="@id/adminUpdateLeaderBoard" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_seeParticipantsAdmin"
+            app:destination="@id/seeParticipantsAdmin" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminUpdateLeaderBoard"
+        android:name="com.example.ignite19.Admin.AdminUpdateLeaderBoard.AdminUpdateLeaderBoard"
+        android:label="fragment_admin_update_leader_board"
+        tools:layout="@layout/fragment_admin_update_leader_board" >
+        <action
+            android:id="@+id/action_adminUpdateLeaderBoard_to_adminHomeFragment"
+            app:destination="@id/adminHomeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminUpdateEventTiming"
+        android:name="com.example.ignite19.Admin.AdminUpdateEventTiming"
+        android:label="fragment_admin_update_event_timing"
+        tools:layout="@layout/fragment_admin_update_event_timing" />
+    <fragment
+        android:id="@+id/seeParticipantsAdmin"
+        android:name="com.example.ignite19.Admin.SeeParticipants.SeeParticipantsAdmin"
+        android:label="fragment_see_participants_admin"
+        tools:layout="@layout/fragment_see_participants_admin" />
+</navigation>

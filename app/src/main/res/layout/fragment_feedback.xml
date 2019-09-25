@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.Feedback.Fragment_Feedback">
+
+    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                android:padding="25dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:elevation="10dp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ignite"
+                        android:textSize="20dp"
+                        android:padding="20dp"
+                        />
+                    <com.hsalf.smilerating.SmileRating
+                        android:id="@+id/smile_rating_Ignite"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        />
+
+
+
+<me.zhanghai.android.materialedittext.MaterialTextInputLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp"
+    >
+
+    <me.zhanghai.android.materialedittext.MaterialEditText
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="your views..."
+        android:id="@+id/ignite_desc_tv"
+
+        >
+
+    </me.zhanghai.android.materialedittext.MaterialEditText>
+
+</me.zhanghai.android.materialedittext.MaterialTextInputLayout>
+
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                android:padding="25dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:elevation="10dp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Website"
+                        android:textSize="20dp"
+                        android:padding="20dp"
+                        />
+                    <com.hsalf.smilerating.SmileRating
+                        android:id="@+id/smile_rating_website"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+
+                    <me.zhanghai.android.materialedittext.MaterialTextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+
+                        >
+
+                        <me.zhanghai.android.materialedittext.MaterialEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="your views..."
+                            android:id="@+id/website_desc_tv"
+                            android:layout_margin="10dp"
+                            >
+
+                        </me.zhanghai.android.materialedittext.MaterialEditText>
+
+                    </me.zhanghai.android.materialedittext.MaterialTextInputLayout>
+
+                </LinearLayout>
+
+
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                android:padding="25dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:elevation="10dp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Android App"
+                        android:textSize="20dp"
+                        android:padding="20dp"
+                        />
+                    <com.hsalf.smilerating.SmileRating
+                        android:id="@+id/smile_rating_app"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <me.zhanghai.android.materialedittext.MaterialTextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+
+                        >
+
+                        <me.zhanghai.android.materialedittext.MaterialEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="your views..."
+                            android:id="@+id/app_desc_tv"
+                            android:layout_margin="10dp"
+                            >
+
+                        </me.zhanghai.android.materialedittext.MaterialEditText>
+
+                    </me.zhanghai.android.materialedittext.MaterialTextInputLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                android:padding="25dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="20dp"
+                android:elevation="10dp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hospitality"
+                        android:textSize="20dp"
+                        android:padding="20dp"
+                        />
+                    <com.hsalf.smilerating.SmileRating
+                        android:id="@+id/smile_rating_hospitality"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <me.zhanghai.android.materialedittext.MaterialTextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+
+                        >
+
+                        <me.zhanghai.android.materialedittext.MaterialEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:hint="your views..."
+                            android:id="@+id/hospitality_desc_tv"
+
+                            android:layout_margin="10dp"
+                            >
+
+                        </me.zhanghai.android.materialedittext.MaterialEditText>
+
+                    </me.zhanghai.android.materialedittext.MaterialTextInputLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <com.spark.submitbutton.SubmitButton
+                android:layout_width="150dp"
+                android:layout_height="80dp"
+                android:text="Submit"
+                android:layout_margin="20dp"
+                android:layout_gravity="center"
+                android:textColor="@color/gray"
+                app:sub_btn_background="@color/white"
+                app:sub_btn_duration="3000"
+                app:sub_btn_line_color="@color/green"
+                app:sub_btn_ripple_color="@color/green"
+                app:sub_btn_tick_color="@color/white"
+                android:id="@+id/feedback_submit_btn"
+                />
+
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

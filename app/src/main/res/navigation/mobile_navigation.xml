@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.ignite19.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_nav_event_registration"
+            app:destination="@id/nav_event_registration" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_events"
+            app:destination="@id/nav_events" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_navigation"
+            app:destination="@id/nav_navigation" />
+        <action
+            android:id="@+id/action_nav_home_to_fragmentLeaderBoard"
+            app:destination="@id/fragmentLeaderBoard" />
+        <action
+            android:id="@+id/action_nav_home_to_seeParticipants"
+            app:destination="@id/seeParticipants" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_schedule"
+        android:name="com.example.ignite19.ui.schedule.FragmentSchedule"
+        android:label="@string/nav_schedule"
+        tools:layout="@layout/fragment_schedule" />
+
+    <fragment
+        android:id="@+id/nav_event_registration"
+        android:name="com.example.ignite19.ui.eventRegistration.FragmentEventRegistration"
+        android:label="@string/nav_registration"
+        tools:layout="@layout/fragment_event_registration" />
+
+    <fragment
+        android:id="@+id/nav_events"
+        android:name="com.example.ignite19.ui.events.FragmentEvents"
+        android:label="@string/nav_events"
+        tools:layout="@layout/fragment_events" >
+        <action
+            android:id="@+id/action_nav_events_to_aboutEvent"
+            app:destination="@id/aboutEvent" />
+        <argument
+            android:name="event_name"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_navigation"
+        android:name="com.example.ignite19.ui.navigation.FragmentNavigation"
+        android:label="@string/nav_navigation"
+        tools:layout="@layout/fragment_navigation"/>
+
+    <fragment android:id="@+id/nav_about_ignite"
+        android:name="com.example.ignite19.ui.AboutIGNITE.Fragment_AboutIgnite"
+        android:label="@string/menu_about_ignite"
+        tools:layout="@layout/fragment_about_ignite"/>
+
+    <fragment android:id="@+id/nav_about_app"
+        android:name="com.example.ignite19.ui.AboutApp.Fragment_AboutApp"
+        android:label="@string/menu_about_app"
+        tools:layout="@layout/fragment_about_app"/>
+
+    <fragment android:id="@+id/nav_feedback"
+        android:name="com.example.ignite19.ui.Feedback.Fragment_Feedback"
+        android:label="@string/menu_feedback"
+        tools:layout="@layout/fragment_feedback"/>
+    <fragment android:id="@+id/nav_contact_us"
+        android:name="com.example.ignite19.ui.ContactUS.Fragment_ContactUs"
+        android:label="@string/menu_contact_us"
+        tools:layout="@layout/fragment_contact_us"/>
+    <fragment android:id="@+id/nav_sponsors"
+        android:name="com.example.ignite19.ui.Sponsors.Fragment_Sponsors"
+        android:label="@string/menu_sponsors"
+        tools:layout="@layout/fragment_sponsors"/>
+    <fragment
+        android:id="@+id/aboutEvent"
+        android:name="com.example.ignite19.ui.AboutEvent.AboutEvent"
+        android:label="fragment_about_event"
+        tools:layout="@layout/fragment_about_event" />
+    <fragment
+        android:id="@+id/fragmentLeaderBoard"
+        android:name="com.example.ignite19.ui.LeaderBoard.FragmentLeaderBoard"
+        android:label="fragment_leader_board"
+        tools:layout="@layout/fragment_leader_board" />
+    <fragment
+        android:id="@+id/seeParticipants"
+        android:name="com.example.ignite19.ui.SeeParticipants"
+        android:label="fragment_see_participants"
+        tools:layout="@layout/fragment_see_participants" />
+
+</navigation>

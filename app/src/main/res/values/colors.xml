@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="backgroundColor">#fcfcfc</color>
+    <color name="lightGray">#ededed</color>
+    <color name="deepPurple">#7c4dff</color>
+    <color name="materialYellow">#ffb300</color>
+    <color name="materialGreen">#00bfa5</color>
+    <color name="pinkAccent">#ff4081</color>
+    <color name="purple">#4444ad</color>
+    <color name="colorPrimaryText">#050505</color>
+
+    <color name="colorPrimary">#600700</color>
+    <color name="colorPrimaryDark">#8b0c03</color>
+    <color name="colorAccent">#8b0c03</color>
+
+    <color name="btn_text_color">#ffffff</color>
+
+    <color name="igniteColor1">#470604</color>
+    <color name="igniteColor2">#600700</color>
+    <color name="igniteColor3">#8b0c03</color>
+    <color name="igniteColor4">#280201</color>
+    <color name="igniteColor5">#6f6a6c</color>
+    <color name="lightgray">#ededed</color>
+    <color name="green">#2e7d32</color>
+
+</resources>

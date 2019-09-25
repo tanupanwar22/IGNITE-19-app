@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/user_dashboard_bg"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    >
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:src="@drawable/user_dashboard_ignite_logo"
+        tools:layout_editor_absoluteX="29dp"
+        tools:layout_editor_absoluteY="-198dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"
+
+        >
+
+        <Button
+            android:id="@+id/button_events"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="16dp"
+            android:background="#ffffff"
+            android:layout_marginTop="32dp"
+            android:text="Events"
+            />
+
+        <Button
+            android:id="@+id/button_event_registration"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="20dp"
+            android:background="#ffffff"
+            android:text="Event Registration"/>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:layout_gravity="center"
+
+       >
+
+    <Button
+        android:id="@+id/button_navigation"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="16dp"
+        android:background="#ffffff"
+        android:layout_marginTop="32dp"
+        android:text="@string/nav_navigation"
+    />
+
+    <Button
+        android:id="@+id/button_leaderboards"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="20dp"
+        android:background="#ffffff"
+        android:text="LeaderBoards"/>
+
+   </LinearLayout>
+
+    <Button
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:background="#ffffff"
+        android:layout_gravity="center"
+        android:layout_margin="30dp"
+        android:id="@+id/user_see_event_player_distribution"
+        android:text="Check Your Team for Events"
+
+        />
+
+
+</LinearLayout>
+
+
+</ScrollView>

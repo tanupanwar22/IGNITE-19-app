@@ -1,0 +1,6 @@
+
+RULES
+
+1.	Each team has 3 participants.
+2.	Participants are not allowed to discuss anything between themselves.
+3.	This event is finals of Code Infinity.

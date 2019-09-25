@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">IGNITE 19</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">UserName</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="nav_schedule">Schedule</string>
+    <string name="nav_navigation">Navigation</string>
+    <string name="nav_registration">Event Registration</string>
+    <string name="nav_events">Events</string>
+    <string name="menu_about_ignite">About Ignite</string>
+    <string name="menu_sign_out">Sign out</string>
+    <string name="menu_contact_us">Contact us</string>
+    <string name="menu_feedback">Feedback</string>
+    <string name="menu_sponsors">Sponsors</string>
+    <string name="menu_credits">Credits</string>
+    <string name="menu_about_app">About app</string>
+    <string name="about_ignite_info"> This is a redirect from a song title to a more general, relevant article such as an album, film or artist where the song is mentioned. Redirecting to the specific album or film in which the song appears is preferable to redirecting to the artist when possible.</string>
+
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_admin">AdminActivity</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
+
+
+    <string name="shared_background">sharedBackgroundTransition</string>
+    <string name="btn_team_login">Log in</string>
+    <string name="btn_admin_login">Admin Login</string>
+    <string name="login_sceeen_textview">Welcome to IGNITE\'19</string>
+    <string name="my_shared_transition">myTransition</string>
+    <string name="my_shared_button_transition">btnTransition</string>
+    <string name="ignite_rules">Rules to remember : </string>
+    <string name="ignite_rules1">1.There should only be one team per college consisting of exactly 5 participants. All the participants must be from MCA only.</string>
+    <string name="ignite_rules2">2.Each team member has to carry his/her original college ID card and have to produce it at the time of team registration.</string>
+    <string name="ignite_rules3">3.Each team has to carry a permission letter consisting of the names of each participant duly signed by the concerned authorities.</string>
+    <string name="ignite_rules4">4.	It’s compulsory for the teams to reach NITK for the inauguration ceremony which will be held on 11th of October, 2019.</string>
+    <string name="ignite_rules5">5.	The teams are advised to have some knowledge regarding the Django framework of Python. It might turn out to be useful for them.</string>
+    <string name="ignite_rules6">6.	In case of any discrepancy regarding any of the decisions during the events, the decision of team Ignite will be considered final.</string>
+    <string name="ignite_rules7">7.	The teams are advised to carry at least 2 laptops which might be useful for them during the entire sequence of events.</string>
+    <string name="ignite_rules8">8.	The services of accommodation and food will be provided by team Ignite from the evening of inauguration till the last day of Ignite.</string>
+    <string name="ignite_rules9">9.	The college teams are not allowed to leave the campus without the permission of the authorities.</string>
+    <string name="ignite_rules10">10.The college teams are not allowed to go to the beach side without the permission of the authorities.</string>
+    <string name="ignite_rules11">11.Any kind of misconduct or misbehavior by the team members can lead to the disqualification of the entire team from the fest.</string>
+    <string name="ignite_rules12">12.Any attempt made to damage the property of the college can lead to strict actions against the entire team.</string>
+    <string name="White_space">                                                      </string>
+
+</resources>

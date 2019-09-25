@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.AboutIGNITE.Fragment_AboutIgnite">
+
+    <!-- TODO: Update blank fragment layout -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/app_bar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                android:fitsSystemWindows="true"
+
+                >
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                    app:contentScrim="?attr/colorPrimary"
+                    app:expandedTitleTextAppearance="@android:color/transparent"
+                    android:fitsSystemWindows="true"
+                    >
+                    <ImageView
+                        app:layout_collapseMode="parallax"
+                        android:layout_width="match_parent"
+                        android:layout_height="350dp"
+
+                        android:src="@drawable/igg"
+                        android:contentDescription="@string/app_name"
+                        android:scaleType="centerCrop"
+                        />
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                        android:title="Ignite 2k'19 welcomes you all!"
+                        app:layout_collapseMode="pin"
+                        />
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                >
+
+                <androidx.cardview.widget.CardView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginBottom="16dp"
+                    app:cardElevation="5dp"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+                        <TextView
+                            android:padding="12dp"
+                            android:textSize="20sp"
+                            android:layout_marginTop="12dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/colorPrimaryText"
+                            android:text="Ignite 2k'19 welcomes you all!"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="12dp"
+                            android:orientation="horizontal"
+                            >
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="44dp"
+                                android:layout_weight="1"
+                                android:src="@drawable/ic_clock"/>
+                            <TextView
+                                android:layout_gravity="center_vertical"
+                                android:padding="12dp"
+                                android:textSize="14sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/colorPrimaryText"
+                                android:text="11 oct 2019"
+                                android:layout_width="0dp"
+                                android:layout_weight="9"
+
+                                android:layout_height="wrap_content"/>
+
+
+                        </LinearLayout>
+                        <TextView
+                            android:padding="12dp"
+                            android:textSize="14sp"
+                            android:lineSpacingMultiplier="1.5"
+                            android:layout_marginTop="12dp"
+                            android:text="@string/about_ignite_info"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="9"
+                            android:padding="12dp"
+                            android:text="@string/ignite_rules"
+                            android:textColor="@color/colorPrimaryText"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="fill_horizontal"
+                            android:layout_weight="9"
+                            android:padding="12dp"
+                            android:text="@string/ignite_rules1"
+
+                            android:textColor="@color/colorPrimaryText"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="9"
+                            android:padding="12dp"
+                            android:text="@string/ignite_rules2"
+                            android:textColor="@color/colorPrimaryText"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="9"
+                            android:padding="12dp"
+                            android:text="@string/ignite_rules3"
+                            android:textColor="@color/colorPrimaryText"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="9"
+                            android:padding="12dp"
+                            android:text="@string/ignite_rules4"
+                            android:textColor="@color/colorPrimaryText"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="9"
+                            android:padding="12dp"
+                            android:text="@string/ignite_rules5"
+                            android:textColor="@color/colorPrimaryText"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="9"
+                            android:padding="12dp"
+                            android:text="@string/ignite_rules6"
+                            android:textColor="@color/colorPrimaryText"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="9"
+                            android:padding="12dp"
+                            android:text="@string/ignite_rules7"
+                            android:textColor="@color/colorPrimaryText"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="9"
+                            android:padding="12dp"
+                            android:text="@string/ignite_rules8"
+                            android:textColor="@color/colorPrimaryText"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="9"
+                            android:padding="12dp"
+                            android:text="@string/ignite_rules9"
+                            android:textColor="@color/colorPrimaryText"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="9"
+                            android:padding="12dp"
+                            android:text="@string/ignite_rules10"
+                            android:textColor="@color/colorPrimaryText"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="9"
+                            android:padding="12dp"
+                            android:text="@string/ignite_rules11"
+                            android:textColor="@color/colorPrimaryText"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="9"
+                            android:padding="12dp"
+                            android:text="@string/ignite_rules12"
+                            android:textColor="@color/colorPrimaryText"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_weight="9"
+                            android:padding="12dp"
+                            android:text="@string/White_space"
+                            android:textColor="@color/colorPrimaryText"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+            </androidx.core.widget.NestedScrollView>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_fav"
+                app:elevation="6dp"
+                app:pressedTranslationZ="12dp"
+                app:layout_anchor="@id/app_bar_layout"
+                app:layout_anchorGravity="bottom|right|end"/>
+
+
+
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
+
+
+
