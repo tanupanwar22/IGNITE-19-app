@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/adminHomeFragment"
+            android:icon="@drawable/ic_home"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_about_ignite_admin"
+            android:icon="@drawable/ic_fav"
+            android:title="@string/menu_about_ignite" />
+
+        <item
+            android:id="@+id/nav_schedule_admin"
+            android:icon="@drawable/ic_schedule"
+            android:title="@string/nav_schedule"/>
+
+        <item
+            android:id="@+id/nav_sponsors_admin"
+            android:icon="@drawable/ic_sponsors"
+            android:title="@string/menu_sponsors"
+            />
+        <item android:id="@+id/nav_sign_out_admin"
+            android:onClick="onClickSignOutAdmin"
+            android:icon="@drawable/ic_signout"
+            android:title="@string/menu_sign_out"/>
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_about_app_admin"
+                android:title="@string/menu_about_app"
+                android:icon="@drawable/ic_aboutapp"/>
+
+        </menu>
+    </item>
+
+
+</menu>
