@@ -15,6 +15,7 @@ import android.os.RemoteException;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -109,7 +110,10 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
 
 
         createNotificationChannel();
-        makeSchedule();
+
+        day0CompleteSchedule = EventScheduleStaticScheduleClass.getDay0EventSchedule();
+        day1CompleteSchedule = EventScheduleStaticScheduleClass.getDay1EventSchedule();
+        day2CompleteSchedule = EventScheduleStaticScheduleClass.getDay2EventSchedule();
 
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -126,55 +130,7 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
 
     String inaug,post,work,datp,codp,relay,debug,scatte,agomotto,death,codeprob,brain,bid,nexus,game,treasure,datafinal,codefinal,codeathon,algo,non,cult,stress,award;
 
-    private void makeSchedule() {
-        //This data is not part of firebase data , you have to manually feed the whole schedule here
-        //it will not affect any other changes nor will be changed by any means during production
-        //add day0 events to day0 arraylist
-        day0CompleteSchedule.add(new eventSchedule("04:00 pm","Opening","Inauguration","LHC-C Seminar Hall","Friday","11"));
-        day0CompleteSchedule.add(new eventSchedule("07:00 pm","Opening","Post Inauguration Ceremony","LHC-C Seminar Hall","Friday","11"));
-        //add day1 events to day1 arraylist
-        day1CompleteSchedule.add(new eventSchedule("08:30 am","Opening","Workshop","LHC-C Seminar Hall","Saturday","12"));
-        day1CompleteSchedule.add(new eventSchedule("11:00 am","Technical","Database Prelims","SACA Lab","Saturday","12"));
-        day1CompleteSchedule.add(new eventSchedule("11:00 am","Technical","Coding Prelims","SACA Lab","Saturday","12"));
 
-        day1CompleteSchedule.add(new eventSchedule("12:00 am","Meal","Lunch","Trishul Block Mess","Saturday","12"));
-
-        day1CompleteSchedule.add(new eventSchedule("01:00 pm","Technical","Relay Coding","SACA Lab","Saturday","12"));
-        day1CompleteSchedule.add(new eventSchedule("01:00 pm","Technical","Debugging","SACA Lab","Saturday","12"));
-
-        day1CompleteSchedule.add(new eventSchedule("02:00 pm","Non-Technical","Scattegories","SACA Lab","Saturday","12"));
-        day1CompleteSchedule.add(new eventSchedule("02:00 pm","Technical","Agomotto's Amet","SACA Lab","Saturday","12"));
-        day1CompleteSchedule.add(new eventSchedule("03:00 pm","Non-Technical","Death's Head","SACA Lab","Saturday","12"));
-        day1CompleteSchedule.add(new eventSchedule("03:00 pm","Technical","Code The Problem","SACA Lab","Saturday","12"));
-        day1CompleteSchedule.add(new eventSchedule("04:00 pm","Non-Technical","Brain Storm","LHC-C Seminar Hall","Saturday","12"));
-        day1CompleteSchedule.add(new eventSchedule("04:00 pm","Non-Technical","Bidding","LHC-C Seminar Hall","Saturday","12"));
-        day1CompleteSchedule.add(new eventSchedule("05:00 pm","Snacks","Snacks","Trishul Block Mess","Saturday","12"));
-        day1CompleteSchedule.add(new eventSchedule("06:30 pm","Non-Technical","Nexus","Pavilion","Saturday","12"));
-        day1CompleteSchedule.add(new eventSchedule("09:00 pm","Meal","Dinner","Trishul Block Mess","Saturday","12"));
-        day1CompleteSchedule.add(new eventSchedule("10:00 pm","Gaming","Gamer's Eve","CCC","Saturday","12"));
-
-        //add day2 events to day2 arraylist
-        day2CompleteSchedule.add(new eventSchedule("08:00 am","Non-Technical","Treasure Hunt","NITK Campus","Sunday","13"));
-        day2CompleteSchedule.add(new eventSchedule("12:00 am","Meal","Lunch","Trishul Block Mess","Sunday","13"));
-        day2CompleteSchedule.add(new eventSchedule("01:00 pm","Technical","Database Finals","SACA Lab","Sunday","13"));
-        day2CompleteSchedule.add(new eventSchedule("01:00 pm","Technical","Coding Finals","SACA Lab","Sunday","13"));
-        day2CompleteSchedule.add(new eventSchedule("01:00 pm","Technical","Code-athon Submission","SACA Lab","Sunday","13"));
-
-        day2CompleteSchedule.add(new eventSchedule("02:00 pm","Technical","Algo Competition","SACA Lab","Sunday","13"));
-        day2CompleteSchedule.add(new eventSchedule("03:00 pm"," Non-Technical","Non Tech Events","LHC-C Seminar Hall","Sunday","13"));
-
-        day2CompleteSchedule.add(new eventSchedule("04:30 pm","Non-Technical","Cultural Fest","LHC-C Seminar Hall","Sunday","13"));
-
-        day2CompleteSchedule.add(new eventSchedule("06:00 pm","Non-Technical","Stress Interview","LHC-C Seminar Hall","Sunday","13"));
-
-        day2CompleteSchedule.add(new eventSchedule("07:00 pm","Closing","Award Ceremony","LHC-C Seminar Hall","Sunday","13"));
-
-        day2CompleteSchedule.add(new eventSchedule("09:00 pm","Meal","Dinner","Trishul Block Mess","Sunday","13"));
-
-
-
-
-    }
 
 
 
