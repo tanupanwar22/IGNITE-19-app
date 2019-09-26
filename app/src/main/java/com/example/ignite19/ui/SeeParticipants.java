@@ -164,8 +164,8 @@ public class SeeParticipants extends Fragment {
             final TextView rowTextView = new TextView(getContext());
 
             // set some properties of rowTextView or something
-            rowTextView.setText(list.get(i));
-
+            rowTextView.setText("\t\t\t\t\t"+String.valueOf(i+1)+"\t\t\t"+list.get(i));
+            rowTextView.setTextSize(25);
             // add the textview to the linearlayout
             mLinear.addView(rowTextView);
 
@@ -175,7 +175,6 @@ public class SeeParticipants extends Fragment {
     }
     public void search(final View view)
     {
-        Toast.makeText(getContext(),strName ,Toast.LENGTH_LONG).show();
         final DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseAuth.getInstance().getUid()).child("participation").child(strName);
         //list.add(strName);
         databaseReference.addValueEventListener(new ValueEventListener() {
@@ -187,7 +186,6 @@ public class SeeParticipants extends Fragment {
                     if(!d.getKey().equals("event_name")&&!d.getKey().equals("participation"))
                     {
                         list.add(d.getValue().toString());
-                        Toast.makeText(getContext(),d.getValue().toString(),Toast.LENGTH_LONG).show();
                         count++;
                         if(count==event_participant_count_map.get(strName))
                         {
