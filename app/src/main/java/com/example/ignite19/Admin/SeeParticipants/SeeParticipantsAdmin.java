@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -154,7 +155,6 @@ public class SeeParticipantsAdmin extends Fragment {
     public void search(){
 
         final DatabaseReference databaseReference= FirebaseDatabase.getInstance().getReference().child("Users");
-        list.add(strName);
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -212,17 +212,25 @@ public class SeeParticipantsAdmin extends Fragment {
         for (int i = 0; i < N; i++) {
             // create a new textview
             final TextView rowTextView = new TextView(getContext());
-            if(i%event_participant_count_map.get(strName)==0 && count2<list2.size())
+            final TextView rowTextView1 = new TextView(getContext());
+            if((i)%event_participant_count_map.get(strName)==0 && count2 < list2.size())
             {
-                rowTextView.setText("\n\n\t"+list2.get(count2)+"\n"+list.get(i));
+                rowTextView1.setText("\n"+list2.get(count2));
+                rowTextView1.setGravity(Gravity.CENTER);
+                rowTextView1.setTextSize(25);
+                rowTextView.setText("\t\t"+list.get(i));
+                rowTextView.setTextSize(15);
                 count2++;
             }
             else
 
                 // set some properties of rowTextView or something
-                rowTextView.setText(list.get(i));
+            {rowTextView.setText("\t\t"+list.get(i));
+                rowTextView.setTextSize(15);
+            }
 
             // add the textview to the linearlayout
+            mLinear.addView(rowTextView1);
             mLinear.addView(rowTextView);
 
             // save a reference to the textview for later
