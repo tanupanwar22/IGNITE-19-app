@@ -57,7 +57,6 @@ public class SeeParticipantsAdmin extends Fragment {
         eventbutton = view.findViewById(R.id.selecteventbuttonid);
         search=view.findViewById(R.id.searcheventbuttonid);
         mLinear=view.findViewById(R.id.ll);
-
         event_participant_count_map.put("Nexus",5);
         event_participant_count_map.put("Death's Head",2);
         event_participant_count_map.put("Agomotto's Amet",2);
