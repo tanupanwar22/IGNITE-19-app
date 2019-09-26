@@ -88,7 +88,7 @@
     <fragment
         android:id="@+id/fragmentLeaderBoard"
         android:name="com.example.ignite19.ui.LeaderBoard.FragmentLeaderBoard"
-        android:label="fragment_leader_board"
+        android:label="Leaderboards"
         tools:layout="@layout/fragment_leader_board" />
     <fragment
         android:id="@+id/seeParticipants"

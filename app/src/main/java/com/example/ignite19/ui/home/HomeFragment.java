@@ -1,7 +1,9 @@
 package com.example.ignite19.ui.home;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,22 +14,32 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.example.ignite19.DataCommunication;
+import com.example.ignite19.MainActivity;
+import com.example.ignite19.MyAnimations;
 import com.example.ignite19.R;
+import com.example.ignite19.UserDetail;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
     DataCommunication dataCommunication;
     Boolean flag1Status;
     Boolean flag2Status;
+    LottieAnimationView eventLoader,eventRegistrationLoader,seeParticipantsLoader;
     ImageView bg_gif;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -51,11 +63,53 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
         //navController = Navigation.findNavController(view);
 
-        Button eventsBtn = view.findViewById(R.id.button_events);
-        Button navigationBtn = view.findViewById(R.id.button_navigation);
-        Button eventRegistrationBtn = view.findViewById(R.id.button_event_registration);
-        Button leaderBoardBtn = view.findViewById(R.id.button_leaderboards);
-        Button seeTeam=view.findViewById(R.id.user_see_event_player_distribution);
+        eventLoader = view.findViewById(R.id.lottie_events_loader_animation);
+        eventRegistrationLoader = view.findViewById(R.id.lottie_events_registration_loader_animation);
+        seeParticipantsLoader = view.findViewById(R.id.lottie_see_participants_animation);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(!dataCommunication.getFirstListenerFlagStatus() || !dataCommunication.getSecondListenerFlagStatus());
+
+
+                eventLoader.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        eventLoader.setAnimation("greentick.json");
+                        eventLoader.playAnimation();
+                    }
+                });
+
+
+
+                seeParticipantsLoader.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        seeParticipantsLoader.setAnimation("greentick.json");
+                        seeParticipantsLoader.playAnimation();
+                    }
+                });
+
+
+
+                eventRegistrationLoader.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        eventRegistrationLoader.setAnimation("greentick.json");
+                        eventRegistrationLoader.playAnimation();
+                    }
+                });
+            }
+        }).start();
+
+
+
+
+        CardView eventsBtn = view.findViewById(R.id.button_events);
+        CardView navigationBtn = view.findViewById(R.id.button_navigation);
+        CardView eventRegistrationBtn = view.findViewById(R.id.button_event_registration);
+        CardView leaderBoardBtn = view.findViewById(R.id.button_leaderboards);
+        CardView seeTeam=view.findViewById(R.id.user_see_event_player_distribution);
         eventsBtn.setOnClickListener(this);
         navigationBtn.setOnClickListener(this);
         leaderBoardBtn.setOnClickListener(this);
@@ -64,6 +118,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
 
     }
+
 
     @Override
     public void onClick(View view) {
@@ -105,4 +160,5 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 break;
         }
     }
+
 }
