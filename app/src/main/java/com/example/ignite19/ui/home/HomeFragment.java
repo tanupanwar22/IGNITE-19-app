@@ -69,7 +69,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.button_events:
-                Navigation.findNavController(view).navigate(R.id.action_nav_home_to_nav_events);
+                flag1Status = dataCommunication.getFirstListenerFlagStatus();
+                flag2Status = dataCommunication.getSecondListenerFlagStatus();
+                if(flag1Status && flag2Status){
+                    Navigation.findNavController(view).navigate(R.id.action_nav_home_to_nav_events);
+                }
+                else{
+                    Toast.makeText(getContext(),"Please wait for data to load",Toast.LENGTH_LONG).show();
+                }
+
+               // Navigation.findNavController(view).navigate(R.id.);
                 break;
             case R.id.button_navigation:
                 Navigation.findNavController(view).navigate(R.id.action_nav_home_to_nav_navigation);
