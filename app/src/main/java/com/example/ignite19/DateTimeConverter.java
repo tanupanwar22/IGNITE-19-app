@@ -1,5 +1,9 @@
 package com.example.ignite19;
 
+import android.util.Log;
+
+import androidx.cardview.widget.CardView;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -34,5 +38,41 @@ public class DateTimeConverter {
             e.printStackTrace();
         }
         return dayOfMonth;
+    }
+
+    public static String convertDateTimeToDate(String dateTimeString){
+        String result = null;
+        try {
+            Date date = sdf.parse(dateTimeString);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            String mDate,mMonth;
+            int mDateInt = calendar.get(Calendar.DAY_OF_MONTH);
+            if(mDateInt<9){
+              mDate = String.valueOf("0" + mDateInt);
+            }
+            else{
+               mDate = String.valueOf(mDateInt);
+            }
+
+            int mMonthInt = calendar.get(Calendar.MONTH) + 1;
+            if(mMonthInt < 10){
+         mMonth = String.valueOf("0" + mMonthInt);
+            }
+            else {
+            mMonth = String.valueOf(mMonthInt);
+            }
+
+
+            String mYear = String.valueOf(calendar.get(Calendar.YEAR));
+
+
+            result = mYear + "-" + mMonth  + "-" + mDate;
+            Log.d("romeo", "convertDateTimeToDate: " + result);
+        }
+        catch (ParseException e){
+            e.printStackTrace();
+        }
+        return result;
     }
 }
