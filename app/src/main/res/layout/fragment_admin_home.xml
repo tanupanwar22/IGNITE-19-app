@@ -8,7 +8,7 @@
     tools:context=".Admin.AdminHomeFragment"
     android:orientation="vertical"
     android:padding="10dp"
-    android:background="#fcfcfc"
+    android:background="@color/black"
     android:gravity="center"
     android:id="@+id/ll">
 
@@ -46,8 +46,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
                             android:background="@drawable/ic_update_leaderboard"
                             android:padding="10dp" />
 
@@ -98,8 +98,8 @@
                         android:gravity="center">
 
                         <ImageView
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
                             android:background="@drawable/ic_add_user"
                             android:padding="10dp" />
 
@@ -141,8 +141,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
                             android:background="@drawable/ic_hourglass"
                             android:padding="10dp" />
 
@@ -194,8 +194,8 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="64dp"
-                            android:layout_height="64dp"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
                             android:background="@drawable/ic_participants"
                             android:padding="10dp" />
 
@@ -228,7 +228,8 @@
                     android:layout_height="190dp"
                     android:layout_margin="10dp"
                     android:clickable="true"
-                    android:foreground="?android:attr/selectableItemBackground">
+                    android:foreground="?android:attr/selectableItemBackground"
+                    android:visibility="invisible">
 
                     <LinearLayout
                         android:layout_width="match_parent"

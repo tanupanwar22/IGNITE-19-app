@@ -24,4 +24,6 @@
     <color name="lightgray">#ededed</color>
     <color name="green">#2e7d32</color>
 
+    <color name="transparentGray">#B31E88E5</color>
+
 </resources>
