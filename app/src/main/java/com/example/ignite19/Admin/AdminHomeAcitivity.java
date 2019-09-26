@@ -33,6 +33,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class AdminHomeAcitivity extends AppCompatActivity implements AdminDataCommunication, DataCommunication {
 
@@ -43,6 +44,7 @@ public class AdminHomeAcitivity extends AppCompatActivity implements AdminDataCo
     private ArrayList<eventSchedule> day0CompleteSchedule = new ArrayList<>();
     private ArrayList<eventSchedule> day1CompleteSchedule = new ArrayList<>();
     private ArrayList<eventSchedule> day2CompleteSchedule = new ArrayList<>();
+    private HashMap<String ,String> eventWithDateTime = new HashMap<>();
 
 
     @Override
@@ -89,7 +91,9 @@ public class AdminHomeAcitivity extends AppCompatActivity implements AdminDataCo
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     UserDataAndEventList mList   = snapshot.getValue(UserDataAndEventList.class);
                     String event_name = mList.getEvent_name();
-                    Log.d("romeo", "onDataChange: event_name " + event_name);
+                    String event_time = mList.getEvent_date();
+
+                    eventWithDateTime.put(event_name,event_time);
                     eventNames.add(event_name);
                 }
             }
@@ -109,6 +113,11 @@ public class AdminHomeAcitivity extends AppCompatActivity implements AdminDataCo
     @Override
     public ArrayList<String> getEventNames() {
         return eventNames;
+    }
+
+    @Override
+    public HashMap<String, String> getEventWithDateAndTime() {
+        return eventWithDateTime;
     }
 
 

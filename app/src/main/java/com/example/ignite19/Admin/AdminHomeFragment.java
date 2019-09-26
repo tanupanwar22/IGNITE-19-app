@@ -88,19 +88,61 @@ public class AdminHomeFragment extends Fragment implements View.OnClickListener 
     public void onClick(final View view) {
         switch (view.getId()){
             case R.id.button_admin_add_team:
-                Intent i = new Intent(getActivity(), AdminRegisterTeam.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                FirebaseAuth.getInstance().signOut();
-                startActivity(i);
+
+                final AlertDialog.Builder mDialog = new AlertDialog.Builder(getContext());
+                mDialog.setIcon(R.drawable.ic_signout);
+                mDialog.setTitle("Add Team");
+                mDialog.setMessage("You will get logged out in the process.");
+                mDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(getActivity(), AdminRegisterTeam.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(intent);
+                    }
+                });
+                mDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                mDialog.show();
                 break;
             case R.id.button_admin_update_event_timing:
-                Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_adminUpdateEventTiming);
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(getContext());
+                mBuilder.setIcon(R.drawable.ic_update_leaderboard);
+                mBuilder.setTitle("Select Event :");
+                //loading animation can be implemented here
+                if(eventList.size() != 0) {
+                    final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.select_dialog_singlechoice,eventList);
+                    mBuilder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+
+                    mBuilder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            String strName = arrayAdapter.getItem(which);
+                            Bundle bundle = new Bundle();
+                            bundle.putString("eventName",strName);
+                            Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_adminUpdateEventTiming,bundle);
+                        }
+                    });
+                    mBuilder.show();
+                }
+                else{
+                    Toast.makeText(getContext(),"list empty,wait for data to load",Toast.LENGTH_LONG).show();
+                }
                 break;
             case R.id.button_admin_update_leaderboard:
                 AlertDialog.Builder builderSingle = new AlertDialog.Builder(getContext());
-                builderSingle.setIcon(R.drawable.ic_clock);
+                builderSingle.setIcon(R.drawable.ic_update_leaderboard);
                 builderSingle.setTitle("Select Event :");
-
                 //loading animation can be implemented here
                 if(eventList.size() != 0) {
                 final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.select_dialog_singlechoice,eventList);
@@ -114,7 +156,7 @@ public class AdminHomeFragment extends Fragment implements View.OnClickListener 
                     builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                               String strName = arrayAdapter.getItem(which);
+                            String strName = arrayAdapter.getItem(which);
                             Bundle bundle = new Bundle();
                             bundle.putString("eventName",strName);
                             Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_adminUpdateLeaderBoard,bundle);
