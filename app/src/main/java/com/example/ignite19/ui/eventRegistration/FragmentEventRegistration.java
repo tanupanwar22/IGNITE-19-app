@@ -84,25 +84,21 @@ public class FragmentEventRegistration extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        Toast.makeText(getContext(),"onPause",Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        Toast.makeText(getContext(),"onDetach",Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Toast.makeText(getContext(),"onDestroy",Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        Toast.makeText(getContext(),"onStop",Toast.LENGTH_SHORT).show();
       //  numberOfParticipants.clear();
        // unRegisteredEvents.clear();
         map.clear();
@@ -123,13 +119,11 @@ public class FragmentEventRegistration extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Toast.makeText(getContext(),"onDestroy",Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Toast.makeText(getContext(),"onResume",Toast.LENGTH_SHORT).show();
     }
 
     @Override
