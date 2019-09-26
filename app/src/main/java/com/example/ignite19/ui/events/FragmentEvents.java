@@ -32,7 +32,6 @@ public class FragmentEvents extends Fragment {
     private RecyclerView recyclerView;
     private ArrayList<UserDataAndEventList> eventsArrayList = new ArrayList<>();
     DataCommunication dataCommunication;
-
     View v;
 
     @Override
@@ -49,15 +48,22 @@ public class FragmentEvents extends Fragment {
         return new FragmentEvents();
     }
 
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         eventsArrayList = dataCommunication.getAllEventList();
         HashSet hs = new HashSet();
         hs.addAll(eventsArrayList);
         eventsArrayList.clear();
         eventsArrayList.addAll(hs);
+    }
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+
+
         v = inflater.inflate(R.layout.fragment_events, container, false);
         recyclerView = (RecyclerView)v.findViewById(R.id.events_tabx);
         EventsListAdapter adapter = new EventsListAdapter(getContext(),eventsArrayList);

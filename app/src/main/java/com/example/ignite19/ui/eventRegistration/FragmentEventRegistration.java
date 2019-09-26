@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.TextPaint;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -45,8 +47,8 @@ public class FragmentEventRegistration extends Fragment {
     DataCommunication dataCommunication;
     FloatingActionButton floatingActionButton;
     ArrayList<UserDataAndEventList> mList;
-    ArrayList<Integer> numberOfParticipants = new ArrayList<>();
-    ArrayList<String > unRegisteredEvents = new ArrayList<>();
+    //ArrayList<Integer> numberOfParticipants = new ArrayList<>();
+    //ArrayList<String > unRegisteredEvents = new ArrayList<>();
     ArrayList<UserDataAndEventList> registeredEventList = new ArrayList<>();
     ArrayList<Participation> participationArrayList;
     RegisterEventsAdapter registerEventsAdapter;
@@ -56,10 +58,12 @@ public class FragmentEventRegistration extends Fragment {
     CheckBox one,two,three,four,five;
     String uuid;
     HashMap<String,Integer> map = new HashMap<>();
+    //final List<String> keys = new ArrayList<>();
 
     UserDetail userDetail;
     RecyclerView recyclerView;
     View view;
+    List<String > eventNamesForDropDown;
 
     public static FragmentEventRegistration newInstance() {
         return new FragmentEventRegistration();
@@ -67,6 +71,7 @@ public class FragmentEventRegistration extends Fragment {
 
     @Override
     public void onAttach(@NonNull Context context) {
+        Toast.makeText(getContext(),"onAttach",Toast.LENGTH_SHORT).show();
         super.onAttach(context);
         try {
             dataCommunication = (DataCommunication) context;
@@ -79,11 +84,29 @@ public class FragmentEventRegistration extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        numberOfParticipants.clear();
-        unRegisteredEvents.clear();
-        registeredEventList.clear();
-        map.clear();
+        Toast.makeText(getContext(),"onPause",Toast.LENGTH_SHORT).show();
+    }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Toast.makeText(getContext(),"onDetach",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Toast.makeText(getContext(),"onDestroy",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Toast.makeText(getContext(),"onStop",Toast.LENGTH_SHORT).show();
+      //  numberOfParticipants.clear();
+       // unRegisteredEvents.clear();
+        map.clear();
+        registeredEventList.clear();
     }
 
     @Override
@@ -93,19 +116,31 @@ public class FragmentEventRegistration extends Fragment {
         outState.putParcelableArrayList("participationArrayList",participationArrayList);
         outState.putParcelable("userDetail",userDetail);
 
+    }
 
+
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Toast.makeText(getContext(),"onDestroy",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Toast.makeText(getContext(),"onResume",Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-
+        Toast.makeText(getContext(),"onCreateView",Toast.LENGTH_SHORT).show();
         if(savedInstanceState!=null){
             mList = savedInstanceState.getParcelableArrayList("mList");
             userDetail = savedInstanceState.getParcelable("userDetail");
             participationArrayList = savedInstanceState.getParcelableArrayList("participationArrayList");
-
 
         }
         else {
@@ -116,46 +151,6 @@ public class FragmentEventRegistration extends Fragment {
 
 
         uuid = dataCommunication.getUUID();
-
-        //now lets find events with participation value 0
-        for(Participation x : participationArrayList){
-            for(UserDataAndEventList y: mList){
-                if(x.getEvent_name().equalsIgnoreCase(y.getEvent_name())){
-                    if(x.getParticipation() == 0){
-                        numberOfParticipants.add(y.getNumber_of_participants());
-                        unRegisteredEvents.add(y.getEvent_name());
-                        map.put(y.getEvent_name(),y.getNumber_of_participants());
-                    }
-                    else{
-                        //user is registered for that event
-                        registeredEventList.add(y);
-                    }
-                }
-            }
-        }
-
-
-        HashSet hs1 = new HashSet();
-        hs1.addAll(numberOfParticipants);
-        numberOfParticipants.clear();
-        numberOfParticipants.addAll(hs1);
-
-
-        HashSet hs2 = new HashSet();
-        hs2.addAll(unRegisteredEvents);
-        unRegisteredEvents.clear();
-        unRegisteredEvents.addAll(hs2);
-
-
-        HashSet hs4 = new HashSet();
-        hs4.addAll(registeredEventList);
-        registeredEventList.clear();
-        registeredEventList.addAll(hs4);
-
-
-
-
-
         view = inflater.inflate(R.layout.fragment_event_registration, container, false);
         recyclerView = (RecyclerView) view.findViewById(R.id.recyler_view_registered_events);
         registerEventsAdapter = new RegisterEventsAdapter(getContext(),registeredEventList);
@@ -164,6 +159,37 @@ public class FragmentEventRegistration extends Fragment {
 
         floatingActionButton = (FloatingActionButton)view.findViewById(R.id.floatingActionButton);
 
+
+        return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Toast.makeText(getContext(),"onStart",Toast.LENGTH_SHORT).show();
+        //now lets find events with participation value 0
+       // registeredEventList.clear();
+        for(Participation x : participationArrayList){
+            for(UserDataAndEventList y: mList){
+                if(x.getEvent_name().equalsIgnoreCase(y.getEvent_name())){
+                    if(x.getParticipation() == 0){
+                        //numberOfParticipants.add(y.getNumber_of_participants());
+                        //unRegisteredEvents.add(y.getEvent_name());
+                        map.put(y.getEvent_name(),y.getNumber_of_participants());
+                    }
+                    else{
+                        //user is registered for that event
+                        if(!registeredEventList.contains(y)){
+                            registeredEventList.add(y);
+                        }
+
+                    }
+                }
+            }
+        }
+        eventNamesForDropDown = new ArrayList<>(map.keySet());
+            //List<String> keys = new ArrayList<>(map.keySet());
+        registerEventsAdapter.notifyDataSetChanged();
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -171,8 +197,9 @@ public class FragmentEventRegistration extends Fragment {
             }
         });
 
-        return view;
     }
+
+
 
     private void openDialogFragment() {
         LayoutInflater inflater = LayoutInflater.from(getActivity());
@@ -190,8 +217,10 @@ public class FragmentEventRegistration extends Fragment {
         three.setText(userDetail.getTeam_member2());
         four.setText(userDetail.getTeam_member3());
         five.setText(userDetail.getTeam_member4());
+
+
         final ArrayAdapter<String> adapter =
-                new ArrayAdapter<String>(Objects.requireNonNull(getContext(),"context cannot be null here"),  android.R.layout.simple_spinner_dropdown_item,unRegisteredEvents);
+                new ArrayAdapter<String>(Objects.requireNonNull(getContext(),"context cannot be null here"),  android.R.layout.simple_spinner_dropdown_item,eventNamesForDropDown);
         adapter.setDropDownViewResource( android.R.layout.simple_list_item_checked);
         mSpinner.setAdapter(adapter);
         //mSpinner.setOnItemSelectedListener(mListener);
@@ -199,8 +228,9 @@ public class FragmentEventRegistration extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                String event_name_X = unRegisteredEvents.get(i).toString();
-                numberOfParticipantsTextView.setText(map.get(event_name_X).toString());
+               // String event_name_X = unRegisteredEvents.get(i).toString();
+                String event_name_x = eventNamesForDropDown.get(i).toString();
+                numberOfParticipantsTextView.setText(map.get(event_name_x).toString());
             }
 
             @Override
@@ -228,7 +258,9 @@ public class FragmentEventRegistration extends Fragment {
                 if(count == xnumberOfParticipants){
                     //great
                     addSelectedItemsToFirebase(event_name,xnumberOfParticipants);
-                    unRegisteredEvents.remove(event_name);
+                    //map.remove(event_name);
+                    //unRegisteredEvents.remove(event_name);
+                    eventNamesForDropDown.remove(event_name);
                     adapter.notifyDataSetChanged();
 
                 }
