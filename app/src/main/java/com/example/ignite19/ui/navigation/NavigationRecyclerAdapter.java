@@ -7,12 +7,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.ignite19.R;
 import com.example.ignite19.ui.schedule.RecyclerViewAdapter;
 
@@ -44,6 +46,7 @@ public NavigationRecyclerAdapter(Context ct, ArrayList<VenueList> venue_list){
     @Override
     public void onBindViewHolder(@NonNull MyOwnHolder holder, final int position) {
         holder.venue_name.setText(venue_list.get(position).getVenue_name());
+        Glide.with(ct).load(R.drawable.robot).into(holder.gif);
         holder.mCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,10 +72,12 @@ public NavigationRecyclerAdapter(Context ct, ArrayList<VenueList> venue_list){
     public class MyOwnHolder extends RecyclerView.ViewHolder {
     TextView venue_name;
     CardView mCardView;
+    ImageView gif;
         public MyOwnHolder(@NonNull View itemView) {
             super(itemView);
             venue_name = (TextView) itemView.findViewById(R.id.venue_name_recycler_card);
             mCardView = (CardView) itemView.findViewById(R.id.m_card_view);
+            gif=itemView.findViewById(R.id.navigation_cardview_gif);
         }
     }
 }
