@@ -66,6 +66,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         eventLoader = view.findViewById(R.id.lottie_events_loader_animation);
         eventRegistrationLoader = view.findViewById(R.id.lottie_events_registration_loader_animation);
         seeParticipantsLoader = view.findViewById(R.id.lottie_see_participants_animation);
+        eventLoader.setAnimation("loader.json");
+        eventRegistrationLoader.setAnimation("loader.json");
+        seeParticipantsLoader.setAnimation("loader.json");
+        eventLoader.playAnimation();
+        eventRegistrationLoader.playAnimation();
+        seeParticipantsLoader.playAnimation();
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -74,19 +80,22 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                 eventLoader.post(new Runnable() {
                     @Override
-                    public void run() {
-                        eventLoader.setAnimation("greentick.json");
+                    public void run() { eventLoader.setAnimation("greentick.json");
                         eventLoader.playAnimation();
+
                     }
                 });
 
 
 
                 seeParticipantsLoader.post(new Runnable() {
+
                     @Override
                     public void run() {
+
                         seeParticipantsLoader.setAnimation("greentick.json");
                         seeParticipantsLoader.playAnimation();
+
                     }
                 });
 
@@ -95,6 +104,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 eventRegistrationLoader.post(new Runnable() {
                     @Override
                     public void run() {
+
                         eventRegistrationLoader.setAnimation("greentick.json");
                         eventRegistrationLoader.playAnimation();
                     }
