@@ -15,7 +15,8 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:id="@+id/m_card_view"
-
+        app:cardCornerRadius="10dp"
+        app:cardElevation="10dp"
 
         >
 
@@ -28,23 +29,24 @@
             <LinearLayout
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:background="#ce93d8"
+                android:background="#8bc34a
+"
 
 
                 >
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@drawable/location_icon_navigation_page"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
+                    android:id="@+id/navigation_cardview_gif"
                     />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#f3e5f5"
+                android:background="#9ccc65"
                 >
 
                 <LinearLayout
@@ -58,11 +60,11 @@
                         android:layout_height="wrap_content"
                         android:text="Pavillion"
                         android:layout_gravity="center"
-                        android:textColor="#4a148c"
-                        android:textSize="17sp"
+                        android:textColor="#212121"
+                        android:textSize="15sp"
                         android:textStyle=""
-                        android:layout_marginTop="15dp"
-                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="0dp"
                         android:id="@+id/venue_name_recycler_card"
 
 
