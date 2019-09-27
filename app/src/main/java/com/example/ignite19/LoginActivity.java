@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -39,6 +40,9 @@ public class LoginActivity extends AppCompatActivity {
     private ImageView loader;
     private final String TAG = "ALPHA";
 
+    String firebaseNotificationTitle;
+    String firebaseNotificationContent;
+
     @Override
     public void onStart() {
         super.onStart();
@@ -67,11 +71,17 @@ public class LoginActivity extends AppCompatActivity {
         }
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+
+
+
+
         if(!isConnected(LoginActivity.this)){
             buildDialog(LoginActivity.this).show();
 
         }
         else {
+
+
 
             userNameEditText = findViewById(R.id.username_editText);
             userPasswordEditText = findViewById(R.id.password_editText);
@@ -136,6 +146,13 @@ public class LoginActivity extends AppCompatActivity {
     private void updateUI(FirebaseUser user) {
         int pos = Objects.requireNonNull(user.getEmail()).indexOf("@");
         String displayName = user.getEmail().substring(0 , pos);
+
+
+
+
+        firebaseNotificationContent = (String)LoginActivity.this.getIntent().getStringExtra("text");
+        firebaseNotificationTitle = (String)LoginActivity.this.getIntent().getStringExtra("title");
+        Log.d(TAG, "updateUI: sierra"  + firebaseNotificationTitle + firebaseNotificationContent);
         if(displayName.equalsIgnoreCase("ADMIN")){
             Intent adminIntent = new Intent(LoginActivity.this, AdminHomeAcitivity.class);
             adminIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -149,6 +166,8 @@ public class LoginActivity extends AppCompatActivity {
             userIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             userIntent.putExtra("UUID",user.getUid());
             userIntent.putExtra("userName",user.getDisplayName());
+            userIntent.putExtra("title",firebaseNotificationTitle);
+            userIntent.putExtra("content",firebaseNotificationContent);
             startActivity(userIntent);
         }
     }
@@ -183,7 +202,6 @@ public class LoginActivity extends AppCompatActivity {
         builder.setMessage("You need to have Mobile Data or wifi to access this. Press ok to Exit");
 
         builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-
             @Override
             public void onClick(DialogInterface dialog, int which) {
 

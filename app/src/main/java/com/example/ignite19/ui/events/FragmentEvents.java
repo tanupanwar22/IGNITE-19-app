@@ -49,20 +49,36 @@ public class FragmentEvents extends Fragment {
     }
 
 
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelableArrayList("mList",eventsArrayList);
+
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        eventsArrayList = dataCommunication.getAllEventList();
-        HashSet hs = new HashSet();
-        hs.addAll(eventsArrayList);
-        eventsArrayList.clear();
-        eventsArrayList.addAll(hs);
+
+
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
+
+        if(savedInstanceState != null){
+            eventsArrayList = savedInstanceState.getParcelableArrayList("mList");
+        }
+        else{
+            eventsArrayList = dataCommunication.getAllEventList();
+            HashSet hs = new HashSet();
+            hs.addAll(eventsArrayList);
+            eventsArrayList.clear();
+            eventsArrayList.addAll(hs);
+        }
 
         v = inflater.inflate(R.layout.fragment_events, container, false);
         recyclerView = (RecyclerView)v.findViewById(R.id.events_tabx);
