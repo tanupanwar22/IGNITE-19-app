@@ -68,6 +68,8 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
     private String displayName;
     private  boolean FLAG1 = false;
     private boolean FLAG2 = false;
+    String firebaseNotificationTitle;
+    String firebaseNotificationContent;
 
     private String uuid;
 
@@ -108,6 +110,13 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
         //displayName = intent.getStringExtra("userName");
         //referenceToUserParticipation = FirebaseDatabase.getInstance().getReference("Users").child(uuid).child("participation");
         //referenceToUserParticipation.addValueEventListener(participationListener);
+        Intent intent = getIntent();
+         firebaseNotificationTitle = intent.getStringExtra("title");
+        firebaseNotificationContent = intent.getStringExtra("content");
+        Log.d(TAG, "onCreate: wiggle" + firebaseNotificationTitle + "          \n" +firebaseNotificationContent);
+        if(firebaseNotificationTitle!=null){
+            createAlertDialogForNotificationContent(firebaseNotificationTitle,firebaseNotificationContent);
+        }
 
 
         createNotificationChannel();
@@ -127,6 +136,23 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
         NavigationUI.setupWithNavController(navigationView, navController);
 
 
+    }
+
+    private void createAlertDialogForNotificationContent(String firebaseNotificationTitle, String firebaseNotificationContent) {
+        final AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
+        mBuilder.setTitle(firebaseNotificationTitle);
+        mBuilder.setIcon(R.drawable.ic_notification);
+        mBuilder.setMessage(firebaseNotificationContent);
+        mBuilder.setCancelable(false);
+        mBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                     dialogInterface.dismiss();
+            }
+        });
+
+        AlertDialog m1 = mBuilder.create();
+        m1.show();
     }
 
     String inaug,post,work,datp,codp,relay,debug,scatte,agomotto,death,codeprob,brain,bid,nexus,game,treasure,datafinal,codefinal,codeathon,algo,non,cult,stress,award;

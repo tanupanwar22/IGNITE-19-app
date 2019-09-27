@@ -22,14 +22,16 @@ public class NotificationHelper {
     public static void triggerNotification(Context ct,String title,String text){
         // Create an explicit intent for an Activity in your app
         Intent intent = new Intent(ct,LoginActivity.class);
+        intent.putExtra("title",title);
+        intent.putExtra("text",text);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(ct, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(ct, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         final Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(ct, MainActivity.CHANNEL_ID)
                 .setContentTitle(title)
                 .setContentText(text)
-                .setSmallIcon(R.drawable.ic_notifications_active_black_24dp)
+                .setSmallIcon(R.drawable.ic_notification)
                 .setAutoCancel(true)
                 .setSound(alarmSound)
                 .setContentIntent(pendingIntent)

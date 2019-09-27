@@ -130,7 +130,6 @@ public class FragmentEventRegistration extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        Toast.makeText(getContext(),"onCreateView",Toast.LENGTH_SHORT).show();
         if(savedInstanceState!=null){
             mList = savedInstanceState.getParcelableArrayList("mList");
             userDetail = savedInstanceState.getParcelable("userDetail");
@@ -182,7 +181,6 @@ public class FragmentEventRegistration extends Fragment {
             }
         }
         eventNamesForDropDown = new ArrayList<>(map.keySet());
-            //List<String> keys = new ArrayList<>(map.keySet());
         registerEventsAdapter.notifyDataSetChanged();
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
