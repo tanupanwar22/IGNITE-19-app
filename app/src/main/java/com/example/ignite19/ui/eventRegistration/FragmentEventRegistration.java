@@ -22,6 +22,8 @@ import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.ignite19.DataCommunication;
 import com.example.ignite19.MainActivity;
 import com.example.ignite19.Participation;
@@ -51,6 +53,7 @@ public class FragmentEventRegistration extends Fragment {
     //ArrayList<String > unRegisteredEvents = new ArrayList<>();
     ArrayList<UserDataAndEventList> registeredEventList = new ArrayList<>();
     ArrayList<Participation> participationArrayList;
+    TextView eventDescTextView;
     RegisterEventsAdapter registerEventsAdapter;
     View alertView;
     TextView numberOfParticipantsTextView;
@@ -145,12 +148,13 @@ public class FragmentEventRegistration extends Fragment {
 
         uuid = dataCommunication.getUUID();
         view = inflater.inflate(R.layout.fragment_event_registration, container, false);
+
         recyclerView = (RecyclerView) view.findViewById(R.id.recyler_view_registered_events);
         registerEventsAdapter = new RegisterEventsAdapter(getContext(),registeredEventList);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3));
         recyclerView.setAdapter(registerEventsAdapter);
 
-        floatingActionButton = (FloatingActionButton)view.findViewById(R.id.floatingActionButton);
+        floatingActionButton = view.findViewById(R.id.floatingActionButton);
 
 
         return view;
@@ -196,6 +200,7 @@ public class FragmentEventRegistration extends Fragment {
     private void openDialogFragment() {
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         alertView = inflater.inflate(R.layout.dialog_register_event, null);
+        eventDescTextView = alertView.findViewById(R.id.event_desc_text_view_in_dialog);
         one =  alertView.findViewById(R.id.checkbox1_team_participant);
         two =  alertView.findViewById(R.id.checkbox2_team_participant);
         three = alertView.findViewById(R.id.checkbox3_team_participant);
@@ -223,6 +228,14 @@ public class FragmentEventRegistration extends Fragment {
                // String event_name_X = unRegisteredEvents.get(i).toString();
                 String event_name_x = eventNamesForDropDown.get(i).toString();
                 numberOfParticipantsTextView.setText(map.get(event_name_x).toString());
+                //
+                String event_desc;
+                for(UserDataAndEventList m : mList){
+                    if(m.getEvent_name().equalsIgnoreCase(event_name_x)){
+                        eventDescTextView.setText(m.getEvent_description());
+                    }
+                }
+               // eventDescTextView.setText(map.get);
             }
 
             @Override
@@ -236,6 +249,7 @@ public class FragmentEventRegistration extends Fragment {
         builder.setPositiveButton("ADD", null);
         builder.setNegativeButton("CANCEL", null);
         builder.setTitle("Event Registration");
+        builder.setIcon(R.drawable.ic_eventssvg);
         alertDialog = builder.create();
         alertDialog.show();
         alertDialog.setCancelable(false);
