@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -59,8 +60,8 @@ public class SeeParticipantsAdmin2 extends Fragment {
         //eventNameTextView.setText(eventName);
         ((AdminHomeAcitivity)getActivity()).getSupportActionBar().setTitle(eventName);
 
-         allParticipantsAdapter = new AllParticipantsAdapter(getContext(),mList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        allParticipantsAdapter = new AllParticipantsAdapter(getContext(),mList);
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
         recyclerView.setAdapter(allParticipantsAdapter);
         FirebaseDatabase.getInstance().getReference("Users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

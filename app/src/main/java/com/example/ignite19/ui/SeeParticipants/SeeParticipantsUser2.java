@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -65,9 +66,11 @@ public class SeeParticipantsUser2 extends Fragment {
         uuid = dataCommunication.getUUID();
         v = inflater.inflate(R.layout.fragment_see_participants_user2, container, false);
         recyclerView = v.findViewById(R.id.see_paricipants_recycler_view_user);
+
         mAdapter = new AllParticipantsAdapter(getContext(),eventWiseParticipantDetailArrayList);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
         recyclerView.setAdapter(mAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
         FirebaseDatabase.getInstance().getReference("Users").child(uuid).child("participation").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -96,8 +99,6 @@ public class SeeParticipantsUser2 extends Fragment {
                     EventWiseParticipantDetail mDetail = mBuilder.build();
                     eventWiseParticipantDetailArrayList.add(mDetail);
                     mAdapter.notifyDataSetChanged();
-
-
                 }
 
             }
