@@ -170,7 +170,33 @@ public class AdminHomeFragment extends Fragment implements View.OnClickListener 
                 break;
 
             case R.id.see_participants_btn:
-                Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_seeParticipantsAdmin);
+                AlertDialog.Builder mBuilder2 = new AlertDialog.Builder(getContext());
+                mBuilder2.setIcon(R.drawable.ic_participants);
+                mBuilder2.setTitle("Select Event :");
+                //loading animation can be implemented here
+                if(eventList.size() != 0) {
+                    final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.select_dialog_singlechoice,eventList);
+                    mBuilder2.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
+
+                    mBuilder2.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            String strName = arrayAdapter.getItem(which);
+                            Bundle bundle = new Bundle();
+                            bundle.putString("eventName",strName);
+                            Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_seeParticipantsAdmin2,bundle);
+                        }
+                    });
+                    mBuilder2.show();
+                }
+                else{
+                    Toast.makeText(getContext(),"list empty,wait for data to load",Toast.LENGTH_LONG).show();
+                }
                 break;
 
             default:
