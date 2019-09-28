@@ -49,6 +49,7 @@ public class AllParticipantsAdapter extends RecyclerView.Adapter<AllParticipants
 
     @Override
     public void onBindViewHolder(@NonNull MyOwnHolder holder, int position) {
+        holder.setIsRecyclable(false);
         holder.collegeName.setText(participantDetailsList.get(position).getCollegeName().toString());
         String p1 = participantDetailsList.get(position).getParticipant1();
         String p2 = participantDetailsList.get(position).getParticipant2();
@@ -56,48 +57,39 @@ public class AllParticipantsAdapter extends RecyclerView.Adapter<AllParticipants
         String p4 = participantDetailsList.get(position).getParticipant4();
         String p5 = participantDetailsList.get(position).getParticipant5();
         if(p1 != null){
-            holder.participant1.setText("1. " + p1);
+            holder.participant1.setText(p1);
         }
         else {
-            holder.participant1.setVisibility(TextView.GONE);
+            //holder.participant1.setVisibility(TextView.GONE);
+            //holder.participant1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_participantxx, 0, 0, 0);
+            holder.participant1.setText("Not yet registered");
 
         }
 
 
         if(p2 != null){
 
-            holder.participant2.setText("2. " + p2);
+            holder.participant2.setText(p2);
         }
-        else {
-            holder.participant2.setVisibility(TextView.GONE);
 
-        }
 
 
         if(p3 !=null){
-            holder.participant3.setText("3. " + p3);
+            holder.participant3.setText(p3);
         }
-        else {
-            holder.participant3.setVisibility(TextView.GONE);
 
-        }
 
 
         if(p4 != null){
-            holder.participant4.setText("4. " + p4);
+            holder.participant4.setText(p4);
         }
-        else {
-            holder.participant4.setVisibility(TextView.GONE);
 
-        }
 
 
         if(p5 != null){
-            holder.participant5.setText("5. " + p5);
+            holder.participant5.setText(p5);
         }
-        else {
-            holder.participant5.setVisibility(TextView.GONE);
-        }
+
     }
 
     @Override
