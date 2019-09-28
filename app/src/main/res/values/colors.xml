@@ -8,11 +8,11 @@
     <color name="materialGreen">#00bfa5</color>
     <color name="pinkAccent">#ff4081</color>
     <color name="purple">#4444ad</color>
-    <color name="colorPrimaryText">#050505</color>
+    <color name="colorPrimaryText">#5E35B1</color>
 
     <color name="colorPrimary">#600700</color>
     <color name="colorPrimaryDark">#8b0c03</color>
-    <color name="colorAccent">#8b0c03</color>
+    <color name="colorAccent">#7CB342</color>
 
     <color name="btn_text_color">#ffffff</color>
 
