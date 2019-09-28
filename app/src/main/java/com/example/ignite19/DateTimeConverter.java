@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
@@ -74,5 +75,20 @@ public class DateTimeConverter {
             e.printStackTrace();
         }
         return result;
+    }
+
+
+    public static String changeDateFormat(String dateTimeString){
+        String formattedDateTime = null;
+        try {
+            Date date = sdf.parse(dateTimeString);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(Objects.requireNonNull(date));
+            formattedDateTime = new SimpleDateFormat("dd/MM/yyyy KK:mm a").format(date);
+        }
+        catch (ParseException e){
+            e.printStackTrace();
+        }
+        return formattedDateTime;
     }
 }
