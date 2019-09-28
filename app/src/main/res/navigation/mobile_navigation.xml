@@ -110,7 +110,6 @@
     <fragment
         android:id="@+id/seeParticipantsUser2"
         android:name="com.example.ignite19.ui.SeeParticipants.SeeParticipantsUser2"
-        android:label="fragment_see_participants_user2"
+        android:label="My participants"
         tools:layout="@layout/fragment_see_participants_user2" />
-
 </navigation>
