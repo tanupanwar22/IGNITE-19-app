@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_nav_home_to_seeParticipantsUser2"
             app:destination="@id/seeParticipantsUser2" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_schedule"
+            app:destination="@id/nav_schedule" />
     </fragment>
 
     <fragment

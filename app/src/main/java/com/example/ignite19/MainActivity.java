@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
 
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_about_ignite, R.id.nav_sponsors,
-                R.id.nav_sign_out, R.id.nav_contact_us, R.id.nav_feedback,R.id.nav_about_app,R.id.nav_schedule)
+                R.id.nav_sign_out, R.id.nav_contact_us, R.id.nav_feedback,R.id.nav_about_app)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
