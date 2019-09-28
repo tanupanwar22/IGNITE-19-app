@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_nav_home_to_seeParticipants"
             app:destination="@id/seeParticipants" />
+        <action
+            android:id="@+id/action_nav_home_to_seeParticipantsUser2"
+            app:destination="@id/seeParticipantsUser2" />
     </fragment>
 
     <fragment
@@ -96,13 +99,18 @@
     </fragment>
     <fragment
         android:id="@+id/seeParticipants"
-        android:name="com.example.ignite19.ui.SeeParticipants"
-        android:label="fragment_see_participants"
+        android:name="com.example.ignite19.ui.SeeParticipants.SeeParticipants"
+        android:label="See Participants"
         tools:layout="@layout/fragment_see_participants" />
     <fragment
         android:id="@+id/eventResultsUser"
         android:name="com.example.ignite19.ui.LeaderBoard.EventResultsUser"
         android:label="fragment_event_results_user"
         tools:layout="@layout/fragment_event_results_user" />
+    <fragment
+        android:id="@+id/seeParticipantsUser2"
+        android:name="com.example.ignite19.ui.SeeParticipants.SeeParticipantsUser2"
+        android:label="fragment_see_participants_user2"
+        tools:layout="@layout/fragment_see_participants_user2" />
 
 </navigation>

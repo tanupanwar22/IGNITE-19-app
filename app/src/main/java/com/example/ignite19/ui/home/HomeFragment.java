@@ -1,12 +1,14 @@
 package com.example.ignite19.ui.home;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -34,12 +37,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
     DataCommunication dataCommunication;
     Boolean flag1Status;
     Boolean flag2Status;
     LottieAnimationView eventLoader,eventRegistrationLoader,seeParticipantsLoader;
+    ArrayList<String> eventList;
     ImageView bg_gif;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -62,6 +68,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         //navController = Navigation.findNavController(view);
+        eventList = dataCommunication.getEventNames();
+
 
         eventLoader = view.findViewById(R.id.lottie_events_loader_animation);
         eventRegistrationLoader = view.findViewById(R.id.lottie_events_registration_loader_animation);
@@ -131,7 +139,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
 
     @Override
-    public void onClick(View view) {
+    public void onClick(final View view) {
         switch (view.getId()){
             case R.id.button_events:
                 flag1Status = dataCommunication.getFirstListenerFlagStatus();
@@ -164,7 +172,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.user_see_event_player_distribution:
-                Navigation.findNavController(view).navigate(R.id.action_nav_home_to_seeParticipants);
+                Navigation.findNavController(view).navigate(R.id.action_nav_home_to_seeParticipantsUser2);
                 break;
             default:
                 break;

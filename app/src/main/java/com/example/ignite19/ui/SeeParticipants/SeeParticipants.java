@@ -1,4 +1,4 @@
-package com.example.ignite19.ui;
+package com.example.ignite19.ui.SeeParticipants;
 
 
 import android.content.DialogInterface;
