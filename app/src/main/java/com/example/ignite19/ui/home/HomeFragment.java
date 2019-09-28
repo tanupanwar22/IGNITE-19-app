@@ -127,8 +127,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         CardView navigationBtn = view.findViewById(R.id.button_navigation);
         CardView eventRegistrationBtn = view.findViewById(R.id.button_event_registration);
         CardView leaderBoardBtn = view.findViewById(R.id.button_leaderboards);
+        CardView scheduleBtn = view.findViewById(R.id.user_see_schedule);
         CardView seeTeam=view.findViewById(R.id.user_see_event_player_distribution);
         eventsBtn.setOnClickListener(this);
+        scheduleBtn.setOnClickListener(this);
         navigationBtn.setOnClickListener(this);
         leaderBoardBtn.setOnClickListener(this);
         eventRegistrationBtn.setOnClickListener(this);
@@ -172,8 +174,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.user_see_event_player_distribution:
-                Navigation.findNavController(view).navigate(R.id.action_nav_home_to_seeParticipantsUser2);
+                flag1Status = dataCommunication.getFirstListenerFlagStatus();
+                flag2Status = dataCommunication.getSecondListenerFlagStatus();
+                if(flag1Status && flag2Status){
+                    Navigation.findNavController(view).navigate(R.id.action_nav_home_to_seeParticipantsUser2);
+                }
+                else{
+                    Toast.makeText(getContext(),"Please wait for data to load",Toast.LENGTH_LONG).show();
+                }
+
                 break;
+
+            case R.id.user_see_schedule:
+                Navigation.findNavController(view).navigate(R.id.action_nav_home_to_nav_schedule);
             default:
                 break;
         }

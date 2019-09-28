@@ -71,7 +71,7 @@ public class FragmentSchedule extends Fragment{
 
     class myViewPagerAdapter extends FragmentPagerAdapter {
 
-        String data[] = {"first","second","third"};
+        String data[] = {"Day 0","Day 1","Day 2"};
 
         public myViewPagerAdapter(FragmentManager fm) {
             super(fm);
