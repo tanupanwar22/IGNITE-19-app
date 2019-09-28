@@ -51,8 +51,9 @@ public class FragmentEventRegistration extends Fragment {
     ArrayList<UserDataAndEventList> mList;
     //ArrayList<Integer> numberOfParticipants = new ArrayList<>();
     //ArrayList<String > unRegisteredEvents = new ArrayList<>();
-    ArrayList<UserDataAndEventList> registeredEventList = new ArrayList<>();
-    ArrayList<Participation> participationArrayList;
+   ArrayList<UserDataAndEventList> registeredEventList ;//= new ArrayList<>();
+   HashSet<UserDataAndEventList> registeredEventHashSet = new HashSet<>();
+   ArrayList<Participation> participationArrayList;
     TextView eventDescTextView;
     RegisterEventsAdapter registerEventsAdapter;
     View alertView;
@@ -74,7 +75,6 @@ public class FragmentEventRegistration extends Fragment {
 
     @Override
     public void onAttach(@NonNull Context context) {
-        Toast.makeText(getContext(),"onAttach",Toast.LENGTH_SHORT).show();
         super.onAttach(context);
         try {
             dataCommunication = (DataCommunication) context;
@@ -87,16 +87,19 @@ public class FragmentEventRegistration extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
+        map.clear();
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
+        map.clear();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        map.clear();
     }
 
     @Override
@@ -105,7 +108,7 @@ public class FragmentEventRegistration extends Fragment {
       //  numberOfParticipants.clear();
        // unRegisteredEvents.clear();
         map.clear();
-        registeredEventList.clear();
+
     }
 
     @Override
@@ -118,21 +121,76 @@ public class FragmentEventRegistration extends Fragment {
     }
 
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        map.clear();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        map.clear();
+    }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        map.clear();
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        //registeredEventList.clear();
+        map.clear();
+        for(Participation x : participationArrayList){
+            for(UserDataAndEventList y: mList){
+                if(x.getEvent_name().equalsIgnoreCase(y.getEvent_name())){
+                    if(x.getParticipation() == 0){
+                        //numberOfParticipants.add(y.getNumber_of_participants());
+                        //unRegisteredEvents.add(y.getEvent_name());
+                        map.put(y.getEvent_name(),y.getNumber_of_participants());
+                    }
+                    else{
+                       // registeredEventList.clear();
+                        //user is registered for that event
+                       // if(!registeredEventList.contains(y)){
+                         //   registeredEventList.add(y);
+                        //}
+                        registeredEventHashSet.add(y);
+
+                    }
+                }
+            }
+        }
+        //registeredEventList.clear();
+        registeredEventList = new ArrayList<>(registeredEventHashSet);
+     
+
+        //code from oncreateview
+        registerEventsAdapter = new RegisterEventsAdapter(getContext(),registeredEventList);
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3));
+        recyclerView.setAdapter(registerEventsAdapter);
+        //code ends
+
+        eventNamesForDropDown = new ArrayList<>(map.keySet());
+        registerEventsAdapter.notifyDataSetChanged();
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDialogFragment();
+            }
+        });
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
+        if(view == null){
+
+        view = inflater.inflate(R.layout.fragment_event_registration, container, false);
         if(savedInstanceState!=null){
             mList = savedInstanceState.getParcelableArrayList("mList");
             userDetail = savedInstanceState.getParcelable("userDetail");
@@ -145,53 +203,21 @@ public class FragmentEventRegistration extends Fragment {
             participationArrayList = dataCommunication.getUserParticipationDetails();
         }
 
-
         uuid = dataCommunication.getUUID();
-        view = inflater.inflate(R.layout.fragment_event_registration, container, false);
-
         recyclerView = (RecyclerView) view.findViewById(R.id.recyler_view_registered_events);
-        registerEventsAdapter = new RegisterEventsAdapter(getContext(),registeredEventList);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3));
-        recyclerView.setAdapter(registerEventsAdapter);
-
         floatingActionButton = view.findViewById(R.id.floatingActionButton);
 
-
+        }
         return view;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        Toast.makeText(getContext(),"onStart",Toast.LENGTH_SHORT).show();
         //now lets find events with participation value 0
-       // registeredEventList.clear();
-        for(Participation x : participationArrayList){
-            for(UserDataAndEventList y: mList){
-                if(x.getEvent_name().equalsIgnoreCase(y.getEvent_name())){
-                    if(x.getParticipation() == 0){
-                        //numberOfParticipants.add(y.getNumber_of_participants());
-                        //unRegisteredEvents.add(y.getEvent_name());
-                        map.put(y.getEvent_name(),y.getNumber_of_participants());
-                    }
-                    else{
-                        //user is registered for that event
-                        if(!registeredEventList.contains(y)){
-                            registeredEventList.add(y);
-                        }
+      // registeredEventList.clear();
+       map.clear();
 
-                    }
-                }
-            }
-        }
-        eventNamesForDropDown = new ArrayList<>(map.keySet());
-        registerEventsAdapter.notifyDataSetChanged();
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openDialogFragment();
-            }
-        });
 
     }
 
@@ -328,7 +354,8 @@ public class FragmentEventRegistration extends Fragment {
 
         for(UserDataAndEventList m:mList){
             if(event_name.equalsIgnoreCase(m.getEvent_name())){
-                registeredEventList.add(m);
+            registeredEventList.add(m);
+                //registeredEventHashSet.add(m);
             }
         }
         //now store participation in database
