@@ -14,11 +14,6 @@
             android:title="@string/menu_about_ignite" />
 
         <item
-            android:id="@+id/nav_schedule"
-            android:icon="@drawable/ic_schedule"
-            android:title="@string/nav_schedule"/>
-
-        <item
             android:id="@+id/nav_sponsors"
             android:icon="@drawable/ic_sponsors"
             android:title="@string/menu_sponsors"
