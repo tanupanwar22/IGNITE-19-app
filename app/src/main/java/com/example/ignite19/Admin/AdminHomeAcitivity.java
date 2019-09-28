@@ -93,7 +93,6 @@ public class AdminHomeAcitivity extends AppCompatActivity implements AdminDataCo
                     UserDataAndEventList mList   = snapshot.getValue(UserDataAndEventList.class);
                     String event_name = mList.getEvent_name();
                     String event_time = mList.getEvent_date();
-
                     eventWithDateTime.put(event_name,event_time);
                     eventNames.add(event_name);
                 }

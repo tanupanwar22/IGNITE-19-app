@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
     public static String CHANNEL_ID = "com.example.ignite19";
     private final DatabaseReference referenceToEventDesc = FirebaseDatabase.getInstance().getReference("EventDesc");
     private DatabaseReference referenceToUserParticipation;
+    ArrayList<String> eventNameList = new ArrayList<>();
     private String TAG = "alpha";
     private UserDetail userDetail;
     private String displayName;
@@ -236,6 +237,11 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
             return userParticipationDetails;
         }
 
+    }
+
+    @Override
+    public ArrayList<String> getEventNames() {
+        return eventNameList;
     }
 
     @Override
@@ -787,12 +793,10 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                             break;
                     }
                     userEventList.add(mEventList.build());
+                    eventNameList.add(mEventList.getEvent_name());
                     FLAG1 = true;
 
-                    //pass this event list builder to further function to add more user related details
-                    //add these events to notification channel
-                    //configure notification channel changes
-                    configureNotifications(userEventList);
+
                 }
                 else{
                     Toast.makeText(getApplicationContext(),"Failed to get event Description",Toast.LENGTH_LONG).show();
@@ -800,6 +804,11 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                 }
 
             }
+            //pass this event list builder to further function to add more user related details
+            //add these events to notification channel
+            //configure notification channel changes
+            configureNotifications(userEventList);
+
         }
         @Override
         public void onCancelled(@NonNull DatabaseError databaseError) {

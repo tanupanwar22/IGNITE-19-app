@@ -9,6 +9,7 @@ public interface DataCommunication {
     ArrayList<eventSchedule> getDay2CompleteSchedule();
     ArrayList<UserDataAndEventList> getAllEventList();
     ArrayList<Participation> getUserParticipationDetails();
+    ArrayList<String> getEventNames();
     String  getUUID();
     UserDetail getUserDetail();
     String getUserName();
