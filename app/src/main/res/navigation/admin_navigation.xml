@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_adminHomeFragment_to_seeParticipantsAdmin"
             app:destination="@id/seeParticipantsAdmin" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_seeParticipantsAdmin2"
+            app:destination="@id/seeParticipantsAdmin2" />
     </fragment>
     <fragment
         android:id="@+id/adminUpdateLeaderBoard"
@@ -60,4 +63,9 @@
         android:name="com.example.ignite19.ui.schedule.FragmentSchedule"
         android:label="@string/nav_schedule"
         tools:layout="@layout/fragment_schedule" />
+    <fragment
+        android:id="@+id/seeParticipantsAdmin2"
+        android:name="com.example.ignite19.Admin.SeeParticipants.SeeParticipantsAdmin2"
+        android:label="Event Participants"
+        tools:layout="@layout/fragment_see_participants_admin2" />
 </navigation>

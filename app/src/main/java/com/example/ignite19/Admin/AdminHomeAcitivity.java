@@ -51,6 +51,7 @@ public class AdminHomeAcitivity extends AppCompatActivity implements AdminDataCo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home_acitivity);
+        getSupportActionBar().setTitle("Admin Panel");
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout_admin);
         NavigationView navigationView = findViewById(R.id.nav_view_admin);

@@ -89,11 +89,20 @@
         android:id="@+id/fragmentLeaderBoard"
         android:name="com.example.ignite19.ui.LeaderBoard.FragmentLeaderBoard"
         android:label="Leaderboards"
-        tools:layout="@layout/fragment_leader_board" />
+        tools:layout="@layout/fragment_leader_board" >
+        <action
+            android:id="@+id/action_fragmentLeaderBoard_to_eventResultsUser"
+            app:destination="@id/eventResultsUser" />
+    </fragment>
     <fragment
         android:id="@+id/seeParticipants"
         android:name="com.example.ignite19.ui.SeeParticipants"
         android:label="fragment_see_participants"
         tools:layout="@layout/fragment_see_participants" />
+    <fragment
+        android:id="@+id/eventResultsUser"
+        android:name="com.example.ignite19.ui.LeaderBoard.EventResultsUser"
+        android:label="fragment_event_results_user"
+        tools:layout="@layout/fragment_event_results_user" />
 
 </navigation>

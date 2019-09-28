@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ignite19.R;
@@ -48,10 +50,12 @@ public class resultsAdapter extends RecyclerView.Adapter<resultsAdapter.resultsV
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i=new Intent(context, showResults.class);
-                i.putExtra("event",event_title);
-                context.startActivity(i);
-
+                //Intent i=new Intent(context, showResults.class);
+                //i.putExtra("event",event_title);
+                Bundle bundle = new Bundle();
+                bundle.putString("event",event_title);
+                //context.startActivity(i);
+                Navigation.findNavController(view).navigate(R.id.action_fragmentLeaderBoard_to_eventResultsUser,bundle);
             }
         });
     }
