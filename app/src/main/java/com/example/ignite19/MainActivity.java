@@ -78,6 +78,15 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
     @Override
     protected void onStart() {
         super.onStart();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        userEventList.clear();
+        userParticipationDetails.clear();
+        userEventListBuilder.clear();
         Intent intent = getIntent();
         uuid = intent.getStringExtra("UUID");
         displayName = intent.getStringExtra("userName");
@@ -86,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
         referenceToUserParticipation.addValueEventListener(participationListener);
         //load user college name is navigation header
         new someBackgroundTask().execute();
+
     }
 
     @Override
@@ -377,10 +387,10 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                             mEventList.setEvent_image_uri(R.drawable.nav_header_background);
                             break;
 
-                        case "Agomottos's Amet":
+                        case "Agomotto's Amet":
                             String desctexta="";
                             try  {
-                                InputStream is = getAssets().open("Agomotto's Amet.TXT");
+                                InputStream is = getAssets().open("Agomotto's Amet desc.TXT");
                                 int size=is.available();
                                 byte[] buffer=new byte[size];
                                 is.read(buffer);
@@ -403,7 +413,7 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                         case "Death's Head":
                             String desctextd="";
                             try  {
-                                InputStream is = getAssets().open("Death's Head.TXT");
+                                InputStream is = getAssets().open("Death's Head desc.TXT");
                                 int size=is.available();
                                 byte[] buffer=new byte[size];
                                 is.read(buffer);
@@ -584,10 +594,10 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                             mEventList.setEvent_image_uri(R.drawable.nav_header_background);
                             break;
 
-                        case "Doramammu's Loop":
+                        case "Dormammu's Loop":
                             String desctextdl="";
                             try  {
-                                InputStream is = getAssets().open("Doramammu's Loop desc.TXT");
+                                InputStream is = getAssets().open("Dormammu's Loop desc.TXT");
                                 int size=is.available();
                                 byte[] buffer=new byte[size];
                                 is.read(buffer);
