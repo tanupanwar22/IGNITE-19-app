@@ -2,6 +2,7 @@ package com.example.ignite19.ui.events;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -74,16 +76,13 @@ public class FragmentEvents extends Fragment {
         }
         else{
             eventsArrayList = dataCommunication.getAllEventList();
-            HashSet hs = new HashSet();
-            hs.addAll(eventsArrayList);
-            eventsArrayList.clear();
-            eventsArrayList.addAll(hs);
         }
+
 
         v = inflater.inflate(R.layout.fragment_events, container, false);
         recyclerView = (RecyclerView)v.findViewById(R.id.events_tabx);
         EventsListAdapter adapter = new EventsListAdapter(getContext(),eventsArrayList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
         recyclerView.setAdapter(adapter);
         return v;
     }

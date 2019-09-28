@@ -166,7 +166,7 @@ public class FragmentEventRegistration extends Fragment {
         }
         //registeredEventList.clear();
         registeredEventList = new ArrayList<>(registeredEventHashSet);
-     
+
 
         //code from oncreateview
         registerEventsAdapter = new RegisterEventsAdapter(getContext(),registeredEventList);

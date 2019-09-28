@@ -47,13 +47,13 @@ public class RegisterEventsAdapter extends RecyclerView.Adapter<RegisterEventsAd
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyOwnHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyOwnHolder holder, final int position) {
         holder.event_image.setImageResource(userDataAndEventLists.get(position).getEvent_icon_uri());
         holder.event_name.setText(userDataAndEventLists.get(position).getEvent_name());
-        holder.event_image.setOnClickListener(new View.OnClickListener() {
+        holder.mCardVIew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builderSingle = new AlertDialog.Builder(ct);
+              /*  AlertDialog.Builder builderSingle = new AlertDialog.Builder(ct);
                 builderSingle.setIcon(R.drawable.ic_clock);
                 builderSingle.setTitle("Event Desc :");
 
@@ -73,7 +73,11 @@ public class RegisterEventsAdapter extends RecyclerView.Adapter<RegisterEventsAd
                     }
                 });
 
-                builderSingle.show();
+                builderSingle.show();*/
+              String eventName = userDataAndEventLists.get(position).getEvent_name();
+              Bundle bundle = new Bundle();
+              bundle.putString("eventName",eventName);
+              Navigation.findNavController(view).navigate(R.id.action_nav_event_registration_to_aboutEvent,bundle);
             }
         });
 
@@ -95,7 +99,7 @@ public class RegisterEventsAdapter extends RecyclerView.Adapter<RegisterEventsAd
             super(itemView);
             event_name = (TextView) itemView.findViewById(R.id.text_view_event_name_regitstered_events);
             event_image = (ImageView) itemView.findViewById(R.id.imageView_user_event_image);
-           // mCardVIew = (CardView) itemView.findViewById(R.id.card_xxxx);
+            mCardVIew = (CardView) itemView.findViewById(R.id.mycardxx);
         }
     }
 }

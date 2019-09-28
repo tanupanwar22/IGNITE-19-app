@@ -13,6 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ignite19.DateTimeConverter;
 import com.example.ignite19.R;
 import com.example.ignite19.UserDataAndEventList;
 
@@ -51,6 +52,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.My
 
         holder.eventListImage.setImageResource(R.drawable.aaa);
         holder.mEventName.setText(mEventList.get(position).getEvent_name());
+        holder.eventDateTime.setText(DateTimeConverter.changeDateFormat(mEventList.get(position).getEvent_date()));
         holder.mEventCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,12 +106,14 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.My
         private TextView mEventName;
         private TextView eventListVenue;
         private ImageView eventListImage;
+        private TextView eventDateTime;
         public MyOwnHolder(@NonNull View itemView) {
             super(itemView);
             mEventCard = (CardView)itemView.findViewById(R.id.event_list_cardview);
             mEventName = (TextView)itemView.findViewById(R.id.event_name_textview_eventlist);
             eventListVenue= (TextView)itemView.findViewById(R.id.venue_textview_eventlist);
             eventListImage = itemView.findViewById(R.id.event_list_imageview);
+            eventDateTime = itemView.findViewById(R.id.date_time_textview_events_card);
         }
     }
 }

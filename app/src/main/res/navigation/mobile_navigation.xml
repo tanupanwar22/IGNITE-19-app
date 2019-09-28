@@ -43,7 +43,11 @@
         android:id="@+id/nav_event_registration"
         android:name="com.example.ignite19.ui.eventRegistration.FragmentEventRegistration"
         android:label="@string/nav_registration"
-        tools:layout="@layout/fragment_event_registration" />
+        tools:layout="@layout/fragment_event_registration" >
+        <action
+            android:id="@+id/action_nav_event_registration_to_aboutEvent"
+            app:destination="@id/aboutEvent" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_events"
@@ -89,7 +93,6 @@
     <fragment
         android:id="@+id/aboutEvent"
         android:name="com.example.ignite19.ui.AboutEvent.AboutEvent"
-        android:label="fragment_about_event"
         tools:layout="@layout/fragment_about_event" />
     <fragment
         android:id="@+id/fragmentLeaderBoard"
@@ -103,7 +106,7 @@
     <fragment
         android:id="@+id/seeParticipants"
         android:name="com.example.ignite19.ui.SeeParticipants.SeeParticipants"
-        android:label="See Participants"
+
         tools:layout="@layout/fragment_see_participants" />
     <fragment
         android:id="@+id/eventResultsUser"
