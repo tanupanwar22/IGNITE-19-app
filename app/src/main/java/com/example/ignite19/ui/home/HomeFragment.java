@@ -39,12 +39,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import es.dmoral.toasty.Toasty;
+
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
     DataCommunication dataCommunication;
     Boolean flag1Status;
     Boolean flag2Status;
-    LottieAnimationView eventLoader,eventRegistrationLoader,seeParticipantsLoader;
+    LottieAnimationView eventLoader,eventRegistrationLoader,seeParticipantsLoader,leaderboardLoader;
     ArrayList<String> eventList;
     ImageView bg_gif;
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -72,11 +74,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
 
         eventLoader = view.findViewById(R.id.lottie_events_loader_animation);
+        leaderboardLoader = view.findViewById(R.id.lottie_leaderboard);
         eventRegistrationLoader = view.findViewById(R.id.lottie_events_registration_loader_animation);
         seeParticipantsLoader = view.findViewById(R.id.lottie_see_participants_animation);
         eventLoader.setAnimation("loader.json");
         eventRegistrationLoader.setAnimation("loader.json");
         seeParticipantsLoader.setAnimation("loader.json");
+        leaderboardLoader.setAnimation("loader.json");
+        leaderboardLoader.playAnimation();
         eventLoader.playAnimation();
         eventRegistrationLoader.playAnimation();
         seeParticipantsLoader.playAnimation();
@@ -117,6 +122,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                         eventRegistrationLoader.playAnimation();
                     }
                 });
+
+                leaderboardLoader.post(new Runnable() {
+                    @Override
+                    public void run() {
+                    leaderboardLoader.setAnimation("greentick.json");
+                    leaderboardLoader.playAnimation();
+                    }
+                });
             }
         }).start();
 
@@ -150,7 +163,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     Navigation.findNavController(view).navigate(R.id.action_nav_home_to_nav_events);
                 }
                 else{
-                    Toast.makeText(getContext(),"Please wait for data to load",Toast.LENGTH_LONG).show();
+                    Toasty.info(getContext(),"Please wait for data to load",Toast.LENGTH_LONG).show();
                 }
 
                // Navigation.findNavController(view).navigate(R.id.);
@@ -159,7 +172,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 Navigation.findNavController(view).navigate(R.id.action_nav_home_to_nav_navigation);
                 break;
             case R.id.button_leaderboards:
-                Navigation.findNavController(view).navigate(R.id.action_nav_home_to_fragmentLeaderBoard);
+                flag1Status = dataCommunication.getFirstListenerFlagStatus();
+                flag2Status = dataCommunication.getSecondListenerFlagStatus();
+                if(flag1Status && flag2Status){
+                    Navigation.findNavController(view).navigate(R.id.action_nav_home_to_fragmentLeaderBoard);
+                }
+                else{
+                    Toasty.info(getContext(),"Please wait for data to load",Toast.LENGTH_LONG).show();
+                }
                 break;
             case R.id.button_event_registration:
                 flag1Status = dataCommunication.getFirstListenerFlagStatus();
@@ -168,7 +188,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     Navigation.findNavController(view).navigate(R.id.action_nav_home_to_nav_event_registration);
                 }
                 else{
-                    Toast.makeText(getContext(),"Please wait for data to load",Toast.LENGTH_LONG).show();
+                    Toasty.info(getContext(),"Please wait for data to load",Toast.LENGTH_LONG).show();
                 }
 
                 break;
@@ -180,7 +200,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     Navigation.findNavController(view).navigate(R.id.action_nav_home_to_seeParticipantsUser2);
                 }
                 else{
-                    Toast.makeText(getContext(),"Please wait for data to load",Toast.LENGTH_LONG).show();
+                    Toasty.info(getContext(),"Please wait for data to load",Toast.LENGTH_LONG).show();
                 }
 
                 break;

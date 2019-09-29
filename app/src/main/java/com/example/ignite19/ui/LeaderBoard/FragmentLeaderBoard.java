@@ -1,6 +1,7 @@
 package com.example.ignite19.ui.LeaderBoard;
 
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,7 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.ignite19.DataCommunication;
 import com.example.ignite19.R;
+import com.example.ignite19.UserDataAndEventList;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,12 +32,25 @@ import java.util.List;
  * A simple {@link Fragment} subclass.
  */
 public class FragmentLeaderBoard extends Fragment {
+    DataCommunication dataCommunication;
 
+    ArrayList<UserDataAndEventList> userDataAndEventLists = new ArrayList<>();
 public List<String> results_event_name_list=new ArrayList<>();
 RecyclerView results_recyclerview;
 int cnt=0;
     public FragmentLeaderBoard() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        try {
+            dataCommunication = (DataCommunication) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement DataCommunication");
+        }
     }
 
 
@@ -43,42 +59,17 @@ int cnt=0;
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+        userDataAndEventLists = dataCommunication.getAllEventList();
+        results_event_name_list.clear();
+        for (UserDataAndEventList m : userDataAndEventLists) {
+            results_event_name_list.add(m.getEvent_name());
+        }
+        final View v = inflater.inflate(R.layout.fragment_leader_board, container, false);
 
-        final View v=inflater.inflate(R.layout.fragment_leader_board, container, false);
-
-        results_recyclerview=v.findViewById(R.id.results_recyclerview);
+        results_recyclerview = v.findViewById(R.id.results_recyclerview);
 
         results_recyclerview.setLayoutManager(new LinearLayoutManager(v.getContext()));
-
-        DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("LeaderBoards");
-        reference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for(DataSnapshot d : dataSnapshot.getChildren()){
-                    results_event_name_list.add(d.getKey());
-                    cnt++;
-                    if(cnt==5)
-                        call();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-
-
-
+        results_recyclerview.setAdapter(new resultsAdapter(getContext(), results_event_name_list));
         return v;
     }
-    public void call()
-    {
-        results_recyclerview.setAdapter(new resultsAdapter(getContext(),results_event_name_list));
-
-    }
-
 }

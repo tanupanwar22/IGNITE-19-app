@@ -53,27 +53,6 @@ public class RegisterEventsAdapter extends RecyclerView.Adapter<RegisterEventsAd
         holder.mCardVIew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              /*  AlertDialog.Builder builderSingle = new AlertDialog.Builder(ct);
-                builderSingle.setIcon(R.drawable.ic_clock);
-                builderSingle.setTitle("Event Desc :");
-
-
-                //loading animation can be implemented here
-                builderSingle.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-
-                builderSingle.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                });
-
-                builderSingle.show();*/
               String eventName = userDataAndEventLists.get(position).getEvent_name();
               Bundle bundle = new Bundle();
               bundle.putString("eventName",eventName);
@@ -82,9 +61,6 @@ public class RegisterEventsAdapter extends RecyclerView.Adapter<RegisterEventsAd
         });
 
         }
-
-
-
 
     @Override
     public int getItemCount() {

@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.ignite19.MainActivity;
 import com.example.ignite19.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -46,9 +47,11 @@ public class EventResultsUser extends Fragment {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_event_results_user, container, false);
         showResults=v.findViewById(R.id.selected_team_list_recyclerview);
+
         //Intent i= getIntent();
         //String event_name=i.getStringExtra("event");
         String event_name = getArguments().get("event").toString();
+        ((MainActivity)getActivity()).getSupportActionBar().setTitle(event_name);
         showResults.setLayoutManager(new LinearLayoutManager(getContext()));
 
         congo=v.findViewById(R.id.congo);

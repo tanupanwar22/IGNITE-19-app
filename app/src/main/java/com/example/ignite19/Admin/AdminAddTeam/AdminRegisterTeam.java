@@ -28,6 +28,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
+import es.dmoral.toasty.Toasty;
+
 public class AdminRegisterTeam extends AppCompatActivity implements View.OnClickListener{
 
     EditText edUserName,edPassword,edCollegeName,edParticipant1,edParticipant2,edParticipant3,edParticipant4,edPartcipant5;
@@ -68,19 +70,19 @@ public class AdminRegisterTeam extends AppCompatActivity implements View.OnClick
                                 for(int i = 0 ; i < mList.size();++i){
                                     FirebaseDatabase.getInstance().getReference("Users").child(uuid).child("participation").child(mList.get(i).getEvent_name()).setValue(mList.get(i));
                                 }
-                                Toast.makeText(getApplicationContext(),"User creation Successful, Try again",Toast.LENGTH_LONG).show();
+                                Toasty.success(getApplicationContext(),"User creation Successful, ",Toast.LENGTH_LONG).show();
                                 mAuth.signOut();
                                 Intent intent = new Intent(AdminRegisterTeam.this, LoginActivity.class);
                                 startActivity(intent);
                             }
                             else{
-                                Toast.makeText(getApplicationContext(),"User creation failed, Try again",Toast.LENGTH_LONG).show();
+                                Toasty.error(getApplicationContext(),"User creation failed, Try again",Toast.LENGTH_LONG).show();
                             }
                         }
                     });
                 }
                 else{
-                    Toast.makeText(getApplicationContext(),"Please fill all the fields correctly",Toast.LENGTH_LONG).show();
+                    Toasty.info(getApplicationContext(),"Please fill all the fields correctly",Toast.LENGTH_LONG).show();
                 }
                 break;
         }

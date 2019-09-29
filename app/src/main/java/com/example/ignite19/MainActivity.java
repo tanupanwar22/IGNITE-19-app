@@ -48,6 +48,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.concurrent.TimeUnit;
 
+import es.dmoral.toasty.Toasty;
 
 
 public class MainActivity extends AppCompatActivity implements DataCommunication {
@@ -292,7 +293,7 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                     userParticipationDetails.add(new Participation.Builder(value,key).build());
                 }
                 else{
-                    Toast.makeText(getApplicationContext(),"Failed to get participation Details",Toast.LENGTH_LONG).show();
+                    Toasty.error(getApplicationContext(),"Failed to get participation Details",Toast.LENGTH_LONG).show();
                     Log.d(TAG, "onDataChange: Failed to get participation Details" );
 
                 }
@@ -809,7 +810,7 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
 
                 }
                 else{
-                    Toast.makeText(getApplicationContext(),"Failed to get event Description",Toast.LENGTH_LONG).show();
+                    Toasty.error(getApplicationContext(),"Failed to get event Description",Toast.LENGTH_LONG).show();
                     Log.d(TAG, "onDataChange: Failed to get event Description" );
                 }
 

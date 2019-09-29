@@ -28,6 +28,7 @@ import com.spark.submitbutton.SubmitButton;
 
 import java.util.HashMap;
 
+import es.dmoral.toasty.Toasty;
 import me.zhanghai.android.materialedittext.MaterialEditText;
 
 /**
@@ -237,13 +238,13 @@ private String website_desc,ignite_desc,app_desc,hospitality_desc,clg_name;
                     reference.updateChildren(result).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                            Toast.makeText(getContext(), "Feedback Submitted.", Toast.LENGTH_LONG).show();
+                            Toasty.success(getContext(), "Feedback Submitted.", Toast.LENGTH_LONG).show();
                         }
                     });
 
                 }
                 else{
-                    Toast.makeText(getContext(),"Please Give Feedback for each mentioned field.",Toast.LENGTH_LONG).show();
+                    Toasty.info(getContext(),"Please Give Feedback for each mentioned field.",Toast.LENGTH_LONG).show();
                 }
             }
         });
