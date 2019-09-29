@@ -4,24 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".Admin.AdminAddTeam.AdminRegisterTeam">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
             <EditText
                 android:id="@+id/edx1_username"
                 style="@android:style/Widget.Holo.Light.EditText"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="64dp"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginEnd="32dp"
+                android:background="@drawable/edit_text_shape"
+                android:padding="8dp"
                 android:ems="10"
                 android:hint="Username"
                 android:inputType="textPersonName"
@@ -32,8 +42,10 @@
             <EditText
                 android:id="@+id/edx2_pw"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="64dp"
                 android:layout_marginTop="16dp"
+                android:background="@drawable/edit_text_shape"
+                android:padding="8dp"
                 android:ems="10"
                 android:hint="Password"
                 android:inputType="textPassword"
@@ -44,8 +56,10 @@
             <EditText
                 android:id="@+id/ed3_college_name"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="64dp"
                 android:layout_marginTop="16dp"
+                android:background="@drawable/edit_text_shape"
+                android:padding="8dp"
                 android:ems="10"
                 android:hint="College name"
                 android:inputType="textPersonName"
@@ -57,8 +71,10 @@
             <EditText
                 android:id="@+id/edx_p1"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="64dp"
                 android:layout_marginTop="16dp"
+                android:background="@drawable/edit_text_shape"
+                android:padding="8dp"
                 android:ems="10"
                 android:hint="Participant 1"
                 android:inputType="textPersonName"
@@ -70,8 +86,10 @@
             <EditText
                 android:id="@+id/edx_p2"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="64dp"
                 android:layout_marginTop="16dp"
+                android:background="@drawable/edit_text_shape"
+                android:padding="8dp"
                 android:ems="10"
                 android:hint="Participant 2"
                 android:inputType="textPersonName"
@@ -83,8 +101,10 @@
             <EditText
                 android:id="@+id/edx_p3"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="64dp"
                 android:layout_marginTop="16dp"
+                android:background="@drawable/edit_text_shape"
+                android:padding="8dp"
                 android:ems="10"
                 android:hint="Participant 3"
                 android:inputType="textPersonName"
@@ -96,8 +116,10 @@
             <EditText
                 android:id="@+id/edx_p4"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="64dp"
                 android:layout_marginTop="16dp"
+                android:background="@drawable/edit_text_shape"
+                android:padding="8dp"
                 android:ems="10"
                 android:hint="Participant 4"
                 android:inputType="textPersonName"
@@ -109,8 +131,10 @@
             <EditText
                 android:id="@+id/edx_p5"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="64dp"
                 android:layout_marginTop="16dp"
+                android:background="@drawable/edit_text_shape"
+                android:padding="8dp"
                 android:ems="10"
                 android:hint="Participant 5"
                 android:inputType="textPersonName"
@@ -126,16 +150,21 @@
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.05" />
 
+            <Button
+                android:id="@+id/button_register_team"
+                android:layout_width="0dp"
+                android:layout_height="64dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:background="@color/lightGray"
+                android:text="Register"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edx_p5" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-    <Button
-        android:id="@+id/button_register_team"
-        android:layout_width="0dp"
-        android:layout_height="64dp"
-        android:text="Register"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

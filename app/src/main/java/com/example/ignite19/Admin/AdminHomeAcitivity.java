@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.ignite19.DataCommunication;
 import com.example.ignite19.EventScheduleStaticScheduleClass;
 import com.example.ignite19.LoginActivity;
@@ -45,6 +46,8 @@ public class AdminHomeAcitivity extends AppCompatActivity implements AdminDataCo
     private ArrayList<eventSchedule> day1CompleteSchedule = new ArrayList<>();
     private ArrayList<eventSchedule> day2CompleteSchedule = new ArrayList<>();
     private HashMap<String ,String> eventWithDateTime = new HashMap<>();
+    Boolean flag1Status = false,flag2Status = false;
+
 
 
     @Override
@@ -78,6 +81,7 @@ public class AdminHomeAcitivity extends AppCompatActivity implements AdminDataCo
                   String college_name = userDetail.getCollege_name();
                   collegeNames.add(college_name);
               }
+              flag1Status = true;
             }
 
             @Override
@@ -96,6 +100,7 @@ public class AdminHomeAcitivity extends AppCompatActivity implements AdminDataCo
                     eventWithDateTime.put(event_name,event_time);
                     eventNames.add(event_name);
                 }
+                flag2Status = true;
             }
 
             @Override
@@ -118,6 +123,16 @@ public class AdminHomeAcitivity extends AppCompatActivity implements AdminDataCo
     @Override
     public HashMap<String, String> getEventWithDateAndTime() {
         return eventWithDateTime;
+    }
+
+    @Override
+    public Boolean getFlag1Status() {
+        return flag1Status;
+    }
+
+    @Override
+    public Boolean getFlag2Status() {
+        return flag2Status;
     }
 
 

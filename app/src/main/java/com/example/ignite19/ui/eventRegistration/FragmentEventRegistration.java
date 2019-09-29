@@ -42,6 +42,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import es.dmoral.toasty.Toasty;
+
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class FragmentEventRegistration extends Fragment {
@@ -297,7 +299,7 @@ public class FragmentEventRegistration extends Fragment {
 
                 }
                 else{
-                    Toast.makeText(getContext(), "Please select correct number of participants", Toast.LENGTH_SHORT).show();
+                    Toasty.info(getContext(), "Please select correct number of participants", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -363,12 +365,12 @@ public class FragmentEventRegistration extends Fragment {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(getContext(),"Registered successfully",Toast.LENGTH_LONG).show();
+                    Toasty.success(getContext(),"Registered successfully",Toast.LENGTH_LONG).show();
                     registerEventsAdapter.notifyDataSetChanged();
                     alertDialog.dismiss();
                 }
                 else{
-                    Toast.makeText(getContext(),"failed to register, Try again",Toast.LENGTH_LONG).show();
+                    Toasty.error(getContext(),"failed to register, Try again",Toast.LENGTH_LONG).show();
                 }
 
             }

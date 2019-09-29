@@ -8,4 +8,6 @@ public interface AdminDataCommunication {
     ArrayList<String > getCollegeNames();
     ArrayList<String> getEventNames();
     HashMap<String,String> getEventWithDateAndTime();
+    Boolean  getFlag1Status();
+    Boolean getFlag2Status();
  }

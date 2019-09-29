@@ -32,6 +32,8 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
 
+import es.dmoral.toasty.Toasty;
+
 public class LoginActivity extends AppCompatActivity {
     private EditText userNameEditText;
     private EditText userPasswordEditText;
@@ -114,7 +116,9 @@ public class LoginActivity extends AppCompatActivity {
         }
         else{
             //no proper data
-            Toast.makeText(getApplicationContext(),"Please enter details in both the fields",Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(),"Please enter details in both the fields",Toast.LENGTH_LONG).show();
+            Toasty.info(getApplicationContext(),"Please enter details in both the fields",Toast.LENGTH_LONG).show();
+            loader.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -134,8 +138,10 @@ public class LoginActivity extends AppCompatActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(getApplicationContext(), "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(getApplicationContext(), "Authentication failed.",
+                             //       Toast.LENGTH_LONG).show();
+                            Toasty.error(getApplicationContext(), "Authentication failed.",
+                                    Toast.LENGTH_LONG).show();
                             loader.setVisibility(View.INVISIBLE);
                         }
                     }

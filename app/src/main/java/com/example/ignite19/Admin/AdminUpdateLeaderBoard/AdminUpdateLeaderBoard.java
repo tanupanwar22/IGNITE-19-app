@@ -53,6 +53,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Observable;
 
+import es.dmoral.toasty.Toasty;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -136,7 +138,7 @@ public class AdminUpdateLeaderBoard extends Fragment implements View.OnClickList
 
                 String numOfCOlleges = numberOfTeams.getText().toString();
                 if(TextUtils.isEmpty(numOfCOlleges)){
-                    Toast.makeText(getContext(),"Enter number of colleges to select",Toast.LENGTH_LONG).show();
+                    Toasty.info(getContext(),"Enter number of colleges to select",Toast.LENGTH_LONG).show();
                 }
                 else{
                     numberOfCollegesToSelect = Integer.valueOf(numOfCOlleges);
@@ -176,10 +178,10 @@ public class AdminUpdateLeaderBoard extends Fragment implements View.OnClickList
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if(task.isSuccessful()){
-                                                Toast.makeText(getContext(),"Successfully Uploaded",Toast.LENGTH_SHORT).show();
+                                                Toasty.success(getContext(),"Successfully Uploaded",Toast.LENGTH_SHORT).show();
                                             }
                                             else{
-                                                Toast.makeText(getContext(),"Try again",Toast.LENGTH_SHORT).show();
+                                                Toasty.error(getContext(),"Try again",Toast.LENGTH_SHORT).show();
                                             }
                                         }
                                     });
@@ -192,7 +194,7 @@ public class AdminUpdateLeaderBoard extends Fragment implements View.OnClickList
                         builderSingle.show();
                     }
                     else{
-                        Toast.makeText(getContext(),"Check your input",Toast.LENGTH_LONG).show();
+                        Toasty.info(getContext(),"Check your input",Toast.LENGTH_LONG).show();
                     }
                 }
                 break;
