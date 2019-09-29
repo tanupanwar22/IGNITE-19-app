@@ -43,6 +43,8 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import es.dmoral.toasty.Toasty;
+
 
 public class AdminUpdateEventTiming extends Fragment implements View.OnClickListener {
 
@@ -114,7 +116,7 @@ public class AdminUpdateEventTiming extends Fragment implements View.OnClickList
             case R.id.admin_update_time_btn:
                 String newTime  = edt.getText().toString();
                 if(TextUtils.isEmpty(newTime) || !checkTimeFormat(newTime)){
-                    Toast.makeText(getContext(),"Please enter time properly",Toast.LENGTH_LONG).show();
+                    Toasty.info(getContext(),"Please enter time properly",Toast.LENGTH_LONG).show();
                 }
             else {
                     String temp = newTime;
@@ -124,10 +126,10 @@ public class AdminUpdateEventTiming extends Fragment implements View.OnClickList
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isComplete()){
-                                Toast.makeText(getContext(),"Time updated Successfully",Toast.LENGTH_LONG).show();
+                                Toasty.success(getContext(),"Time updated Successfully",Toast.LENGTH_LONG).show();
                             }
                             else{
-                                Toast.makeText(getContext(),"Time update failed,try again",Toast.LENGTH_LONG).show();
+                                Toasty.error(getContext(),"Time update failed,try again",Toast.LENGTH_LONG).show();
                             }
                         }
                     });

@@ -21,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.ignite19.Admin.AdminAddTeam.AdminRegisterTeam;
 import com.example.ignite19.DataCommunication;
 import com.example.ignite19.LoginActivity;
@@ -28,6 +29,8 @@ import com.example.ignite19.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
+
+import es.dmoral.toasty.Toasty;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
@@ -40,6 +43,7 @@ public class AdminHomeFragment extends Fragment implements View.OnClickListener 
     private CardView addTeamButton,updateLeaderBoardButton,updateEventTimingButton,signout,seeParticipantsButton;
     AdminDataCommunication dataCommunication;
     ArrayList<String > eventList = new ArrayList<>();
+    LottieAnimationView adminUpdateLeaderBoard,adminCreateTeam,adminUpdateEventTiming,adminSeeParticipants;
 
 
 
@@ -73,8 +77,64 @@ public class AdminHomeFragment extends Fragment implements View.OnClickListener 
         updateLeaderBoardButton.setOnClickListener(this);
         eventList = dataCommunication.getEventNames();
 
+        adminCreateTeam = view.findViewById(R.id.lottie_admin_createTeam);
+        adminSeeParticipants = view.findViewById(R.id.lottie_admin_see_participants);
+        adminUpdateEventTiming = view.findViewById(R.id.lottie_admin_updateEventTime);
+        adminUpdateLeaderBoard = view.findViewById(R.id.lottie_admin_updateleaderBoard);
+
+        adminCreateTeam.setAnimation("greentick.json");
+        adminSeeParticipants.setAnimation("loader.json");
+        adminUpdateLeaderBoard.setAnimation("loader.json");
+        adminUpdateEventTiming.setAnimation("loader.json");
+
+        adminCreateTeam.playAnimation();
+        adminSeeParticipants.playAnimation();
+        adminUpdateLeaderBoard.playAnimation();
+        adminUpdateEventTiming.playAnimation();
 
 
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while(!dataCommunication.getFlag1Status() || !dataCommunication.getFlag2Status());
+
+
+                adminSeeParticipants.post(new Runnable() {
+                    @Override
+                    public void run() { adminSeeParticipants.setAnimation("greentick.json");
+                        adminSeeParticipants.playAnimation();
+
+                    }
+                });
+
+
+
+                adminUpdateLeaderBoard.post(new Runnable() {
+
+                    @Override
+                    public void run() {
+
+                        adminUpdateLeaderBoard.setAnimation("greentick.json");
+                        adminUpdateLeaderBoard.playAnimation();
+
+                    }
+                });
+
+
+
+                adminUpdateEventTiming.post(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        adminUpdateEventTiming.setAnimation("greentick.json");
+                        adminUpdateEventTiming.playAnimation();
+                    }
+                });
+
+
+            }
+        }).start();
     }
 
     @Override
@@ -136,7 +196,7 @@ public class AdminHomeFragment extends Fragment implements View.OnClickListener 
                     mBuilder.show();
                 }
                 else{
-                    Toast.makeText(getContext(),"list empty,wait for data to load",Toast.LENGTH_LONG).show();
+                    Toasty.info(getContext(),"list empty,wait for data to load",Toast.LENGTH_LONG).show();
                 }
                 break;
             case R.id.button_admin_update_leaderboard:
@@ -165,7 +225,7 @@ public class AdminHomeFragment extends Fragment implements View.OnClickListener 
                     builderSingle.show();
                 }
                 else{
-                Toast.makeText(getContext(),"list empty,wait for data to load",Toast.LENGTH_LONG).show();
+                Toasty.info(getContext(),"list empty,wait for data to load",Toast.LENGTH_LONG).show();
             }
                 break;
 
@@ -195,7 +255,7 @@ public class AdminHomeFragment extends Fragment implements View.OnClickListener 
                     mBuilder2.show();
                 }
                 else{
-                    Toast.makeText(getContext(),"list empty,wait for data to load",Toast.LENGTH_LONG).show();
+                    Toasty.info(getContext(),"list empty,wait for data to load",Toast.LENGTH_LONG).show();
                 }
                 break;
 
