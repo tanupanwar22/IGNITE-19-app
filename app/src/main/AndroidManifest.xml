@@ -19,7 +19,8 @@
         <activity android:name=".ui.AboutApp.ourTeam" />
         <activity android:name=".Admin.AdminAddTeam.AdminRegisterTeam" />
         <activity android:name=".Admin.AdminHomeAcitivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

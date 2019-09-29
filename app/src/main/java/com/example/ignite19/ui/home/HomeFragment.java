@@ -93,8 +93,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                 eventLoader.post(new Runnable() {
                     @Override
-                    public void run() { eventLoader.setAnimation("greentick.json");
-                        eventLoader.playAnimation();
+                    public void run() { eventLoader.setImageResource(R.drawable.ic_check);
+
 
                     }
                 });
@@ -106,8 +106,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     @Override
                     public void run() {
 
-                        seeParticipantsLoader.setAnimation("greentick.json");
-                        seeParticipantsLoader.playAnimation();
+                        seeParticipantsLoader.setImageResource(R.drawable.ic_check);
+
 
                     }
                 });
@@ -118,16 +118,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     @Override
                     public void run() {
 
-                        eventRegistrationLoader.setAnimation("greentick.json");
-                        eventRegistrationLoader.playAnimation();
+                        eventRegistrationLoader.setImageResource(R.drawable.ic_check);
+
                     }
                 });
 
                 leaderboardLoader.post(new Runnable() {
                     @Override
                     public void run() {
-                    leaderboardLoader.setAnimation("greentick.json");
-                    leaderboardLoader.playAnimation();
+                    leaderboardLoader.setImageResource(R.drawable.ic_check);
+
                     }
                 });
             }

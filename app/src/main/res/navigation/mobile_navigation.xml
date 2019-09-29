@@ -12,25 +12,52 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_nav_home_to_nav_event_registration"
-            app:destination="@id/nav_event_registration" />
+            app:destination="@id/nav_event_registration"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
         <action
             android:id="@+id/action_nav_home_to_nav_events"
-            app:destination="@id/nav_events" />
+            app:destination="@id/nav_events"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
         <action
             android:id="@+id/action_nav_home_to_nav_navigation"
-            app:destination="@id/nav_navigation" />
+            app:destination="@id/nav_navigation"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
         <action
             android:id="@+id/action_nav_home_to_fragmentLeaderBoard"
-            app:destination="@id/fragmentLeaderBoard" />
+            app:destination="@id/fragmentLeaderBoard"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
         <action
             android:id="@+id/action_nav_home_to_seeParticipants"
             app:destination="@id/seeParticipants" />
         <action
             android:id="@+id/action_nav_home_to_seeParticipantsUser2"
-            app:destination="@id/seeParticipantsUser2" />
+            app:destination="@id/seeParticipantsUser2"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
         <action
             android:id="@+id/action_nav_home_to_nav_schedule"
-            app:destination="@id/nav_schedule" />
+            app:destination="@id/nav_schedule"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_about_app"
+            app:destination="@id/nav_about_app" />
     </fragment>
 
     <fragment
@@ -46,7 +73,11 @@
         tools:layout="@layout/fragment_event_registration" >
         <action
             android:id="@+id/action_nav_event_registration_to_aboutEvent"
-            app:destination="@id/aboutEvent" />
+            app:destination="@id/aboutEvent"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
     </fragment>
 
     <fragment
@@ -56,7 +87,11 @@
         tools:layout="@layout/fragment_events" >
         <action
             android:id="@+id/action_nav_events_to_aboutEvent"
-            app:destination="@id/aboutEvent" />
+            app:destination="@id/aboutEvent"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
         <argument
             android:name="event_name"
             app:argType="string"
@@ -76,7 +111,22 @@
     <fragment android:id="@+id/nav_about_app"
         android:name="com.example.ignite19.ui.AboutApp.Fragment_AboutApp"
         android:label="@string/menu_about_app"
-        tools:layout="@layout/fragment_about_app"/>
+        tools:layout="@layout/fragment_about_app">
+        <action
+            android:id="@+id/action_nav_about_app_to_openSourceLicense"
+            app:destination="@id/openSourceLicense"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
+        <action
+            android:id="@+id/action_nav_about_app_to_fragmentOurTeam"
+            app:destination="@id/fragmentOurTeam"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
+    </fragment>
 
     <fragment android:id="@+id/nav_feedback"
         android:name="com.example.ignite19.ui.Feedback.Fragment_Feedback"
@@ -101,7 +151,11 @@
         tools:layout="@layout/fragment_leader_board" >
         <action
             android:id="@+id/action_fragmentLeaderBoard_to_eventResultsUser"
-            app:destination="@id/eventResultsUser" />
+            app:destination="@id/eventResultsUser"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
     </fragment>
     <fragment
         android:id="@+id/seeParticipants"
@@ -118,4 +172,14 @@
         android:name="com.example.ignite19.ui.SeeParticipants.SeeParticipantsUser2"
         android:label="My participants"
         tools:layout="@layout/fragment_see_participants_user2" />
+    <fragment
+        android:id="@+id/openSourceLicense"
+        android:name="com.example.ignite19.OpenSourceLicense"
+        android:label="License"
+        tools:layout="@layout/fragment_open_source_license" />
+    <fragment
+        android:id="@+id/fragmentOurTeam"
+        android:name="com.example.ignite19.FragmentOurTeam"
+        android:label="Our team"
+        tools:layout="@layout/fragment_our_team" />
 </navigation>

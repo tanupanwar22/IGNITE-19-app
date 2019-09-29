@@ -1,7 +1,6 @@
 package com.example.ignite19.ui.Feedback;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,9 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.example.ignite19.MainActivity;
 import com.example.ignite19.R;
-import com.example.ignite19.ui.home.HomeFragment;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -51,7 +48,7 @@ private String website_desc,ignite_desc,app_desc,hospitality_desc,clg_name;
 
         final MaterialEditText ignite_desc_var,website_desc_var,app_desc_var,hospitality_desc_var;
         SubmitButton submit_btn=root.findViewById(R.id.feedback_submit_btn);
-        ignite_desc_var=root.findViewById(R.id.ignite_desc_tv);
+        ignite_desc_var=root.findViewById(R.id.username_editText);
         app_desc_var=root.findViewById(R.id.app_desc_tv);
         hospitality_desc_var=root.findViewById(R.id.hospitality_desc_tv);
         website_desc_var=root.findViewById(R.id.website_desc_tv);

@@ -62,7 +62,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="your views..."
-        android:id="@+id/ignite_desc_tv"
+        android:id="@+id/username_editText"
 
         >
 

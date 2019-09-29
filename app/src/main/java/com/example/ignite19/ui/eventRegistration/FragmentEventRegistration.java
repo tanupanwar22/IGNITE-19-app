@@ -53,7 +53,7 @@ public class FragmentEventRegistration extends Fragment {
     ArrayList<UserDataAndEventList> mList;
     //ArrayList<Integer> numberOfParticipants = new ArrayList<>();
     //ArrayList<String > unRegisteredEvents = new ArrayList<>();
-   ArrayList<UserDataAndEventList> registeredEventList ;//= new ArrayList<>();
+   ArrayList<UserDataAndEventList> registeredEventList  = new ArrayList<>();
    HashSet<UserDataAndEventList> registeredEventHashSet = new HashSet<>();
    ArrayList<Participation> participationArrayList;
     TextView eventDescTextView;
@@ -119,6 +119,7 @@ public class FragmentEventRegistration extends Fragment {
         outState.putParcelableArrayList("mList",mList);
         outState.putParcelableArrayList("participationArrayList",participationArrayList);
         outState.putParcelable("userDetail",userDetail);
+        outState.putString("uuid",uuid);
 
     }
 
@@ -144,23 +145,21 @@ public class FragmentEventRegistration extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        //registeredEventList.clear();
+        if(registeredEventList!=null){
+            registeredEventList.clear();
+        }
+
         map.clear();
         for(Participation x : participationArrayList){
             for(UserDataAndEventList y: mList){
                 if(x.getEvent_name().equalsIgnoreCase(y.getEvent_name())){
                     if(x.getParticipation() == 0){
-                        //numberOfParticipants.add(y.getNumber_of_participants());
-                        //unRegisteredEvents.add(y.getEvent_name());
                         map.put(y.getEvent_name(),y.getNumber_of_participants());
                     }
                     else{
-                       // registeredEventList.clear();
-                        //user is registered for that event
-                       // if(!registeredEventList.contains(y)){
-                         //   registeredEventList.add(y);
-                        //}
-                        registeredEventHashSet.add(y);
+
+                       registeredEventHashSet.add(y);
+                      //  registeredEventList.add(y);
 
                     }
                 }
@@ -168,8 +167,6 @@ public class FragmentEventRegistration extends Fragment {
         }
         //registeredEventList.clear();
         registeredEventList = new ArrayList<>(registeredEventHashSet);
-
-
         //code from oncreateview
         registerEventsAdapter = new RegisterEventsAdapter(getContext(),registeredEventList);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3));
@@ -197,15 +194,16 @@ public class FragmentEventRegistration extends Fragment {
             mList = savedInstanceState.getParcelableArrayList("mList");
             userDetail = savedInstanceState.getParcelable("userDetail");
             participationArrayList = savedInstanceState.getParcelableArrayList("participationArrayList");
-
+            uuid = savedInstanceState.getString("uuid");
         }
         else {
             userDetail = dataCommunication.getUserDetail();
             mList = dataCommunication.getAllEventList();
             participationArrayList = dataCommunication.getUserParticipationDetails();
+            uuid = dataCommunication.getUUID();
         }
 
-        uuid = dataCommunication.getUUID();
+
         recyclerView = (RecyclerView) view.findViewById(R.id.recyler_view_registered_events);
         floatingActionButton = view.findViewById(R.id.floatingActionButton);
 
@@ -357,7 +355,7 @@ public class FragmentEventRegistration extends Fragment {
         for(UserDataAndEventList m:mList){
             if(event_name.equalsIgnoreCase(m.getEvent_name())){
             registeredEventList.add(m);
-                //registeredEventHashSet.add(m);
+                registeredEventHashSet.add(m);
             }
         }
         //now store participation in database

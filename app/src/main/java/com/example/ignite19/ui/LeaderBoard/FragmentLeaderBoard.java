@@ -53,13 +53,22 @@ int cnt=0;
         }
     }
 
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelableArrayList("mList",userDataAndEventLists);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        if(savedInstanceState != null){
+            userDataAndEventLists = savedInstanceState.getParcelableArrayList("mList");
+        }else{
+            userDataAndEventLists = dataCommunication.getAllEventList();
+        }
 
-        userDataAndEventLists = dataCommunication.getAllEventList();
         results_event_name_list.clear();
         for (UserDataAndEventList m : userDataAndEventLists) {
             results_event_name_list.add(m.getEvent_name());

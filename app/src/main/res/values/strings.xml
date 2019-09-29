@@ -51,6 +51,22 @@
     <string name="ignite_rules10">10.The college teams are not allowed to go to the beach side without the permission of the authorities.</string>
     <string name="ignite_rules11">11.Any kind of misconduct or misbehavior by the team members can lead to the disqualification of the entire team from the fest.</string>
     <string name="ignite_rules12">12.Any attempt made to damage the property of the college can lead to strict actions against the entire team.</string>
-    <string name="White_space">                                                      </string>
+    <string name="White_space">
+
+
+    </string>
+
+    <string name="license_header">
+        This application uses Open Source components. You can find the source code of the open source projects along with the licensing information below.
+        We acknowledge and are grateful to these developers for their contributions to open source.
+
+    </string>
+
+    <string name="toasty_name">
+    Toasty
+    </string>
+    <string name="toasty_desx">
+
+    </string>
 
 </resources>

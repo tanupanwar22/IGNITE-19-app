@@ -12,16 +12,32 @@
         tools:layout="@layout/fragment_admin_home" >
         <action
             android:id="@+id/action_adminHomeFragment_to_adminUpdateEventTiming"
-            app:destination="@id/adminUpdateEventTiming" />
+            app:destination="@id/adminUpdateEventTiming"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
         <action
             android:id="@+id/action_adminHomeFragment_to_adminUpdateLeaderBoard"
-            app:destination="@id/adminUpdateLeaderBoard" />
+            app:destination="@id/adminUpdateLeaderBoard"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
         <action
             android:id="@+id/action_adminHomeFragment_to_seeParticipantsAdmin"
-            app:destination="@id/seeParticipantsAdmin" />
+            app:destination="@id/seeParticipantsAdmin"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
         <action
             android:id="@+id/action_adminHomeFragment_to_seeParticipantsAdmin2"
-            app:destination="@id/seeParticipantsAdmin2" />
+            app:destination="@id/seeParticipantsAdmin2"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
     </fragment>
     <fragment
         android:id="@+id/adminUpdateLeaderBoard"

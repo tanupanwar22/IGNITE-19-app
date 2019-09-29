@@ -39,6 +39,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ignite19.Admin.AdminDataCommunication;
+import com.example.ignite19.Admin.AdminHomeAcitivity;
 import com.example.ignite19.DataCommunication;
 import com.example.ignite19.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -108,15 +109,15 @@ public class AdminUpdateLeaderBoard extends Fragment implements View.OnClickList
         else {
             college_names = dataCommunication.getCollegeNames();
         }
-
-
+        eventName = getArguments().getString("eventName");
+        ((AdminHomeAcitivity)getActivity()).getSupportActionBar().setTitle(eventName);
 
         v = inflater.inflate(R.layout.fragment_admin_update_leader_board, container, false);
         submitButton = (Button)v.findViewById(R.id.button_submit_update_event);
         numberOfTeams = (EditText)v.findViewById(R.id.editText_numbers_to_select);
         recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_admin_update_leader_board);
         submitButton.setOnClickListener(this);
-        eventName = getArguments().getString("eventName");
+
         adapter = new DisplayCollegeNamesAdapter(getContext(),college_names,eventName);
         ItemTouchHelper.Callback callback = new ItemMoveCallback(adapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
