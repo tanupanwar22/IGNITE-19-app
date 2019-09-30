@@ -28,16 +28,4 @@
             android:icon="@drawable/ic_signout"
             android:title="@string/menu_sign_out"/>
     </group>
-
-    <item android:title="Communicate">
-        <menu>
-            <item
-                android:id="@+id/nav_about_app_admin"
-                android:title="@string/menu_about_app"
-                android:icon="@drawable/ic_aboutapp"/>
-
-        </menu>
-    </item>
-
-
 </menu>

@@ -22,7 +22,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:text="Sponsors"
-                android:textColor="@color/purple"
+                android:textColor="@color/igniteSecondaryDark"
                 android:textSize="30sp"
 
                 />
@@ -42,7 +42,7 @@
                 android:layout_height="5dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="1dp"
-                android:background="@color/purple"
+                android:background="@color/igniteSecondaryDark"
 
 
                 />
@@ -119,7 +119,7 @@
                 android:layout_height="5dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="1dp"
-                android:background="@color/purple"
+                android:background="@color/igniteSecondaryDark"
 
 
                 />

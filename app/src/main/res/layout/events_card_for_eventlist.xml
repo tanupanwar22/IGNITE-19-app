@@ -26,6 +26,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:background="@color/igniteSecondaryLight"
             android:layout_height="wrap_content">
 
 
@@ -35,6 +36,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:text="Date and time"
+                android:textColor="@color/contrasText"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -47,6 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_marginStart="4dp"
+                android:textColor="@color/contrasText"
                 android:text="venue"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView3"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -67,8 +70,9 @@
                 <ImageView
                     android:id="@+id/event_list_imageview"
                     android:layout_width="400dp"
+                    android:scaleType="fitStart"
                     android:layout_height="144dp"
-                    android:src="@drawable/aaa" />
+                     />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
@@ -77,6 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginBottom="8dp"
+
                 app:layout_constraintBottom_toBottomOf="@+id/cardView6"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -87,7 +92,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="abcd"
+                    android:background="@color/igniteSecondaryLight"
                     android:padding="4dp"
+                    android:textColor="@color/contrasText"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

@@ -39,6 +39,7 @@ public class AdminRegisterTeam extends AppCompatActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_admin_register_team);
         getSupportActionBar().setTitle("Team Registration");
         edUserName = (EditText)findViewById(R.id.edx1_username);

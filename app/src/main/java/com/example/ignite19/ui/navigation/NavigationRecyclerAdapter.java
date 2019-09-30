@@ -50,7 +50,7 @@ public NavigationRecyclerAdapter(Context ct, ArrayList<VenueList> venue_list){
     public void onBindViewHolder(@NonNull MyOwnHolder holder, final int position) {
         holder.venue_name.setText(venue_list.get(position).getVenue_name());
        // setAnimation(holder.itemView,position);
-        Glide.with(ct).load(R.drawable.robot).into(holder.gif);
+       // Glide.with(ct).load(R.drawable.robot).into(holder.gif);
         holder.mCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,12 +96,12 @@ public NavigationRecyclerAdapter(Context ct, ArrayList<VenueList> venue_list){
     public class MyOwnHolder extends RecyclerView.ViewHolder {
     TextView venue_name;
     CardView mCardView;
-    ImageView gif;
+    //ImageView gif;
         public MyOwnHolder(@NonNull View itemView) {
             super(itemView);
             venue_name = (TextView) itemView.findViewById(R.id.venue_name_recycler_card);
             mCardView = (CardView) itemView.findViewById(R.id.m_card_view);
-            gif=itemView.findViewById(R.id.navigation_cardview_gif);
+      //      gif=itemView.findViewById(R.id.navigation_cardview_gif);
         }
 
         public void clearAnimation() {

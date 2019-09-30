@@ -50,6 +50,7 @@ public class AllParticipantsAdapter extends RecyclerView.Adapter<AllParticipants
     @Override
     public void onBindViewHolder(@NonNull MyOwnHolder holder, int position) {
         holder.setIsRecyclable(false);
+       // holder.eventIcon.setImageResource(participantDetailsList.get(position).get);
         holder.collegeName.setText(participantDetailsList.get(position).getCollegeName().toString());
         String p1 = participantDetailsList.get(position).getParticipant1();
         String p2 = participantDetailsList.get(position).getParticipant2();
@@ -105,6 +106,7 @@ public class AllParticipantsAdapter extends RecyclerView.Adapter<AllParticipants
         TextView participant3;
         TextView participant4;
         TextView participant5;
+        ImageView eventIcon;
 
         public MyOwnHolder(@NonNull View itemView) {
             super(itemView);
@@ -114,6 +116,7 @@ public class AllParticipantsAdapter extends RecyclerView.Adapter<AllParticipants
             participant3 = itemView.findViewById(R.id.participant3xx);
             participant4 = itemView.findViewById(R.id.participant4xx);
             participant5 = itemView.findViewById(R.id.participant5xx);
+            eventIcon = itemView.findViewById(R.id.event_icon_image_viewxx);
         }
     }
 

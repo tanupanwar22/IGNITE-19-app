@@ -2,6 +2,9 @@ package com.example.ignite19.ui.eventRegistration;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -227,6 +230,8 @@ public class FragmentEventRegistration extends Fragment {
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         alertView = inflater.inflate(R.layout.dialog_register_event, null);
         eventDescTextView = alertView.findViewById(R.id.event_desc_text_view_in_dialog);
+        alertView.setBackgroundColor(getResources().getColor(R.color.igniteSecondary));
+
         one =  alertView.findViewById(R.id.checkbox1_team_participant);
         two =  alertView.findViewById(R.id.checkbox2_team_participant);
         three = alertView.findViewById(R.id.checkbox3_team_participant);
@@ -254,6 +259,8 @@ public class FragmentEventRegistration extends Fragment {
                // String event_name_X = unRegisteredEvents.get(i).toString();
                 String event_name_x = eventNamesForDropDown.get(i).toString();
                 numberOfParticipantsTextView.setText(map.get(event_name_x).toString());
+                ((TextView) adapterView.getChildAt(0)).setTextColor(Color.GREEN);
+                ((TextView)adapterView.getChildAt(0)).setTypeface(Typeface.DEFAULT_BOLD);
                 //
                 String event_desc;
                 for(UserDataAndEventList m : mList){
@@ -270,17 +277,34 @@ public class FragmentEventRegistration extends Fragment {
             }
         });
 
+        TextView textView = new TextView(getContext());
+        textView.setText("Event Registration");
+        textView.setTypeface(Typeface.DEFAULT_BOLD);
+        textView.setPadding(20, 30, 20, 30);
+        textView.setTextSize(20F);
+        //textView.drawabl
+       // textView.setBackgroundColor(Color.CYAN);
+        textView.setTextColor(getResources().getColor(R.color.contrasText));
+        textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_eventssvg, 0, 0, 0);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext()).setView(alertView);
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(),R.style.MyDialogTheme).setView(alertView);
         builder.setPositiveButton("ADD", null);
         builder.setNegativeButton("CANCEL", null);
-        builder.setTitle("Event Registration");
-        builder.setIcon(R.drawable.ic_eventssvg);
+        //builder.setTitle("Event Registration")
+        builder.setCustomTitle(textView);
+
+        //builder.setIcon(R.drawable.ic_eventssvg);
         alertDialog = builder.create();
         alertDialog.show();
+
+
         alertDialog.setCancelable(false);
         Button b = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
         Button c = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+        c.setTextColor(Color.GREEN);
+        b.setTextColor(Color.GREEN);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

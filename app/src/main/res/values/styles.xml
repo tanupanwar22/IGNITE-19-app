@@ -3,8 +3,8 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/ignitePrimary</item>
+        <item name="colorPrimaryDark">@color/ignitePrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
@@ -13,6 +13,13 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/igniteSecondary</item>
+       <!-- <item name="android:textColor">@color/contrasText</item>
+        <item name="android:textColorPrimary">@color/contrasText</item>
+            <item name="textColorAlertDialogListItem">@color/contrasText</item>
+            <item name="android:textColorSecondary">@color/alertDialogTextColor</item>-->
+    </style>
     <style name="AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />

@@ -317,76 +317,6 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
 
                 if (mEventList != null) {
                     switch (mEventList.getEvent_name()) {
-                        case "Relay Coding":
-                            String desctextrc="";
-                            try  {
-                                InputStream is = getAssets().open("Relay Coding desc.TXT");
-                                int size=is.available();
-                                byte[] buffer=new byte[size];
-                                is.read(buffer);
-                                is.close();
-                                desctextrc=new String(buffer);
-                            }
-                            catch (IOException ex){
-                                ex.printStackTrace();
-                            }
-                            mEventList.setEvent_description(desctextrc);
-                            mEventList.setEvent_latitude(13.009319);
-                            mEventList.setEvent_longitude(74.794500);
-                            mEventList.setNumber_of_participants(2);
-                            mEventList.setEvent_venue("LHC-B");
-                            mEventList.setEvent_duration("02:00:00");
-                            mEventList.setEvent_icon_uri(R.drawable.common_google_signin_btn_icon_dark);
-                            mEventList.setEvent_image_uri(R.drawable.nav_header_background);
-                            break;
-
-
-                        case "Nexus":
-                            String desctextn="";
-                            try  {
-                                InputStream is = getAssets().open("Nexus desc.TXT");
-                                int size=is.available();
-                                byte[] buffer=new byte[size];
-                                is.read(buffer);
-                                is.close();
-                                desctextn=new String(buffer);
-                            }
-                            catch (IOException ex){
-                                ex.printStackTrace();
-                            }
-                            mEventList.setEvent_description(desctextn);
-                            mEventList.setEvent_latitude(13.009319);
-                            mEventList.setEvent_longitude(74.794500);
-                            mEventList.setNumber_of_participants(5);
-                            mEventList.setEvent_venue("LHC-C");
-                            mEventList.setEvent_duration("02:00:00");
-                            mEventList.setEvent_icon_uri(R.drawable.common_google_signin_btn_icon_dark);
-                            mEventList.setEvent_image_uri(R.drawable.nav_header_background);
-
-                            break;
-
-                        case "Brain Storm":
-                            String desctextbs="";
-                            try  {
-                                InputStream is = getAssets().open("Brain Storm desc.TXT");
-                                int size=is.available();
-                                byte[] buffer=new byte[size];
-                                is.read(buffer);
-                                is.close();
-                                desctextbs=new String(buffer);
-                            }
-                            catch (IOException ex){
-                                ex.printStackTrace();
-                            }
-                            mEventList.setEvent_description(desctextbs);
-                            mEventList.setEvent_latitude(13.009319);
-                            mEventList.setEvent_longitude(74.794500);
-                            mEventList.setNumber_of_participants(3);
-                            mEventList.setEvent_venue("CCC");
-                            mEventList.setEvent_duration("00:45:00");
-                            mEventList.setEvent_icon_uri(R.drawable.common_google_signin_btn_icon_dark);
-                            mEventList.setEvent_image_uri(R.drawable.nav_header_background);
-                            break;
 
                         case "Agomotto's Amet":
                             String desctexta="";
@@ -407,8 +337,8 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                             mEventList.setNumber_of_participants(2);
                             mEventList.setEvent_venue("LHC-X");
                             mEventList.setEvent_duration("01:00:00");
-                            mEventList.setEvent_icon_uri(R.drawable.common_google_signin_btn_icon_dark);
-                            mEventList.setEvent_image_uri(R.drawable.nav_header_background);
+                            mEventList.setEvent_icon_uri(R.drawable.agomotto_amet_ic);
+                            mEventList.setEvent_image_uri(R.drawable.agomotto_amet_p2);
                             break;
 
                         case "Death's Head":
@@ -430,33 +360,10 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                             mEventList.setNumber_of_participants(5);
                             mEventList.setEvent_venue("LHC-C");
                             mEventList.setEvent_duration("01:00:00");
-                            mEventList.setEvent_icon_uri(R.drawable.common_google_signin_btn_icon_dark);
-                            mEventList.setEvent_image_uri(R.drawable.nav_header_background);
+                            mEventList.setEvent_icon_uri(R.drawable.deaths_head_ic);
+                            mEventList.setEvent_image_uri(R.drawable.deaths_head_p2);
                             break;
 
-
-                        case "Debugging":
-                            String desctextdb="";
-                            try  {
-                                InputStream is = getAssets().open("Debugging desc.TXT");
-                                int size=is.available();
-                                byte[] buffer=new byte[size];
-                                is.read(buffer);
-                                is.close();
-                                desctextdb=new String(buffer);
-                            }
-                            catch (IOException ex){
-                                ex.printStackTrace();
-                            }
-                            mEventList.setEvent_description(desctextdb);
-                            mEventList.setEvent_latitude(13.009319);
-                            mEventList.setEvent_longitude(74.794500);
-                            mEventList.setNumber_of_participants(3);
-                            mEventList.setEvent_venue("LHC-D");
-                            mEventList.setEvent_duration("01:00:00");
-                            mEventList.setEvent_icon_uri(R.drawable.common_google_signin_btn_icon_dark);
-                            mEventList.setEvent_image_uri(R.drawable.nav_header_background);
-                            break;
 
 
                         case "Scattergories":
@@ -478,33 +385,11 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                             mEventList.setNumber_of_participants(4);
                             mEventList.setEvent_venue("LHC-S");
                             mEventList.setEvent_duration("01:00:00");
-                            mEventList.setEvent_icon_uri(R.drawable.common_google_signin_btn_icon_dark);
-                            mEventList.setEvent_image_uri(R.drawable.nav_header_background);
+                            mEventList.setEvent_icon_uri(R.drawable.scattergorries);
+                            mEventList.setEvent_image_uri(R.drawable.scattergories_p2);
                             break;
 
 
-                        case "Bidding":
-                            String desctextbd="";
-                            try  {
-                                InputStream is = getAssets().open("Bidding desc.TXT");
-                                int size=is.available();
-                                byte[] buffer=new byte[size];
-                                is.read(buffer);
-                                is.close();
-                                desctextbd=new String(buffer);
-                            }
-                            catch (IOException ex){
-                                ex.printStackTrace();
-                            }
-                            mEventList.setEvent_description(desctextbd);
-                            mEventList.setEvent_latitude(13.009319);
-                            mEventList.setEvent_longitude(74.794500);
-                            mEventList.setNumber_of_participants(1);
-                            mEventList.setEvent_venue("LHC-C");
-                            mEventList.setEvent_duration("01:00:00");
-                            mEventList.setEvent_icon_uri(R.drawable.common_google_signin_btn_icon_dark);
-                            mEventList.setEvent_image_uri(R.drawable.nav_header_background);
-                            break;
                         case "C for Codetta":
                             String desctextc="";
                             try  {
@@ -524,8 +409,8 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                             mEventList.setNumber_of_participants(2);
                             mEventList.setEvent_venue("LHC-C");
                             mEventList.setEvent_duration("01:00:00");
-                            mEventList.setEvent_icon_uri(R.drawable.common_google_signin_btn_icon_dark);
-                            mEventList.setEvent_image_uri(R.drawable.nav_header_background);
+                            mEventList.setEvent_icon_uri(R.drawable.c_for_codetta_ic);
+                            mEventList.setEvent_image_uri(R.drawable.c_for_codetta_p2);
                             break;
 
                         case "Captain Algorika":
@@ -547,8 +432,8 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                             mEventList.setNumber_of_participants(3);
                             mEventList.setEvent_venue("LHC-C");
                             mEventList.setEvent_duration("01:00:00");
-                            mEventList.setEvent_icon_uri(R.drawable.common_google_signin_btn_icon_dark);
-                            mEventList.setEvent_image_uri(R.drawable.nav_header_background);
+                            mEventList.setEvent_icon_uri(R.drawable.captain_algorika_ic);
+                            mEventList.setEvent_image_uri(R.drawable.captain_algorika_p2);
                             break;
                         case "Cerebro":
                             String desctextce="";
@@ -569,8 +454,8 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                             mEventList.setNumber_of_participants(2);
                             mEventList.setEvent_venue("LHC-C");
                             mEventList.setEvent_duration("01:00:00");
-                            mEventList.setEvent_icon_uri(R.drawable.common_google_signin_btn_icon_dark);
-                            mEventList.setEvent_image_uri(R.drawable.nav_header_background);
+                            mEventList.setEvent_icon_uri(R.drawable.cerebro_ic);
+                            mEventList.setEvent_image_uri(R.drawable.cerebro_p2);
                             break;
                         case "Code Infinity":
                             String desctextci="";
@@ -591,8 +476,8 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                             mEventList.setNumber_of_participants(2);
                             mEventList.setEvent_venue("LHC-C");
                             mEventList.setEvent_duration("01:00:00");
-                            mEventList.setEvent_icon_uri(R.drawable.common_google_signin_btn_icon_dark);
-                            mEventList.setEvent_image_uri(R.drawable.nav_header_background);
+                            mEventList.setEvent_icon_uri(R.drawable.code_infinity);
+                            mEventList.setEvent_image_uri(R.drawable.code_infinity_p2);
                             break;
 
                         case "Dormammu's Loop":
@@ -614,8 +499,8 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                             mEventList.setNumber_of_participants(3);
                             mEventList.setEvent_venue("LHC-C");
                             mEventList.setEvent_duration("01:00:00");
-                            mEventList.setEvent_icon_uri(R.drawable.common_google_signin_btn_icon_dark);
-                            mEventList.setEvent_image_uri(R.drawable.nav_header_background);
+                            mEventList.setEvent_icon_uri(R.drawable.dormammu_loop_ic);
+                            mEventList.setEvent_image_uri(R.drawable.code_infinity_p2);
                             break;
 
                         case "Krypthon":
@@ -637,8 +522,8 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                             mEventList.setNumber_of_participants(2);
                             mEventList.setEvent_venue("LHC-C");
                             mEventList.setEvent_duration("01:00:00");
-                            mEventList.setEvent_icon_uri(R.drawable.common_google_signin_btn_icon_dark);
-                            mEventList.setEvent_image_uri(R.drawable.nav_header_background);
+                            mEventList.setEvent_icon_uri(R.drawable.krypthon_ic);
+                            mEventList.setEvent_image_uri(R.drawable.krypthon_p2);
                             break;
                         case "Merc with the Mouth":
                             String desctextm="";
@@ -659,8 +544,8 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                             mEventList.setNumber_of_participants(2);
                             mEventList.setEvent_venue("LHC-C");
                             mEventList.setEvent_duration("01:00:00");
-                            mEventList.setEvent_icon_uri(R.drawable.common_google_signin_btn_icon_dark);
-                            mEventList.setEvent_image_uri(R.drawable.nav_header_background);
+                            mEventList.setEvent_icon_uri(R.drawable.merc_with_the_mouth);
+                            mEventList.setEvent_image_uri(R.drawable.merc_with_the_mouthp2);
                             break;
                         case "ORM Master":
                             String desctexto="";
@@ -681,8 +566,8 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                             mEventList.setNumber_of_participants(2);
                             mEventList.setEvent_venue("LHC-C");
                             mEventList.setEvent_duration("01:00:00");
-                            mEventList.setEvent_icon_uri(R.drawable.common_google_signin_btn_icon_dark);
-                            mEventList.setEvent_image_uri(R.drawable.nav_header_background);
+                            mEventList.setEvent_icon_uri(R.drawable.orm_master_ic);
+                            mEventList.setEvent_image_uri(R.drawable.orm_master_p2);
                             break;
                         case "Rage of Ultron":
                             String desctextr="";
@@ -703,54 +588,10 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                             mEventList.setNumber_of_participants(3);
                             mEventList.setEvent_venue("LHC-C");
                             mEventList.setEvent_duration("01:00:00");
-                            mEventList.setEvent_icon_uri(R.drawable.common_google_signin_btn_icon_dark);
-                            mEventList.setEvent_image_uri(R.drawable.nav_header_background);
+                            mEventList.setEvent_icon_uri(R.drawable.rage_of_ultron);
+                            mEventList.setEvent_image_uri(R.drawable.rage_of_ultron_p2);
                             break;
-                        case "Strange Bugs":
-                            String desctextsb="";
-                            try  {
-                                InputStream is = getAssets().open("Strange Bugs desc.TXT");
-                                int size=is.available();
-                                byte[] buffer=new byte[size];
-                                is.read(buffer);
-                                is.close();
-                                desctextsb=new String(buffer);
-                            }
-                            catch (IOException ex){
-                                ex.printStackTrace();
-                            }
-                            mEventList.setEvent_description(desctextsb);
-                            mEventList.setEvent_latitude(13.009319);
-                            mEventList.setEvent_longitude(74.794500);
-                            mEventList.setNumber_of_participants(3);
-                            mEventList.setEvent_venue("LHC-C");
-                            mEventList.setEvent_duration("01:00:00");
-                            mEventList.setEvent_icon_uri(R.drawable.common_google_signin_btn_icon_dark);
-                            mEventList.setEvent_image_uri(R.drawable.nav_header_background);
-                            break;
-                        case "Tesseract Endeavour":
 
-                            String desctextt="";
-                            try  {
-                                InputStream is = getAssets().open("Tesseract Endeavour desc.TXT");
-                                int size=is.available();
-                                byte[] buffer=new byte[size];
-                                is.read(buffer);
-                                is.close();
-                                desctextt=new String(buffer);
-                            }
-                            catch (IOException ex){
-                                ex.printStackTrace();
-                            }
-                            mEventList.setEvent_description(desctextt);
-                            mEventList.setEvent_latitude(13.009319);
-                            mEventList.setEvent_longitude(74.794500);
-                            mEventList.setNumber_of_participants(3);
-                            mEventList.setEvent_venue("LHC-C");
-                            mEventList.setEvent_duration("01:00:00");
-                            mEventList.setEvent_icon_uri(R.drawable.common_google_signin_btn_icon_dark);
-                            mEventList.setEvent_image_uri(R.drawable.nav_header_background);
-                            break;
                         case "The Search of Gauntlet":
 
                             String desctexttsg="";
@@ -771,30 +612,8 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                             mEventList.setNumber_of_participants(2);
                             mEventList.setEvent_venue("LHC-C");
                             mEventList.setEvent_duration("01:00:00");
-                            mEventList.setEvent_icon_uri(R.drawable.common_google_signin_btn_icon_dark);
-                            mEventList.setEvent_image_uri(R.drawable.nav_header_background);
-                            break;
-                        case "Workshop":
-                            String desctextw="";
-                            try  {
-                                InputStream is = getAssets().open("Workshop desc.TXT");
-                                int size=is.available();
-                                byte[] buffer=new byte[size];
-                                is.read(buffer);
-                                is.close();
-                                desctextw=new String(buffer);
-                            }
-                            catch (IOException ex){
-                                ex.printStackTrace();
-                            }
-                            mEventList.setEvent_description(desctextw);
-                            mEventList.setEvent_latitude(13.009319);
-                            mEventList.setEvent_longitude(74.794500);
-                            mEventList.setNumber_of_participants(5);
-                            mEventList.setEvent_venue("LHC-C");
-                            mEventList.setEvent_duration("01:00:00");
-                            mEventList.setEvent_icon_uri(R.drawable.common_google_signin_btn_icon_dark);
-                            mEventList.setEvent_image_uri(R.drawable.nav_header_background);
+                            mEventList.setEvent_icon_uri(R.drawable.search_of_the_gauntlet);
+                            mEventList.setEvent_image_uri(R.drawable.the_search_of_the_gaunt_p2);
                             break;
 
 

@@ -53,7 +53,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.My
     public void onBindViewHolder(@NonNull MyOwnHolder holder, final int position) {
         holder.eventListVenue.setText(mEventList.get(position).getEvent_venue());
         setAnimation(holder.itemView,position);
-        holder.eventListImage.setImageResource(R.drawable.aaa);
+        holder.eventListImage.setImageResource(mEventList.get(position).getEvent_image_uri());
         holder.mEventName.setText(mEventList.get(position).getEvent_name());
         holder.eventDateTime.setText(DateTimeConverter.changeDateFormat(mEventList.get(position).getEvent_date()));
         holder.mEventCard.setOnClickListener(new View.OnClickListener() {

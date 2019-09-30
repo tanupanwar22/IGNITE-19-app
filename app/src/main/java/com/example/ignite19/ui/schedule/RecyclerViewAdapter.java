@@ -45,7 +45,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.eventDateAndTime.setText(mdata.get(position).getStart_time());
         holder.eventDate.setText(mdata.get(position).getEvent_date());
         holder.eventDay.setText(mdata.get(position).getEvent_day());
-        setAnimation(holder.itemView,position);
+       // setAnimation(holder.itemView,position);
     }
     @Override
     public int getItemCount() {

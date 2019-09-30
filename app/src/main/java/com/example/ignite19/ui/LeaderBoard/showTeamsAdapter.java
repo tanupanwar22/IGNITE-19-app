@@ -40,9 +40,12 @@ private  int lastPosition = -1;
     @Override
     public void onBindViewHolder(@NonNull teamsViewHolder holder, int position) {
         String teamname=team_name.get(position);
+        if (!teamname.equalsIgnoreCase("No data available yet")){
+            Glide.with(context).load(R.drawable.victory).into(holder.victory);
+        }
         setAnimation(holder.itemView,position);
         holder.team_name_tv.setText(teamname);
-        Glide.with(context).load(R.drawable.victory).into(holder.victory);
+
 
     }
 
@@ -75,7 +78,7 @@ private  int lastPosition = -1;
         public teamsViewHolder(@NonNull View itemView) {
             super(itemView);
             team_name_tv=itemView.findViewById(R.id.team_name_tv);
-            victory=itemView.findViewById(R.id.victory);
+            victory=itemView.findViewById(R.id.victory_xx);
         }
 
         public void clearAnimation() {

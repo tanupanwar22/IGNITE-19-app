@@ -54,8 +54,9 @@
     <string name="White_space">
 
 
-    </string>
 
+    </string>
+<string name="aim">The technical fest is an indispensable part of technical college’s curriculum. The key objective of organizing this event is to provide a platform where young brains get to showcase their technical soundness and can compete with others to find the best. The highlight of the fest is that we never solely aim on the competitions but on providing the participants with an environment where they compete, excel and prove themselves. They can see their ideas become alive and get inspired.</string>
     <string name="license_header">
         This application uses Open Source components. You can find the source code of the open source projects along with the licensing information below.
         We acknowledge and are grateful to these developers for their contributions to open source.
@@ -68,5 +69,9 @@
     <string name="toasty_desx">
 
     </string>
+
+    <string name="aboutIGNITE">IGNITE, the technical fest of NIT SURATHKAL, organized by the Department of Mathematical and Computational Sciences is the conjugation of technical geeks of the MCA community from all over India, providing them with a platform to promulgate their skills and vision to reach the pinnacle of their talents. The underlying spirit of IGNITE was “to promote technical and scientific thinking along with a tint of innovation” a mission that has been followed by every IGNITE ever since.</string>
+    <string name="origin">Back from its commencement in 2017 to till date IGNITE has provided a podium for several technical innovations and brilliant raw ideas to echo, over the past 2 years. Justifying it\'s very named, the fest solely believes in igniting raw minds and ideas by giving them a thrilling opportunity to boost their confidence and inculcate in them the vision to see themselves as the budding leaders of the future technical world. The aim of team IGNITE is to take the level of this tech fest higher and higher by raising it\'s parameters up a few notches by each advancing year</string>
+    <string name="vision">We believe in steady growth and with this very motto, our entire team is working towards IGNITE’19. The fest provides a platform for students across the nation to top their potential and unravel their quiescent talents. Students from diverse background and culture will get an opportunity to interact and learn from each other. The participants here will be bestowed upon with an unforgettable learning experience as IGNITE’19 offers a whole gamut of events like online coding, treasure hunt, online quizzes, fun events, etc.</string>
 
 </resources>

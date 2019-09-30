@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -11,37 +12,39 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardCornerRadius="10dp"
-        android:elevation="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        >
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
+        android:elevation="6dp"
+        app:cardBackgroundColor="@color/igniteSecondary"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
             android:layout_margin="10dp"
-            >
+            android:orientation="horizontal">
+
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/selected"
-                android:id="@+id/victory"
-                />
+                android:id="@+id/victory_xx"
+                android:layout_width="32dp"
+                android:layout_height="32dp" />
+
             <TextView
+                android:id="@+id/team_name_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="NITK Surathkal"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
-                android:textSize="20dp"
-                android:id="@+id/team_name_tv"
-                android:fontFamily="monospace"
-                />
+                android:text="NITK Surathkal"
+                android:textColor="@color/contrasText"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
