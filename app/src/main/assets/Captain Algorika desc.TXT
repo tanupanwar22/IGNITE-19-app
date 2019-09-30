@@ -1,2 +1,3 @@
-Do you know your codes well enough? Do you have faith in what you code? Here is your chance to showcase your algorithm knowledge. We test you and you have to come on top.
-
+Do you know your codes well enough? Do you have faith in what you code?
+Here is your chance to showcase your algorithm knowledge
+We test you and you have to come on top.

@@ -1,3 +1,2 @@
-RULES
-1.	Each member of team have to be present for this event.
-2.	You will be provided with basic requirements.
+1.Each member of team have to be present for this event.
+2.You will be provided with basic requirements.

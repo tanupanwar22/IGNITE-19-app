@@ -34,6 +34,8 @@ public class AboutEvent extends Fragment {
     ArrayList<UserDataAndEventList> userDataAndEventLists = new ArrayList<>();
     View v;
     String eventName = null;
+    String eventDesc = null;
+    String eventRules = null;
     UserDataAndEventList dataForThisEvent;
     public AboutEvent() {
         // Required empty public constructor
@@ -52,22 +54,38 @@ public class AboutEvent extends Fragment {
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+       // outState.putParcelableArrayList("mList",eventsArrayList);
+        outState.putParcelableArrayList("userDataAndEventList",userDataAndEventLists);
+        outState.putString("eventName",eventName);
+        outState.putString("eventDesc",eventDesc);
+        outState.putString("eventRules",eventRules);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        if(getArguments().getString("eventName")!=null){
-            eventName = getArguments().getString("eventName");
+
+        if(savedInstanceState != null){
+            userDataAndEventLists = savedInstanceState.getParcelableArrayList("userDataAndEventList");
+            eventName = savedInstanceState.getString("eventName");
+            eventDesc = savedInstanceState.getString("eventDesc");
+            eventRules = savedInstanceState.getString("eventRules");
+
         }
+        else{
+            // Inflate the layout for this fragment
+            userDataAndEventLists = dataCommunication.getAllEventList();
+            if(getArguments().getString("eventName")!=null){
+                eventName = getArguments().getString("eventName");
+            }
 
-        String eventDesc = null;
-        String eventRules = null;
-        if(getArguments().getString("eventdesc") != null){
-            eventDesc = getArguments().getString("eventdesc");
-            eventRules = getArguments().getString("eventrules");
+            if(getArguments().getString("eventdesc") != null){
+                eventDesc = getArguments().getString("eventdesc");
+                eventRules = getArguments().getString("eventrules");
+            }
         }
-
-
-        userDataAndEventLists = dataCommunication.getAllEventList();
         for(UserDataAndEventList m: userDataAndEventLists){
             if(eventName.equalsIgnoreCase(m.getEvent_name())){
                 dataForThisEvent = m;

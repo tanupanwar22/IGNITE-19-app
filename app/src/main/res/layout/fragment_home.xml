@@ -31,16 +31,18 @@
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
+
                     android:id="@+id/button_events"
                     android:layout_width="340dp"
                     android:layout_height="180dp"
-                    android:layout_margin="10dp"
+                    android:layout_margin="8dp"
                     android:clickable="true"
                     android:foreground="?android:attr/selectableItemBackground">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@color/igniteSecondaryLight"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -66,13 +68,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:text="@string/nav_events"
+                            android:textColor="@color/contrasText"
                             android:textStyle="bold" />
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_margin="10dp"
-                            android:background="@color/lightGray" />
+                            android:background="@color/lightgray" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -80,7 +83,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="Events list for IGNITE'19"
-                            android:textColor="@android:color/darker_gray" />
+                            android:textColor="@color/contrasText" />
 
 
                     </LinearLayout>
@@ -105,6 +108,7 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@color/igniteSecondaryLight"
                         android:orientation="vertical"
                         android:gravity="center">
 
@@ -127,6 +131,7 @@
 
                         <TextView
                             android:layout_width="wrap_content"
+                            android:textColor="@color/contrasText"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:text="Event Registration"
@@ -134,7 +139,7 @@
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="@color/lightGray"
+                            android:background="@color/lightgray"
                             android:layout_margin="10dp"/>
 
                         <TextView
@@ -143,7 +148,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="Add participants to various events"
-                            android:textColor="@android:color/darker_gray" />
+                            android:textColor="@color/contrasText" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -158,6 +163,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
+                        android:background="@color/igniteSecondaryLight"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical">
@@ -183,6 +189,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
+                            android:textColor="@color/contrasText"
                             android:text="Leaderboards"
                             android:textStyle="bold" />
 
@@ -190,15 +197,16 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_margin="10dp"
-                            android:background="@color/lightGray" />
+                            android:background="@color/lightgray" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center"
+
                             android:padding="5dp"
                             android:text="See Prelims Results of events"
-                            android:textColor="@android:color/darker_gray" />
+                            android:textColor="@color/contrasText" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -221,6 +229,7 @@
                     android:foreground="?android:attr/selectableItemBackground">
 
                     <LinearLayout
+                        android:background="@color/igniteSecondaryLight"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
@@ -245,15 +254,17 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:textColor="@color/contrasText"
                             android:layout_marginTop="10dp"
                             android:text="See Participants"
+
                             android:textStyle="bold" />
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_margin="10dp"
-                            android:background="@color/lightGray" />
+                            android:background="@color/lightgray" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -261,7 +272,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="Check your participants for events"
-                            android:textColor="@android:color/darker_gray" />
+                            android:textColor="@color/contrasText" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -277,20 +288,19 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@color/igniteSecondaryLight"
                         android:gravity="center"
                         android:orientation="vertical">
-                        <com.airbnb.lottie.LottieAnimationView
+                        <ImageView
+                            android:src="@drawable/ic_check"
                             android:layout_width="24dp"
                             android:layout_height="24dp"
                             android:layout_gravity="right"
                             android:layout_marginTop="4dp"
                             android:layout_marginRight="4dp"
-                            app:lottie_autoPlay="true"
-                            app:lottie_fileName="greentick.json"
-                            app:lottie_loop="true"
                             >
 
-                        </com.airbnb.lottie.LottieAnimationView>
+                        </ImageView>
 
                         <ImageView
                             android:layout_width="56dp"
@@ -299,6 +309,7 @@
                             android:padding="10dp" />
 
                         <TextView
+                            android:textColor="@color/contrasText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
@@ -317,7 +328,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="Find venues around NITK"
-                            android:textColor="@android:color/darker_gray" />
+                            android:textColor="@color/contrasText" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
@@ -347,22 +358,23 @@
                     android:foreground="?android:attr/selectableItemBackground">
 
                     <LinearLayout
+                        android:background="@color/igniteSecondaryLight"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:orientation="vertical">
-                        <com.airbnb.lottie.LottieAnimationView
+                        <ImageView
                             android:id="@+id/lottie_schedule_animation"
                             android:layout_width="24dp"
+                            android:src="@drawable/ic_check"
                             android:layout_height="24dp"
                             android:layout_gravity="right"
                             android:layout_marginTop="4dp"
-                            app:lottie_fileName="greentick.json"
-                            app:lottie_autoPlay="true"
-                            android:layout_marginRight="4dp"
-                            app:lottie_loop="true">
 
-                        </com.airbnb.lottie.LottieAnimationView>
+                            android:layout_marginRight="4dp"
+
+                            >
+                        </ImageView>
 
                         <ImageView
                             android:layout_width="56dp"
@@ -371,6 +383,7 @@
                             android:padding="10dp" />
 
                         <TextView
+                            android:textColor="@color/contrasText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
@@ -381,7 +394,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_margin="10dp"
-                            android:background="@color/lightGray" />
+                            android:background="@color/lightgray" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -389,7 +402,7 @@
                             android:gravity="center"
                             android:padding="5dp"
                             android:text="Complete Schedule of IGNITE'19"
-                            android:textColor="@android:color/darker_gray" />
+                            android:textColor="@color/contrasText" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>

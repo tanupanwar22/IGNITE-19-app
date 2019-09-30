@@ -19,7 +19,7 @@ public class EventScheduleStaticScheduleClass {
         day1CompleteSchedule.add(new eventSchedule("08:30 am","Opening","Workshop","LHC-C Seminar Hall","Saturday","12"));
         day1CompleteSchedule.add(new eventSchedule("11:00 am","Technical","Database Prelims","SACA Lab","Saturday","12"));
         day1CompleteSchedule.add(new eventSchedule("11:00 am","Technical","Coding Prelims","SACA Lab","Saturday","12"));
-        day1CompleteSchedule.add(new eventSchedule("12:00 am","Meal","Lunch","Trishul Block Mess","Saturday","12"));
+        day1CompleteSchedule.add(new eventSchedule("12:00 pm","Meal","Lunch","Trishul Block Mess","Saturday","12"));
         day1CompleteSchedule.add(new eventSchedule("01:00 pm","Technical","Relay Coding","SACA Lab","Saturday","12"));
         day1CompleteSchedule.add(new eventSchedule("01:00 pm","Technical","Debugging","SACA Lab","Saturday","12"));
         day1CompleteSchedule.add(new eventSchedule("02:00 pm","Non-Technical","Scattegories","SACA Lab","Saturday","12"));

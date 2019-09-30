@@ -2,6 +2,9 @@ package com.example.ignite19.ui.eventRegistration;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -53,7 +56,7 @@ public class FragmentEventRegistration extends Fragment {
     ArrayList<UserDataAndEventList> mList;
     //ArrayList<Integer> numberOfParticipants = new ArrayList<>();
     //ArrayList<String > unRegisteredEvents = new ArrayList<>();
-   ArrayList<UserDataAndEventList> registeredEventList ;//= new ArrayList<>();
+   ArrayList<UserDataAndEventList> registeredEventList  = new ArrayList<>();
    HashSet<UserDataAndEventList> registeredEventHashSet = new HashSet<>();
    ArrayList<Participation> participationArrayList;
     TextView eventDescTextView;
@@ -119,6 +122,7 @@ public class FragmentEventRegistration extends Fragment {
         outState.putParcelableArrayList("mList",mList);
         outState.putParcelableArrayList("participationArrayList",participationArrayList);
         outState.putParcelable("userDetail",userDetail);
+        outState.putString("uuid",uuid);
 
     }
 
@@ -144,23 +148,21 @@ public class FragmentEventRegistration extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        //registeredEventList.clear();
+        if(registeredEventList!=null){
+            registeredEventList.clear();
+        }
+
         map.clear();
         for(Participation x : participationArrayList){
             for(UserDataAndEventList y: mList){
                 if(x.getEvent_name().equalsIgnoreCase(y.getEvent_name())){
                     if(x.getParticipation() == 0){
-                        //numberOfParticipants.add(y.getNumber_of_participants());
-                        //unRegisteredEvents.add(y.getEvent_name());
                         map.put(y.getEvent_name(),y.getNumber_of_participants());
                     }
                     else{
-                       // registeredEventList.clear();
-                        //user is registered for that event
-                       // if(!registeredEventList.contains(y)){
-                         //   registeredEventList.add(y);
-                        //}
-                        registeredEventHashSet.add(y);
+
+                       registeredEventHashSet.add(y);
+                      //  registeredEventList.add(y);
 
                     }
                 }
@@ -168,8 +170,6 @@ public class FragmentEventRegistration extends Fragment {
         }
         //registeredEventList.clear();
         registeredEventList = new ArrayList<>(registeredEventHashSet);
-
-
         //code from oncreateview
         registerEventsAdapter = new RegisterEventsAdapter(getContext(),registeredEventList);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3));
@@ -197,15 +197,16 @@ public class FragmentEventRegistration extends Fragment {
             mList = savedInstanceState.getParcelableArrayList("mList");
             userDetail = savedInstanceState.getParcelable("userDetail");
             participationArrayList = savedInstanceState.getParcelableArrayList("participationArrayList");
-
+            uuid = savedInstanceState.getString("uuid");
         }
         else {
             userDetail = dataCommunication.getUserDetail();
             mList = dataCommunication.getAllEventList();
             participationArrayList = dataCommunication.getUserParticipationDetails();
+            uuid = dataCommunication.getUUID();
         }
 
-        uuid = dataCommunication.getUUID();
+
         recyclerView = (RecyclerView) view.findViewById(R.id.recyler_view_registered_events);
         floatingActionButton = view.findViewById(R.id.floatingActionButton);
 
@@ -229,6 +230,8 @@ public class FragmentEventRegistration extends Fragment {
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         alertView = inflater.inflate(R.layout.dialog_register_event, null);
         eventDescTextView = alertView.findViewById(R.id.event_desc_text_view_in_dialog);
+        alertView.setBackgroundColor(getResources().getColor(R.color.igniteSecondary));
+
         one =  alertView.findViewById(R.id.checkbox1_team_participant);
         two =  alertView.findViewById(R.id.checkbox2_team_participant);
         three = alertView.findViewById(R.id.checkbox3_team_participant);
@@ -256,6 +259,8 @@ public class FragmentEventRegistration extends Fragment {
                // String event_name_X = unRegisteredEvents.get(i).toString();
                 String event_name_x = eventNamesForDropDown.get(i).toString();
                 numberOfParticipantsTextView.setText(map.get(event_name_x).toString());
+                ((TextView) adapterView.getChildAt(0)).setTextColor(Color.GREEN);
+                ((TextView)adapterView.getChildAt(0)).setTypeface(Typeface.DEFAULT_BOLD);
                 //
                 String event_desc;
                 for(UserDataAndEventList m : mList){
@@ -272,17 +277,34 @@ public class FragmentEventRegistration extends Fragment {
             }
         });
 
+        TextView textView = new TextView(getContext());
+        textView.setText("Event Registration");
+        textView.setTypeface(Typeface.DEFAULT_BOLD);
+        textView.setPadding(20, 30, 20, 30);
+        textView.setTextSize(20F);
+        //textView.drawabl
+       // textView.setBackgroundColor(Color.CYAN);
+        textView.setTextColor(getResources().getColor(R.color.contrasText));
+        textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_eventssvg, 0, 0, 0);
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext()).setView(alertView);
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(),R.style.MyDialogTheme).setView(alertView);
         builder.setPositiveButton("ADD", null);
         builder.setNegativeButton("CANCEL", null);
-        builder.setTitle("Event Registration");
-        builder.setIcon(R.drawable.ic_eventssvg);
+        //builder.setTitle("Event Registration")
+        builder.setCustomTitle(textView);
+
+        //builder.setIcon(R.drawable.ic_eventssvg);
         alertDialog = builder.create();
         alertDialog.show();
+
+
         alertDialog.setCancelable(false);
         Button b = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
         Button c = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+        c.setTextColor(Color.GREEN);
+        b.setTextColor(Color.GREEN);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -357,7 +379,7 @@ public class FragmentEventRegistration extends Fragment {
         for(UserDataAndEventList m:mList){
             if(event_name.equalsIgnoreCase(m.getEvent_name())){
             registeredEventList.add(m);
-                //registeredEventHashSet.add(m);
+                registeredEventHashSet.add(m);
             }
         }
         //now store participation in database

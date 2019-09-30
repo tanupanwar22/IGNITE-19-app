@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:textColor="@color/contrasText"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -21,6 +21,8 @@ import com.example.ignite19.BuildConfig;
 import com.example.ignite19.R;
 import com.example.ignite19.UserDataAndEventList;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class RegisterEventsAdapter extends RecyclerView.Adapter<RegisterEventsAdapter.MyOwnHolder> {
@@ -53,9 +55,38 @@ public class RegisterEventsAdapter extends RecyclerView.Adapter<RegisterEventsAd
         holder.mCardVIew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              String eventName = userDataAndEventLists.get(position).getEvent_name();
-              Bundle bundle = new Bundle();
-              bundle.putString("eventName",eventName);
+                Bundle bundle = new Bundle();
+                String name=userDataAndEventLists.get(position).getEvent_name();
+
+                String desctext="",rulestext="";
+                String desc=name+" desc.TXT";
+                String rules=name+" rules.TXT";
+                try  {
+                    InputStream is = ct.getAssets().open(desc);
+                    int size=is.available();
+                    byte[] buffer=new byte[size];
+                    is.read(buffer);
+                    is.close();
+                    desctext=new String(buffer);
+                }
+                catch (IOException ex){
+                    ex.printStackTrace();
+                }
+                try  {
+                    InputStream is = ct.getAssets().open(rules);
+                    int size=is.available();
+                    byte[] buffer=new byte[size];
+                    is.read(buffer);
+                    is.close();
+                    rulestext=new String(buffer);
+                }
+                catch (IOException ex){
+                    ex.printStackTrace();
+                }
+
+                bundle.putString("eventName",name);
+                bundle.putString("eventdesc",desctext);
+                bundle.putString("eventrules",rulestext);
               Navigation.findNavController(view).navigate(R.id.action_nav_event_registration_to_aboutEvent,bundle);
             }
         });

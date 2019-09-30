@@ -10,16 +10,22 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/ic_fire"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/ic_fire"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".showResults"></activity>
-        <activity android:name=".ui.AboutApp.ourTeam" />
-        <activity android:name=".Admin.AdminAddTeam.AdminRegisterTeam" />
-        <activity android:name=".Admin.AdminHomeAcitivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".showResults"
+            android:screenOrientation="portrait"></activity>
+        <activity android:name=".ui.AboutApp.ourTeam"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Admin.AdminAddTeam.AdminRegisterTeam"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Admin.AdminHomeAcitivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,6 +34,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
 
