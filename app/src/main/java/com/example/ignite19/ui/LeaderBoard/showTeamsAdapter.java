@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,6 +21,7 @@ public class showTeamsAdapter extends RecyclerView.Adapter<showTeamsAdapter.team
 
 List<String> team_name;
 Context context;
+private  int lastPosition = -1;
     public showTeamsAdapter(List<String> team_name, Context context) {
 
         this.team_name = team_name;
@@ -37,14 +40,35 @@ Context context;
     @Override
     public void onBindViewHolder(@NonNull teamsViewHolder holder, int position) {
         String teamname=team_name.get(position);
+        if (!teamname.equalsIgnoreCase("No data available yet")){
+            Glide.with(context).load(R.drawable.victory).into(holder.victory);
+        }
+        setAnimation(holder.itemView,position);
         holder.team_name_tv.setText(teamname);
-        Glide.with(context).load(R.drawable.victory).into(holder.victory);
+
 
     }
 
     @Override
     public int getItemCount() {
         return team_name.size();
+    }
+
+    @Override
+    public void onViewDetachedFromWindow(@NonNull teamsViewHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+        holder.clearAnimation();
+    }
+
+    private void setAnimation(View viewToAnimate, int position)
+    {
+        // If the bound view wasn't previously displayed on screen, it's animated
+        if (position > lastPosition)
+        {
+            Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
+            viewToAnimate.startAnimation(animation);
+            lastPosition = position;
+        }
     }
 
     public class teamsViewHolder extends RecyclerView.ViewHolder{
@@ -54,7 +78,11 @@ Context context;
         public teamsViewHolder(@NonNull View itemView) {
             super(itemView);
             team_name_tv=itemView.findViewById(R.id.team_name_tv);
-            victory=itemView.findViewById(R.id.victory);
+            victory=itemView.findViewById(R.id.victory_xx);
+        }
+
+        public void clearAnimation() {
+            itemView.clearAnimation();
         }
     }
 

@@ -80,6 +80,7 @@ tools:context=".ui.AboutIGNITE.Fragment_AboutIgnite">
                     app:layout_constraintTop_toBottomOf="@+id/cardView4" >
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:background="@color/igniteSecondaryLight"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
@@ -91,7 +92,9 @@ tools:context=".ui.AboutIGNITE.Fragment_AboutIgnite">
                             android:layout_marginEnd="8dp"
                             android:layout_marginBottom="8dp"
                             android:text="@string/ignite_rules"
+                            android:lineSpacingMultiplier="1.5"
                             android:textSize="14sp"
+                            android:textColor="@color/contrasText"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.0"
@@ -101,10 +104,12 @@ tools:context=".ui.AboutIGNITE.Fragment_AboutIgnite">
                         <TextView
                             android:id="@+id/textView15"
                             android:layout_width="wrap_content"
+                            android:lineSpacingMultiplier="1.5"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="8dp"
+                            android:textColor="@color/contrasText"
                             android:text="@string/ignite_rules"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -124,6 +129,7 @@ tools:context=".ui.AboutIGNITE.Fragment_AboutIgnite">
                     app:cardUseCompatPadding="true">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:background="@color/igniteSecondaryLight"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -152,7 +158,7 @@ tools:context=".ui.AboutIGNITE.Fragment_AboutIgnite">
 
 
                         <TextView
-
+                            android:textColor="@color/contrasText"
                             android:id="@+id/event_desc_about_event"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -170,12 +176,13 @@ tools:context=".ui.AboutIGNITE.Fragment_AboutIgnite">
                             app:layout_constraintTop_toBottomOf="@+id/imageView6" />
 
                         <TextView
+
                             android:id="@+id/about_page_date_time_textview"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:text="textco"
-                            android:textColor="@color/black"
+                            android:textColor="@color/contrasText"
                             android:textSize="14sp"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="@+id/imageView5"
@@ -187,7 +194,7 @@ tools:context=".ui.AboutIGNITE.Fragment_AboutIgnite">
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="TextView"
-                            android:textColor="@color/black"
+                            android:textColor="@color/contrasText"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="@+id/imageView6"
                             app:layout_constraintEnd_toEndOf="parent"

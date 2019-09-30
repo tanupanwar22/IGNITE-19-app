@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:background="@drawable/login_page_background"
-
     >
     <LinearLayout
 
@@ -18,7 +17,7 @@
 
 
         <ImageView
-            android:padding="24dp"
+            android:padding="16dp"
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="140dp"
@@ -41,6 +40,14 @@
                 android:layout_centerVertical="true"
                 />
         </RelativeLayout>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
 
         <androidx.cardview.widget.CardView
             android:elevation="8dp"
@@ -50,7 +57,7 @@
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
             android:layout_marginTop="30dp"
-            app:cardBackgroundColor="@color/transparentGray"
+
             app:cardCornerRadius="12dp"
             android:layout_centerHorizontal="true"
             android:shape="rectangle"
@@ -64,19 +71,70 @@
 
                 >
 
-                <TextView
-                    android:id="@+id/textView2"
+                <Button
+                    android:id="@+id/sign_in_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:background="@color/igniteSecondaryDark"
+
+                    android:elevation="6dp"
+                    android:padding="16dp"
+                    android:text="SIGN IN"
+                    android:textColor="@color/lightgray"
+                    android:transitionName="@string/my_shared_button_transition"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/materialTextInputLayout2" />
+
+
+                <me.zhanghai.android.materialedittext.MaterialTextInputLayout
+                    android:id="@+id/materialTextInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:text=""
-                    app:layout_constraintBottom_toTopOf="@+id/username_editText"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <me.zhanghai.android.materialedittext.MaterialEditText
+                    <me.zhanghai.android.materialedittext.MaterialEditText
+                        android:id="@+id/username_editText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Username"
+                        android:inputType="textPersonName"
+                        android:singleLine="true">
+
+                    </me.zhanghai.android.materialedittext.MaterialEditText>
+
+                </me.zhanghai.android.materialedittext.MaterialTextInputLayout>
+
+                <me.zhanghai.android.materialedittext.MaterialTextInputLayout
+                    android:id="@+id/materialTextInputLayout2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    app:layout_constraintEnd_toEndOf="@+id/materialTextInputLayout"
+                    app:layout_constraintStart_toStartOf="@+id/materialTextInputLayout"
+                    app:layout_constraintTop_toBottomOf="@+id/materialTextInputLayout">
+
+                    <me.zhanghai.android.materialedittext.MaterialEditText
+                        android:id="@+id/password_editText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Password"
+                        android:inputType="textPassword"
+                        android:singleLine="true">
+
+                    </me.zhanghai.android.materialedittext.MaterialEditText>
+
+                </me.zhanghai.android.materialedittext.MaterialTextInputLayout>
+
+                <!--<me.zhanghai.android.materialedittext.MaterialEditText
                     android:id="@+id/username_editText"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -84,7 +142,6 @@
                     android:layout_marginEnd="56dp"
                     android:layout_marginBottom="16dp"
                     android:backgroundTint="#FFFFFF"
-                    android:drawableRight="@drawable/ic_group_black_24dp"
                     android:ems="10"
                     android:hint="username"
                     android:inputType="textPersonName"
@@ -92,12 +149,14 @@
                     android:textColorHint="#FFFFFF"
                     app:layout_constraintBottom_toTopOf="@+id/password_editText"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent" /> -->
+
+                <!--
 
                 <me.zhanghai.android.materialedittext.MaterialEditText
                     android:id="@+id/password_editText"
                     android:layout_width="0dp"
-                    android:drawableRight="@drawable/ic_vpn_key_black_24dp"
+
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="24dp"
                     android:backgroundTint="#FFFFFF"
@@ -109,31 +168,14 @@
                     app:layout_constraintBottom_toTopOf="@+id/sign_in_button"
                     app:layout_constraintEnd_toEndOf="@+id/username_editText"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/username_editText" />
-
-
-                <Button
-                    android:background="@color/gray"
-                    android:id="@+id/sign_in_button"
-                    android:layout_width="128dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="32dp"
-                    android:drawableRight="@drawable/ic_sign_in"
-                    android:elevation="6dp"
-                    android:padding="16dp"
-                    android:text="SIGN IN"
-                    android:textColor="@color/btn_text_color"
-                    android:transitionName="@string/my_shared_button_transition"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="@+id/password_editText"
-                    app:layout_constraintStart_toStartOf="@+id/password_editText" />
+                    app:layout_constraintStart_toStartOf="@+id/username_editText" />-->
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
 
     </LinearLayout>
 </ScrollView>

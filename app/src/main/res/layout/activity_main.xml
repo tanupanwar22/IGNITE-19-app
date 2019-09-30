@@ -16,8 +16,11 @@
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view2"
         android:layout_width="wrap_content"
+        android:background="@color/igniteSecondaryLight"
         android:layout_height="match_parent"
         android:layout_gravity="start"
+        app:itemTextColor="@color/contrasText"
+
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
         app:menu="@menu/activity_main_drawer"/>

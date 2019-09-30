@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.ContactUS.Fragment_ContactUs">
 
@@ -34,11 +35,12 @@
                 app:cardCornerRadius="10dp">
 
                 <RelativeLayout
+                    android:background="@color/igniteSecondaryLight"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <TextView
-
+                    android:textColor="@color/contrasText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -96,6 +98,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="23dp"
                                     android:text="Faculty 1"
+                                    android:textColor="@color/contrasText"
                                     android:textStyle="bold"
 
                                     />
@@ -125,6 +128,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Faculty 2"
                                     android:textStyle="bold"
+                                    android:textColor="@color/contrasText"
                                     android:layout_marginLeft="23dp"
 
                                     />
@@ -153,6 +157,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Faculty 3"
+                                    android:textColor="@color/contrasText"
                                     android:textStyle="bold"
                                     android:layout_marginLeft="28dp"
 
@@ -184,6 +189,7 @@
                 app:cardCornerRadius="10dp">
 
                 <RelativeLayout
+                    android:background="@color/igniteSecondaryLight"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
@@ -192,6 +198,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:textColor="@color/contrasText"
                         android:text="Ignite Core"
                         android:textSize="20dp"
                         android:textStyle="bold"
@@ -246,6 +253,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="23dp"
                                     android:text="Pravin"
+                                    android:textColor="@color/contrasText"
                                     android:textStyle="bold"
 
                                     />
@@ -255,12 +263,14 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="15dp"
                                     android:text="Convenor"
+                                    android:textColor="@color/contrasText"
                                     android:layout_marginTop="5dp"
 
 
                                     />
 
                                 <TextView
+                                    android:textColor="@color/contrasText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="0dp"
@@ -289,6 +299,7 @@
                                     app:civ_shadow_radius="5" />
 
                                 <TextView
+                                    android:textColor="@color/contrasText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Avinabh"
@@ -298,6 +309,7 @@
                                     />
 
                                 <TextView
+                                    android:textColor="@color/contrasText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="15dp"
@@ -305,6 +317,7 @@
                                     android:text="President" />
 
                                 <TextView
+                                    android:textColor="@color/contrasText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="5dp"
@@ -335,6 +348,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="Arpit"
                                     android:textStyle="bold"
+                                    android:textColor="@color/contrasText"
 
                                     android:layout_marginLeft="28dp"
 
@@ -345,6 +359,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="0dp"
                                     android:text="Vice-President"
+                                    android:textColor="@color/contrasText"
                                     android:layout_marginTop="5dp"
 
 
@@ -354,6 +369,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="0dp"
+                                    android:textColor="@color/contrasText"
                                     android:text="+91-8962727182"
                                     android:layout_marginTop="5dp"
 
@@ -388,6 +404,7 @@
                                     app:civ_shadow_radius="5" />
 
                                 <TextView
+                                    android:textColor="@color/contrasText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Jasleen"
@@ -398,6 +415,7 @@
                                     />
 
                                 <TextView
+                                    android:textColor="@color/contrasText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
@@ -407,6 +425,7 @@
 
                                     />
                                 <TextView
+                                    android:textColor="@color/contrasText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="0dp"
@@ -438,6 +457,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Ankit"
+                                    android:textColor="@color/contrasText"
                                     android:textStyle="bold"
                                     android:layout_marginLeft="28dp"
                                     />
@@ -447,6 +467,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="15dp"
                                     android:layout_marginTop="5dp"
+                                    android:textColor="@color/contrasText"
 
                                     android:text="Secretary" />
 
@@ -456,6 +477,7 @@
                                     android:layout_marginLeft="0dp"
                                     android:text="+91-8962727182"
                                     android:layout_marginTop="5dp"
+                                    android:textColor="@color/contrasText"
 
 
                                     />
@@ -479,6 +501,7 @@
                                     app:civ_shadow_radius="5" />
 
                                 <TextView
+                                    android:textColor="@color/contrasText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="RC"
@@ -487,6 +510,7 @@
                                     />
 
                                 <TextView
+                                    android:textColor="@color/contrasText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"
@@ -495,6 +519,7 @@
                                     android:text="Secretary" />
 
                                 <TextView
+                                    android:textColor="@color/contrasText"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="0dp"

@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,9 +65,16 @@ public class EventResultsUser extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot d:dataSnapshot.getChildren()) {
                     team_name.add(d.child("college_name").getValue().toString());
-                    cnt++;
-                    if(cnt==3)
-                        call();
+
+                }
+                if(team_name.size() == 0){
+
+                    ArrayList<String> mList = new ArrayList<>();
+                    mList.add("No data available yet");
+                    showResults.setAdapter(new showTeamsAdapter(mList,getContext()));
+                }
+                else {
+                    call();
                 }
             }
 
@@ -80,6 +88,7 @@ public class EventResultsUser extends Fragment {
     }
 
     public void call(){
+
         showResults.setAdapter(new showTeamsAdapter(team_name,getContext()));
     }
 }

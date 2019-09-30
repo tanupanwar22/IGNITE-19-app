@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+<!--
     <color name="backgroundColor">#fcfcfc</color>
     <color name="lightGray">#ededed</color>
     <color name="deepPurple">#7c4dff</color>
@@ -12,7 +12,7 @@
 
     <color name="colorPrimary">#600700</color>
     <color name="colorPrimaryDark">#8b0c03</color>
-    <color name="colorAccent">#7CB342</color>
+
 
     <color name="btn_text_color">#ffffff</color>
 
@@ -21,9 +21,28 @@
     <color name="igniteColor3">#8b0c03</color>
     <color name="igniteColor4">#280201</color>
     <color name="igniteColor5">#6f6a6c</color>
-    <color name="lightgray">#ededed</color>
+
     <color name="green">#2e7d32</color>
 
-    <color name="transparentGray">#B31E88E5</color>
+    -->
+
+
+
+    <color name="ignitePrimary">#FFB9182D</color>
+    <color name="ignitePrimaryLight">#C63143</color>
+    <color name="ignitePrimaryDark">#9E0819</color>
+    <color name="igniteSecondaryLight">#847379</color>
+    <color name="igniteSecondaryDark">#3E3638</color>
+    <color name="igniteSecondary">#5D5052</color>
+     <color name="colorAccent">#AED581</color>
+    <color name="materialGreen">#4CAF50</color>
+     <color name="transparentGray">#B31E88E5</color>
+      <color name="lightgray">#ededed</color>
+    <color name="contrasText">#fff</color>
+    <color name="Text">#DE000000</color>
+    <color name="TextLight">#8A000000</color>
+    <color name="alertDialogTextColor">#F4511E</color>
+    <color name="TextDark">#DE000000</color>
+
 
 </resources>

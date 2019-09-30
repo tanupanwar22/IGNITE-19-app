@@ -17,6 +17,7 @@ public class EventWiseParticipantDetail implements Parcelable {
         participant3 = in.readString();
         participant4 = in.readString();
         participant5 = in.readString();
+        eventIcon = in.readInt();
     }
 
     public static final Creator<EventWiseParticipantDetail> CREATOR = new Creator<EventWiseParticipantDetail>() {
@@ -46,6 +47,7 @@ public class EventWiseParticipantDetail implements Parcelable {
         parcel.writeString(participant3);
         parcel.writeString(participant4);
         parcel.writeString(participant5);
+        parcel.writeInt(eventIcon);
     }
 
 
@@ -58,6 +60,7 @@ public class EventWiseParticipantDetail implements Parcelable {
     private String participant3;
     private String participant4;
     private String participant5;
+    private int eventIcon;
 
     public EventWiseParticipantDetail(Builder builder){
         uuid = builder.uuid;
@@ -68,6 +71,7 @@ public class EventWiseParticipantDetail implements Parcelable {
         participant3 = builder.participant3;
         participant4 = builder.participant4;
         participant5 = builder.participant5;
+        eventIcon = builder.eventIcon;
     }
 
 
@@ -112,6 +116,7 @@ public class EventWiseParticipantDetail implements Parcelable {
         private String participant3;
         private String participant4;
         private String participant5;
+        private int eventIcon;
 
 
         public Builder(String uuid, String collegeName) {
@@ -154,6 +159,11 @@ public class EventWiseParticipantDetail implements Parcelable {
 
         public Builder setParticipant5(String participant5) {
             this.participant5 = participant5;
+            return this;
+        }
+
+        public Builder setEventIcon(int eventIcon) {
+            this.eventIcon = eventIcon;
             return this;
         }
 

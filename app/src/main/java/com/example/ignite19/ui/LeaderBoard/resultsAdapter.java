@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -26,6 +28,7 @@ import java.util.List;
 public class resultsAdapter extends RecyclerView.Adapter<resultsAdapter.resultsViewHolder>{
     private List<String> event_name;
     Context context;
+    private int lastPosition = -1;
 
     public resultsAdapter(Context context, List<String> event_name) {
         this.event_name = event_name;
@@ -46,6 +49,7 @@ public class resultsAdapter extends RecyclerView.Adapter<resultsAdapter.resultsV
     @Override
     public void onBindViewHolder(@NonNull resultsViewHolder holder, int position) {
         final String event_title=event_name.get(position);
+        setAnimation(holder.itemView,position);
         holder.event_name_tv.setText(event_title);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,12 +71,32 @@ public class resultsAdapter extends RecyclerView.Adapter<resultsAdapter.resultsV
         else
             return 0;
     }
+    private void setAnimation(View viewToAnimate, int position)
+    {
+        // If the bound view wasn't previously displayed on screen, it's animated
+        if (position > lastPosition)
+        {
+            Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
+            viewToAnimate.startAnimation(animation);
+            lastPosition = position;
+        }
+    }
+
+    @Override
+    public void onViewDetachedFromWindow(@NonNull resultsViewHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+        holder.clearAnimaiton();
+    }
 
     public class resultsViewHolder extends RecyclerView.ViewHolder{
         private TextView event_name_tv;
         public resultsViewHolder(@NonNull View itemView) {
             super(itemView);
             event_name_tv=itemView.findViewById(R.id.results_card_event_name_textview);
+        }
+
+        public void clearAnimaiton() {
+            itemView.clearAnimation();
         }
     }
 }

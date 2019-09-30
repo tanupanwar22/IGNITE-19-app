@@ -31,6 +31,7 @@
                 android:elevation="10dp"
                 >
                 <LinearLayout
+                    android:background="@color/igniteSecondaryLight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -38,6 +39,7 @@
 
                     <TextView
                         android:layout_width="wrap_content"
+                        android:textColor="@color/contrasText"
                         android:layout_height="wrap_content"
                         android:text="Ignite"
                         android:textSize="20dp"
@@ -55,6 +57,8 @@
 <me.zhanghai.android.materialedittext.MaterialTextInputLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:textColorHint="@color/contrasText"
+
     android:layout_margin="20dp"
     >
 
@@ -62,7 +66,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="your views..."
-        android:id="@+id/ignite_desc_tv"
+        android:textColor="@color/contrasText"
+        android:id="@+id/username_editText"
 
         >
 
@@ -86,12 +91,14 @@
                 android:elevation="10dp"
                 >
                 <LinearLayout
+                    android:background="@color/igniteSecondaryLight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     >
 
                     <TextView
+                        android:textColor="@color/contrasText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Website"
@@ -107,6 +114,7 @@
                     <me.zhanghai.android.materialedittext.MaterialTextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColorHint="@color/contrasText"
                         android:layout_margin="20dp"
 
                         >
@@ -115,6 +123,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:hint="your views..."
+                            android:textColor="@color/contrasText"
                             android:id="@+id/website_desc_tv"
                             android:layout_margin="10dp"
                             >
@@ -144,12 +153,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
+                    android:background="@color/igniteSecondaryLight"
                     >
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Android App"
+                        android:textColor="@color/contrasText"
                         android:textSize="20dp"
                         android:padding="20dp"
                         />
@@ -162,12 +173,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="20dp"
+                        android:textColorHint="@color/contrasText"
 
                         >
 
                         <me.zhanghai.android.materialedittext.MaterialEditText
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
+                            android:textColor="@color/contrasText"
                             android:hint="your views..."
                             android:id="@+id/app_desc_tv"
                             android:layout_margin="10dp"
@@ -194,6 +207,7 @@
                 android:elevation="10dp"
                 >
                 <LinearLayout
+                    android:background="@color/igniteSecondaryLight"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
@@ -204,6 +218,7 @@
                         android:layout_height="wrap_content"
                         android:text="Hospitality"
                         android:textSize="20dp"
+                        android:textColor="@color/contrasText"
                         android:padding="20dp"
                         />
                     <com.hsalf.smilerating.SmileRating
@@ -214,6 +229,7 @@
                     <me.zhanghai.android.materialedittext.MaterialTextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColorHint="@color/contrasText"
                         android:layout_margin="20dp"
 
                         >
@@ -222,6 +238,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:hint="your views..."
+                            android:textColorHint="@color/contrasText"
+                            android:textColor="@color/contrasText"
                             android:id="@+id/hospitality_desc_tv"
 
                             android:layout_margin="10dp"
@@ -236,18 +254,14 @@
             </androidx.cardview.widget.CardView>
 
 
-            <com.spark.submitbutton.SubmitButton
+            <Button
                 android:layout_width="150dp"
                 android:layout_height="80dp"
                 android:text="Submit"
                 android:layout_margin="20dp"
                 android:layout_gravity="center"
-                android:textColor="@color/gray"
-                app:sub_btn_background="@color/white"
-                app:sub_btn_duration="3000"
-                app:sub_btn_line_color="@color/green"
-                app:sub_btn_ripple_color="@color/green"
-                app:sub_btn_tick_color="@color/white"
+                android:textColorHint="@color/black"
+                android:textColor="@color/lightgray"
                 android:id="@+id/feedback_submit_btn"
                 />
 

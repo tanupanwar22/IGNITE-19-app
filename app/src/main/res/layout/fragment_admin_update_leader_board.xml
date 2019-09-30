@@ -27,7 +27,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
+        android:padding="8dp"
         android:background="@drawable/edit_text_shape"
+        android:textColor="@color/contrasText"
         android:text="Enter number of Teams to select:-"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -38,7 +40,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:ems="10"
-        android:background="@drawable/edit_text_shape"
+        android:padding="16dp"
+        android:background="@drawable/edit_text_shape2"
         android:inputType="number"
         app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintStart_toEndOf="@+id/textView4"
@@ -48,10 +51,16 @@
         android:id="@+id/button_submit_update_event"
         android:layout_width="0dp"
         android:layout_height="64dp"
+        android:layout_marginStart="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:layout_marginEnd="16dp"
+        android:background="@color/lightgray"
         android:text="Update"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/lightGray"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -60,8 +69,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+
         android:background="@drawable/edit_text_shape"
         android:padding="8dp"
+        android:textColor="@color/contrasText"
         android:text="Long press and drag items from lower postion to upper to adjust them according to position:"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

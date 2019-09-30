@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,6 +27,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.My
 
 
     private Context ctx;
+    private int lastPosition = -1;
     private ArrayList<UserDataAndEventList> mEventList = new ArrayList<>();
 
     EventsListAdapter(){
@@ -49,8 +52,8 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.My
     @Override
     public void onBindViewHolder(@NonNull MyOwnHolder holder, final int position) {
         holder.eventListVenue.setText(mEventList.get(position).getEvent_venue());
-
-        holder.eventListImage.setImageResource(R.drawable.aaa);
+        setAnimation(holder.itemView,position);
+        holder.eventListImage.setImageResource(mEventList.get(position).getEvent_image_uri());
         holder.mEventName.setText(mEventList.get(position).getEvent_name());
         holder.eventDateTime.setText(DateTimeConverter.changeDateFormat(mEventList.get(position).getEvent_date()));
         holder.mEventCard.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +99,24 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.My
     }
 
     @Override
+    public void onViewDetachedFromWindow(@NonNull MyOwnHolder holder) {
+        super.onViewDetachedFromWindow(holder);
+        holder.clearAnimation();
+    }
+
+    private void setAnimation(View viewToAnimate, int position)
+    {
+        // If the bound view wasn't previously displayed on screen, it's animated
+        if (position > lastPosition)
+        {
+            Animation animation = AnimationUtils.loadAnimation(ctx, android.R.anim.slide_in_left);
+
+            viewToAnimate.startAnimation(animation);
+            lastPosition = position;
+        }
+    }
+
+    @Override
     public int getItemCount() {
         return mEventList.size();
     }
@@ -114,6 +135,11 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.My
             eventListVenue= (TextView)itemView.findViewById(R.id.venue_textview_eventlist);
             eventListImage = itemView.findViewById(R.id.event_list_imageview);
             eventDateTime = itemView.findViewById(R.id.date_time_textview_events_card);
+        }
+
+
+        public void clearAnimation() {
+            itemView.clearAnimation();
         }
     }
 }

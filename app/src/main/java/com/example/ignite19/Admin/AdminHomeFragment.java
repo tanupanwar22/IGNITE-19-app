@@ -82,12 +82,12 @@ public class AdminHomeFragment extends Fragment implements View.OnClickListener 
         adminUpdateEventTiming = view.findViewById(R.id.lottie_admin_updateEventTime);
         adminUpdateLeaderBoard = view.findViewById(R.id.lottie_admin_updateleaderBoard);
 
-        adminCreateTeam.setAnimation("greentick.json");
+        adminCreateTeam.setImageResource(R.drawable.ic_check);
         adminSeeParticipants.setAnimation("loader.json");
         adminUpdateLeaderBoard.setAnimation("loader.json");
         adminUpdateEventTiming.setAnimation("loader.json");
 
-        adminCreateTeam.playAnimation();
+
         adminSeeParticipants.playAnimation();
         adminUpdateLeaderBoard.playAnimation();
         adminUpdateEventTiming.playAnimation();
@@ -102,8 +102,8 @@ public class AdminHomeFragment extends Fragment implements View.OnClickListener 
 
                 adminSeeParticipants.post(new Runnable() {
                     @Override
-                    public void run() { adminSeeParticipants.setAnimation("greentick.json");
-                        adminSeeParticipants.playAnimation();
+                    public void run() { adminSeeParticipants.setImageResource(R.drawable.ic_check);
+
 
                     }
                 });
@@ -115,8 +115,8 @@ public class AdminHomeFragment extends Fragment implements View.OnClickListener 
                     @Override
                     public void run() {
 
-                        adminUpdateLeaderBoard.setAnimation("greentick.json");
-                        adminUpdateLeaderBoard.playAnimation();
+                        adminUpdateLeaderBoard.setImageResource(R.drawable.ic_check);
+
 
                     }
                 });
@@ -127,8 +127,8 @@ public class AdminHomeFragment extends Fragment implements View.OnClickListener 
                     @Override
                     public void run() {
 
-                        adminUpdateEventTiming.setAnimation("greentick.json");
-                        adminUpdateEventTiming.playAnimation();
+                        adminUpdateEventTiming.setImageResource(R.drawable.ic_check);
+
                     }
                 });
 
