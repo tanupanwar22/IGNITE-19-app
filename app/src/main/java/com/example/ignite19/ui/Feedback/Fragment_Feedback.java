@@ -22,7 +22,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.hsalf.smilerating.BaseRating;
 import com.hsalf.smilerating.SmileRating;
-import com.spark.submitbutton.SubmitButton;
 
 import java.util.HashMap;
 
