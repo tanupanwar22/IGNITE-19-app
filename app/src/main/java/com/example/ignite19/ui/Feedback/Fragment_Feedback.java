@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -216,7 +217,7 @@ private String website_desc,ignite_desc,app_desc,hospitality_desc,clg_name;
 
         submit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
 
                 website_desc=website_desc_var.getText().toString();
                 ignite_desc=ignite_desc_var.getText().toString();
@@ -238,6 +239,7 @@ private String website_desc,ignite_desc,app_desc,hospitality_desc,clg_name;
                         @Override
                         public void onSuccess(Void aVoid) {
                             Toasty.success(getContext(), "Feedback Submitted.", Toast.LENGTH_LONG).show();
+                            Navigation.findNavController(view).navigate(R.id.action_nav_feedback_to_nav_home);
                         }
                     });
 
