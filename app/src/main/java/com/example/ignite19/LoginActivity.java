@@ -14,13 +14,17 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -74,15 +78,17 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        getSupportActionBar().hide();
-        loader=findViewById(R.id.gif);
+         getSupportActionBar().hide();
+            loader=findViewById(R.id.gif);
         loader.setVisibility(View.INVISIBLE);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+       /* if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                     WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        }
+
+        }*/
+
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
@@ -100,16 +106,29 @@ public class LoginActivity extends AppCompatActivity {
             userNameEditText=findViewById(R.id.username_editText);
             userPasswordEditText=findViewById(R.id.password_editText);
             signin=findViewById(R.id.sign_in_button);
-            loader = findViewById(R.id.gif);
-            Glide.with(getApplicationContext()).load(R.drawable.loader).transform(new CircleCrop()).into(loader);
 
-            loader.setVisibility(View.INVISIBLE);
+
+            userPasswordEditText.setOnEditorActionListener(new EditText.OnEditorActionListener() {
+                @Override
+                public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                    if (actionId == EditorInfo.IME_ACTION_DONE) {
+                        signin.performClick();
+                        return true;
+                    }
+                    return false;
+                }
+            });
+
+            loader = findViewById(R.id.gif);
+           Glide.with(getApplicationContext()).load(R.drawable.loader).transform(new CircleCrop()).into(loader);
+
+           loader.setVisibility(View.INVISIBLE);
 
 
             signin.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    loader.setVisibility(View.VISIBLE);
+                   loader.setVisibility(View.VISIBLE);
                     onClickSignIN(view);
                 }
             });
@@ -126,12 +145,13 @@ public class LoginActivity extends AppCompatActivity {
             fireabaseSignIN(userName, userPassword);
 
 
+
         }
         else{
             //no proper data
             //Toast.makeText(getApplicationContext(),"Please enter details in both the fields",Toast.LENGTH_LONG).show();
             Toasty.info(getApplicationContext(),"Please enter details in both the fields",Toast.LENGTH_LONG).show();
-            loader.setVisibility(View.INVISIBLE);
+         loader.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -145,7 +165,7 @@ public class LoginActivity extends AppCompatActivity {
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             if (user != null) {
-                                loader.setVisibility(View.INVISIBLE);
+                             loader.setVisibility(View.INVISIBLE);
                                 updateUI(user);
                             }
                         } else {
@@ -155,7 +175,7 @@ public class LoginActivity extends AppCompatActivity {
                              //       Toast.LENGTH_LONG).show();
                             Toasty.error(getApplicationContext(), "Authentication failed.",
                                     Toast.LENGTH_LONG).show();
-                            loader.setVisibility(View.INVISIBLE);
+                         loader.setVisibility(View.INVISIBLE);
                         }
                     }
                 });
