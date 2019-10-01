@@ -390,7 +390,7 @@
                         android:layout_height="wrap_content"
                         android:contentDescription="@string/app_name"
 
-                        android:scaleType="fitCenter"
+                        android:scaleType="fitXY"
                         android:src="@drawable/mainposter"
                         app:layout_collapseMode="parallax" />
 

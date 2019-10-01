@@ -206,6 +206,16 @@ public class AdminHomeAcitivity extends AppCompatActivity implements AdminDataCo
     }
 
     @Override
+    public ArrayList<String> getRegisteredEventNames() {
+        return null;
+    }
+
+    @Override
+    public ArrayList<String> getUnRegisteredEventNames() {
+        return null;
+    }
+
+    @Override
     public UserDetail getUserDetail() {
         return null;
     }
