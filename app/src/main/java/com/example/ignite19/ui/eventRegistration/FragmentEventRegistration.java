@@ -253,7 +253,12 @@ public class FragmentEventRegistration extends Fragment {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String event_name = mSpinner.getSelectedItem().toString();
+
+                if(mSpinner.getSelectedItem() == null){
+                    Toasty.error(getContext(),"you have already registered in all the events",Toasty.LENGTH_SHORT).show();
+                }
+                else{
+                    String event_name =   mSpinner.getSelectedItem().toString();
                 int xnumberOfParticipants = Integer.valueOf(numberOfParticipantsTextView.getText().toString());
                 int count = findCheckedItems();
                 if(count == xnumberOfParticipants){
@@ -267,6 +272,9 @@ public class FragmentEventRegistration extends Fragment {
                 else{
                     Toasty.info(getContext(), "Please select correct number of participants", Toast.LENGTH_SHORT).show();
                 }
+                }
+
+
             }
         });
         c.setOnClickListener(new View.OnClickListener() {
