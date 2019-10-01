@@ -116,6 +116,7 @@ public class SeeParticipantsAdmin2 extends Fragment {
                         }
 
                         EventWiseParticipantDetail eventWiseParticipantDetail = mBuilder.build();
+
                         mList.add(eventWiseParticipantDetail);
                         allParticipantsAdapter.notifyDataSetChanged();
 

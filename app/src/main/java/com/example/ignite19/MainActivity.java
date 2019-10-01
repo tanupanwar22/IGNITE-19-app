@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.HandlerThread;
 import android.os.RemoteException;
 import android.util.Log;
 import android.view.MenuItem;
@@ -46,6 +47,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import es.dmoral.toasty.Toasty;
@@ -73,6 +77,11 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
     String firebaseNotificationTitle;
     String firebaseNotificationContent;
 
+    private ArrayList<String > registeredEventNames = new ArrayList<>();
+    private ArrayList<String > unRegisteredEventNames = new ArrayList<>();
+
+
+
     private String uuid;
 
 
@@ -88,6 +97,8 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
         userEventList.clear();
         userParticipationDetails.clear();
         userEventListBuilder.clear();
+        registeredEventNames.clear();
+        unRegisteredEventNames.clear();
         Intent intent = getIntent();
         uuid = intent.getStringExtra("UUID");
         displayName = intent.getStringExtra("userName");
@@ -97,7 +108,15 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
         //load user college name is navigation header
         new someBackgroundTask().execute();
 
+
+
+        //background calculation thread
+
+
+
     }
+
+
 
     @Override
     protected void onStop() {
@@ -261,6 +280,17 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
     }
 
     @Override
+    public ArrayList<String> getRegisteredEventNames() {
+        return registeredEventNames;
+    }
+
+    @Override
+    public ArrayList<String> getUnRegisteredEventNames() {
+        return unRegisteredEventNames;
+    }
+
+
+    @Override
     public UserDetail getUserDetail() {
         return userDetail;
     }
@@ -290,6 +320,14 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                 int value = 0;
                 if (p != null) {
                     value = p.getParticipation();
+                    if(value == 0){
+                        unRegisteredEventNames.add(key);
+
+                    }
+                    else {
+                        registeredEventNames.add(key);
+
+                    }
                     userParticipationDetails.add(new Participation.Builder(value,key).build());
                 }
                 else{
@@ -299,8 +337,9 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                 }
                 FLAG2 = true;
                 //if other user detail are available then add them in builder also
-                Log.d(TAG, "onDataChange: " + key + " " + String.valueOf(value));
             }
+
+
         }
 
         @Override
@@ -588,7 +627,7 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                             mEventList.setNumber_of_participants(3);
                             mEventList.setEvent_venue("LHC-C");
                             mEventList.setEvent_duration("01:00:00");
-                            mEventList.setEvent_icon_uri(R.drawable.rage_of_ultron);
+                            mEventList.setEvent_icon_uri(R.drawable.rage_of_ultron_ic);
                             mEventList.setEvent_image_uri(R.drawable.rage_of_ultron_p2);
                             break;
 

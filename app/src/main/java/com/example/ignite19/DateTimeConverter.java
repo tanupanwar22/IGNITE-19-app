@@ -66,8 +66,6 @@ public class DateTimeConverter {
 
 
             String mYear = String.valueOf(calendar.get(Calendar.YEAR));
-
-
             result = mYear + "-" + mMonth  + "-" + mDate;
             Log.d("romeo", "convertDateTimeToDate: " + result);
         }

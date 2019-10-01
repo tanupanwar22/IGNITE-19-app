@@ -92,6 +92,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         eventLoader.playAnimation();
         eventRegistrationLoader.playAnimation();
         seeParticipantsLoader.playAnimation();
+
+
+
         new Thread(new Runnable() {
             @Override
             public void run() {

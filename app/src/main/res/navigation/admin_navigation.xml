@@ -52,7 +52,11 @@
         android:id="@+id/adminUpdateEventTiming"
         android:name="com.example.ignite19.Admin.UpdateEventTiming.AdminUpdateEventTiming"
         android:label="Update Event timing"
-        tools:layout="@layout/fragment_admin_update_event_timing" />
+        tools:layout="@layout/fragment_admin_update_event_timing" >
+        <action
+            android:id="@+id/action_adminUpdateEventTiming_to_adminHomeFragment"
+            app:destination="@id/adminHomeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/seeParticipantsAdmin"
         android:name="com.example.ignite19.Admin.SeeParticipants.SeeParticipantsAdmin"

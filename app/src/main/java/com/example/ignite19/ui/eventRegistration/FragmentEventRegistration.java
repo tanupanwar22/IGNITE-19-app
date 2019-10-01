@@ -1,5 +1,4 @@
 package com.example.ignite19.ui.eventRegistration;
-
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.text.TextPaint;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,7 +23,6 @@ import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.ignite19.DataCommunication;
 import com.example.ignite19.MainActivity;
@@ -33,32 +30,26 @@ import com.example.ignite19.Participation;
 import com.example.ignite19.R;
 import com.example.ignite19.UserDetail;
 import com.example.ignite19.UserDataAndEventList;
+import com.example.ignite19.ui.eventRegistration.RegisterEventsAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-
 import es.dmoral.toasty.Toasty;
-
 import static androidx.constraintlayout.widget.Constraints.TAG;
-
 public class FragmentEventRegistration extends Fragment {
-
     DataCommunication dataCommunication;
     FloatingActionButton floatingActionButton;
     ArrayList<UserDataAndEventList> mList;
-    //ArrayList<Integer> numberOfParticipants = new ArrayList<>();
-    //ArrayList<String > unRegisteredEvents = new ArrayList<>();
-   ArrayList<UserDataAndEventList> registeredEventList  = new ArrayList<>();
-   HashSet<UserDataAndEventList> registeredEventHashSet = new HashSet<>();
-   ArrayList<Participation> participationArrayList;
+    ArrayList<UserDataAndEventList> registeredEventList  = new ArrayList<>();
+    HashSet<UserDataAndEventList> registeredEventHashSet = new HashSet<>();
+    ArrayList<Participation> participationArrayList;
     TextView eventDescTextView;
     RegisterEventsAdapter registerEventsAdapter;
     View alertView;
@@ -68,16 +59,13 @@ public class FragmentEventRegistration extends Fragment {
     String uuid;
     HashMap<String,Integer> map = new HashMap<>();
     //final List<String> keys = new ArrayList<>();
-
     UserDetail userDetail;
     RecyclerView recyclerView;
     View view;
     List<String > eventNamesForDropDown;
-
     public static FragmentEventRegistration newInstance() {
         return new FragmentEventRegistration();
     }
-
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -88,34 +76,28 @@ public class FragmentEventRegistration extends Fragment {
                     + " must implement DataCommunication");
         }
     }
-
     @Override
     public void onPause() {
         super.onPause();
         map.clear();
     }
-
     @Override
     public void onDetach() {
         super.onDetach();
         map.clear();
     }
-
     @Override
     public void onDestroy() {
         super.onDestroy();
         map.clear();
     }
-
     @Override
     public void onStop() {
         super.onStop();
-      //  numberOfParticipants.clear();
-       // unRegisteredEvents.clear();
+        //  numberOfParticipants.clear();
+        // unRegisteredEvents.clear();
         map.clear();
-
     }
-
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -123,35 +105,28 @@ public class FragmentEventRegistration extends Fragment {
         outState.putParcelableArrayList("participationArrayList",participationArrayList);
         outState.putParcelable("userDetail",userDetail);
         outState.putString("uuid",uuid);
-
     }
-
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         map.clear();
     }
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         map.clear();
     }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         map.clear();
     }
-
     @Override
     public void onResume() {
         super.onResume();
         if(registeredEventList!=null){
             registeredEventList.clear();
         }
-
         map.clear();
         for(Participation x : participationArrayList){
             for(UserDataAndEventList y: mList){
@@ -160,10 +135,8 @@ public class FragmentEventRegistration extends Fragment {
                         map.put(y.getEvent_name(),y.getNumber_of_participants());
                     }
                     else{
-
-                       registeredEventHashSet.add(y);
-                      //  registeredEventList.add(y);
-
+                        registeredEventHashSet.add(y);
+                        //  registeredEventList.add(y);
                     }
                 }
             }
@@ -175,9 +148,8 @@ public class FragmentEventRegistration extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3));
         recyclerView.setAdapter(registerEventsAdapter);
         //code ends
-
         eventNamesForDropDown = new ArrayList<>(map.keySet());
-        registerEventsAdapter.notifyDataSetChanged();
+        //  registerEventsAdapter.notifyDataSetChanged();
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -185,53 +157,39 @@ public class FragmentEventRegistration extends Fragment {
             }
         });
     }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
         if(view == null){
-
-        view = inflater.inflate(R.layout.fragment_event_registration, container, false);
-        if(savedInstanceState!=null){
-            mList = savedInstanceState.getParcelableArrayList("mList");
-            userDetail = savedInstanceState.getParcelable("userDetail");
-            participationArrayList = savedInstanceState.getParcelableArrayList("participationArrayList");
-            uuid = savedInstanceState.getString("uuid");
-        }
-        else {
-            userDetail = dataCommunication.getUserDetail();
-            mList = dataCommunication.getAllEventList();
-            participationArrayList = dataCommunication.getUserParticipationDetails();
-            uuid = dataCommunication.getUUID();
-        }
-
-
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyler_view_registered_events);
-        floatingActionButton = view.findViewById(R.id.floatingActionButton);
-
+            view = inflater.inflate(R.layout.fragment_event_registration, container, false);
+            if(savedInstanceState!=null){
+                mList = savedInstanceState.getParcelableArrayList("mList");
+                userDetail = savedInstanceState.getParcelable("userDetail");
+                participationArrayList = savedInstanceState.getParcelableArrayList("participationArrayList");
+                uuid = savedInstanceState.getString("uuid");
+            }
+            else {
+                userDetail = dataCommunication.getUserDetail();
+                mList = dataCommunication.getAllEventList();
+                participationArrayList = dataCommunication.getUserParticipationDetails();
+                uuid = dataCommunication.getUUID();
+            }
+            recyclerView = (RecyclerView) view.findViewById(R.id.recyler_view_registered_events);
+            floatingActionButton = view.findViewById(R.id.floatingActionButton);
         }
         return view;
     }
-
     @Override
     public void onStart() {
         super.onStart();
         //now lets find events with participation value 0
-      // registeredEventList.clear();
-       map.clear();
-
-
+        // registeredEventList.clear();
+        map.clear();
     }
-
-
-
     private void openDialogFragment() {
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         alertView = inflater.inflate(R.layout.dialog_register_event, null);
         eventDescTextView = alertView.findViewById(R.id.event_desc_text_view_in_dialog);
-        alertView.setBackgroundColor(getResources().getColor(R.color.igniteSecondary));
-
         one =  alertView.findViewById(R.id.checkbox1_team_participant);
         two =  alertView.findViewById(R.id.checkbox2_team_participant);
         three = alertView.findViewById(R.id.checkbox3_team_participant);
@@ -245,8 +203,6 @@ public class FragmentEventRegistration extends Fragment {
         three.setText(userDetail.getTeam_member2());
         four.setText(userDetail.getTeam_member3());
         five.setText(userDetail.getTeam_member4());
-
-
         final ArrayAdapter<String> adapter =
                 new ArrayAdapter<String>(Objects.requireNonNull(getContext(),"context cannot be null here"),  android.R.layout.simple_spinner_dropdown_item,eventNamesForDropDown);
         adapter.setDropDownViewResource( android.R.layout.simple_list_item_checked);
@@ -255,11 +211,9 @@ public class FragmentEventRegistration extends Fragment {
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-               // String event_name_X = unRegisteredEvents.get(i).toString();
+                // String event_name_X = unRegisteredEvents.get(i).toString();
                 String event_name_x = eventNamesForDropDown.get(i).toString();
                 numberOfParticipantsTextView.setText(map.get(event_name_x).toString());
-                ((TextView) adapterView.getChildAt(0)).setTextColor(Color.GREEN);
                 ((TextView)adapterView.getChildAt(0)).setTypeface(Typeface.DEFAULT_BOLD);
                 //
                 String event_desc;
@@ -268,43 +222,34 @@ public class FragmentEventRegistration extends Fragment {
                         eventDescTextView.setText(m.getEvent_description());
                     }
                 }
-               // eventDescTextView.setText(map.get);
+                // eventDescTextView.setText(map.get);
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
-
             }
         });
-
-        TextView textView = new TextView(getContext());
-        textView.setText("Event Registration");
-        textView.setTypeface(Typeface.DEFAULT_BOLD);
-        textView.setPadding(20, 30, 20, 30);
-        textView.setTextSize(20F);
+        //TextView textView = new TextView(getContext());
+        //textView.setText("Event Registration");
+        //textView.setTypeface(Typeface.DEFAULT_BOLD);
+        //textView.setPadding(20, 30, 20, 30);
+        //textView.setTextSize(20F);
         //textView.drawabl
-       // textView.setBackgroundColor(Color.CYAN);
-        textView.setTextColor(getResources().getColor(R.color.contrasText));
-        textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_eventssvg, 0, 0, 0);
-
-
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(),R.style.MyDialogTheme).setView(alertView);
+        // textView.setBackgroundColor(Color.CYAN);
+        //textView.setTextColor(getResources().getColor(R.color.contrasText));
+        //textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_eventssvg, 0, 0, 0);
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext()).setView(alertView);
         builder.setPositiveButton("ADD", null);
         builder.setNegativeButton("CANCEL", null);
-        //builder.setTitle("Event Registration")
-        builder.setCustomTitle(textView);
-
-        //builder.setIcon(R.drawable.ic_eventssvg);
+        builder.setTitle("Event Registration");
+        //builder.setCustomTitle(textView);
+        builder.setIcon(R.drawable.ic_eventssvg);
         alertDialog = builder.create();
         alertDialog.show();
-
-
         alertDialog.setCancelable(false);
         Button b = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
         Button c = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
-        c.setTextColor(Color.GREEN);
-        b.setTextColor(Color.GREEN);
+        c.setTextColor(getResources().getColor(R.color.materialGreen));
+        b.setTextColor(getResources().getColor(R.color.materialGreen));
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -318,7 +263,6 @@ public class FragmentEventRegistration extends Fragment {
                     //unRegisteredEvents.remove(event_name);
                     eventNamesForDropDown.remove(event_name);
                     adapter.notifyDataSetChanged();
-
                 }
                 else{
                     Toasty.info(getContext(), "Please select correct number of participants", Toast.LENGTH_SHORT).show();
@@ -332,7 +276,6 @@ public class FragmentEventRegistration extends Fragment {
             }
         });
     }
-
     private void addSelectedItemsToFirebase(String event_name,int numberOfParticipants) {
         ArrayList<String> selectedNames = new ArrayList<>();
         Participation.Builder p = new Participation.Builder(1,event_name);
@@ -347,7 +290,6 @@ public class FragmentEventRegistration extends Fragment {
             selectedNames.add(four.getText().toString());
         if(five.isChecked())
             selectedNames.add(five.getText().toString());
-
         if(numberOfParticipants == 1){
             p.setParticipant1(selectedNames.get(0));
         }
@@ -374,11 +316,9 @@ public class FragmentEventRegistration extends Fragment {
             p.setParticipant5(selectedNames.get(4));
         }
         Participation participation = p.build();
-
-
         for(UserDataAndEventList m:mList){
             if(event_name.equalsIgnoreCase(m.getEvent_name())){
-            registeredEventList.add(m);
+                registeredEventList.add(m);
                 registeredEventHashSet.add(m);
             }
         }
@@ -394,12 +334,9 @@ public class FragmentEventRegistration extends Fragment {
                 else{
                     Toasty.error(getContext(),"failed to register, Try again",Toast.LENGTH_LONG).show();
                 }
-
             }
         });
-
     }
-
     private int findCheckedItems() {
         int count = 0;
         if(one.isChecked()){
@@ -407,7 +344,6 @@ public class FragmentEventRegistration extends Fragment {
         }
         if(two.isChecked()){
             count++;
-
         }
         if(three.isChecked()){
             count++;
@@ -420,5 +356,4 @@ public class FragmentEventRegistration extends Fragment {
         }
         return count;
     }
-
 }

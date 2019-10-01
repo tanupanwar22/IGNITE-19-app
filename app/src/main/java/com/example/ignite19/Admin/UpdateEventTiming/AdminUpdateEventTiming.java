@@ -9,6 +9,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.core.util.Pair;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.text.TextUtils;
 import android.text.style.UpdateAppearance;
@@ -111,7 +112,7 @@ public class AdminUpdateEventTiming extends Fragment implements View.OnClickList
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(final View view) {
         switch (view.getId()){
             case R.id.admin_update_time_btn:
                 String newTime  = edt.getText().toString();
@@ -127,6 +128,7 @@ public class AdminUpdateEventTiming extends Fragment implements View.OnClickList
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isComplete()){
                                 Toasty.success(getContext(),"Time updated Successfully",Toast.LENGTH_LONG).show();
+                                Navigation.findNavController(view).navigate(R.id.action_adminUpdateEventTiming_to_adminHomeFragment);
                             }
                             else{
                                 Toasty.error(getContext(),"Time update failed,try again",Toast.LENGTH_LONG).show();

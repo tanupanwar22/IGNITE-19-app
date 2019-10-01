@@ -27,7 +27,7 @@
         android:layout_marginTop="32dp"
         android:text="Update Time"
         android:padding="8dp"
-        android:background="@color/lightgray"
+        android:background="@drawable/button_shape"
         app:layout_constraintEnd_toEndOf="@+id/update_time_edt"
         app:layout_constraintStart_toStartOf="@+id/update_time_edt"
         app:layout_constraintTop_toBottomOf="@+id/update_time_edt" />

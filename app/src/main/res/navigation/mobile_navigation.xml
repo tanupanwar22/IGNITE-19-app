@@ -131,7 +131,11 @@
     <fragment android:id="@+id/nav_feedback"
         android:name="com.example.ignite19.ui.Feedback.Fragment_Feedback"
         android:label="@string/menu_feedback"
-        tools:layout="@layout/fragment_feedback"/>
+        tools:layout="@layout/fragment_feedback">
+        <action
+            android:id="@+id/action_nav_feedback_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
     <fragment android:id="@+id/nav_contact_us"
         android:name="com.example.ignite19.ui.ContactUS.Fragment_ContactUs"
         android:label="@string/menu_contact_us"

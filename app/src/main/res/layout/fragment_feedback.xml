@@ -49,6 +49,7 @@
                         android:id="@+id/smile_rating_Ignite"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/contrasText"
                         android:layout_margin="10dp"
                         />
 
@@ -108,6 +109,9 @@
                     <com.hsalf.smilerating.SmileRating
                         android:id="@+id/smile_rating_website"
                         android:layout_width="match_parent"
+
+                        android:textColor="@color/contrasText"
+
                         android:layout_height="wrap_content" />
 
 
@@ -166,6 +170,7 @@
                         />
                     <com.hsalf.smilerating.SmileRating
                         android:id="@+id/smile_rating_app"
+                        android:textColor="@color/contrasText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
 
@@ -222,6 +227,7 @@
                         android:padding="20dp"
                         />
                     <com.hsalf.smilerating.SmileRating
+                        android:textColor="@color/contrasText"
                         android:id="@+id/smile_rating_hospitality"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content" />
@@ -255,15 +261,14 @@
 
 
             <Button
-                android:layout_width="150dp"
-                android:layout_height="80dp"
-                android:text="Submit"
-                android:layout_margin="20dp"
-                android:layout_gravity="center"
-                android:textColorHint="@color/black"
-                android:textColor="@color/lightgray"
                 android:id="@+id/feedback_submit_btn"
-                />
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
+                android:background="@drawable/button_shape"
+                android:text="Submit"
+                android:textColor="@color/black" />
 
         </LinearLayout>
     </ScrollView>
