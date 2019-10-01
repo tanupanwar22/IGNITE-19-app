@@ -28,6 +28,8 @@ import com.google.firebase.internal.DataCollectionConfigStorage;
 
 import java.util.ArrayList;
 
+import am.appwise.components.ni.NoInternetDialog;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -66,6 +68,7 @@ public class SeeParticipantsUser2 extends Fragment {
         uuid = dataCommunication.getUUID();
         v = inflater.inflate(R.layout.fragment_see_participants_user2, container, false);
         recyclerView = v.findViewById(R.id.see_paricipants_recycler_view_user);
+        NoInternetDialog noInternetDialog= new NoInternetDialog.Builder(v.getContext()).build();
 
         mAdapter = new AllParticipantsAdapter(getContext(),eventWiseParticipantDetailArrayList);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));

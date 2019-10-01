@@ -18,6 +18,8 @@ import com.example.ignite19.ui.schedule.RecyclerViewAdapter;
 
 import java.util.ArrayList;
 
+import am.appwise.components.ni.NoInternetDialog;
+
 public class FragmentNavigation extends Fragment {
 
     View v;
@@ -45,6 +47,8 @@ public class FragmentNavigation extends Fragment {
         mRecylerView = (RecyclerView)v.findViewById(R.id.venue_list_recycler_view);
         NavigationRecyclerAdapter adapter = new NavigationRecyclerAdapter(getContext(),venue_list);
         mRecylerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        NoInternetDialog noInternetDialog= new NoInternetDialog.Builder(v.getContext()).build();
+
         mRecylerView.setAdapter(adapter);
         return v;
     }
