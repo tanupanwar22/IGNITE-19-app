@@ -221,6 +221,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        if(noInternetDialog!=null)
         noInternetDialog.onDestroy();
     }
 
