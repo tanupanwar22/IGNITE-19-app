@@ -83,6 +83,7 @@ public class FragmentEvents extends Fragment {
         recyclerView = (RecyclerView)v.findViewById(R.id.events_tabx);
         EventsListAdapter adapter = new EventsListAdapter(getContext(),eventsArrayList);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+
         recyclerView.setAdapter(adapter);
         return v;
     }
