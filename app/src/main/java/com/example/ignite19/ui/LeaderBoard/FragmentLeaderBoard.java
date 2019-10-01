@@ -28,6 +28,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import am.appwise.components.ni.NoInternetDialog;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -79,6 +81,8 @@ int cnt=0;
 
         results_recyclerview.setLayoutManager(new LinearLayoutManager(v.getContext()));
         results_recyclerview.setAdapter(new resultsAdapter(getContext(), results_event_name_list));
+        NoInternetDialog noInternetDialog= new NoInternetDialog.Builder(v.getContext()).build();
+
         return v;
     }
 }

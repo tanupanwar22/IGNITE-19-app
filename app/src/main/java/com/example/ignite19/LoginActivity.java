@@ -19,6 +19,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -30,8 +32,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+
 import java.util.Objects;
 
+import am.appwise.components.ni.NoInternetDialog;
 import es.dmoral.toasty.Toasty;
 
 public class LoginActivity extends AppCompatActivity {
@@ -40,7 +44,10 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Button signin;
     private ImageView loader;
+    private ScrollView scrollLayout;
+    private LinearLayout linearLayout;
     private final String TAG = "ALPHA";
+    NoInternetDialog noInternetDialog;
 
     String firebaseNotificationTitle;
     String firebaseNotificationContent;
@@ -51,7 +58,9 @@ public class LoginActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
 
       if(!isConnected(LoginActivity.this)){
-          buildDialog(LoginActivity.this).show();
+          //buildDialog(LoginActivity.this).show();
+          noInternetDialog= new NoInternetDialog.Builder(LoginActivity.this).build();
+
 
       }else {
           FirebaseUser currentUser = mAuth.getCurrentUser();
@@ -66,6 +75,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         getSupportActionBar().hide();
+        loader=findViewById(R.id.gif);
+        loader.setVisibility(View.INVISIBLE);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 
@@ -79,16 +90,16 @@ public class LoginActivity extends AppCompatActivity {
 
 
         if(!isConnected(LoginActivity.this)){
-            buildDialog(LoginActivity.this).show();
+           // buildDialog(LoginActivity.this).show();
+            noInternetDialog= new NoInternetDialog.Builder(LoginActivity.this).build();
 
         }
         else {
 
 
-
-            userNameEditText = findViewById(R.id.username_editText);
-            userPasswordEditText = findViewById(R.id.password_editText);
-            signin = findViewById(R.id.sign_in_button);
+            userNameEditText=findViewById(R.id.username_editText);
+            userPasswordEditText=findViewById(R.id.password_editText);
+            signin=findViewById(R.id.sign_in_button);
             loader = findViewById(R.id.gif);
             Glide.with(getApplicationContext()).load(R.drawable.loader).transform(new CircleCrop()).into(loader);
 
@@ -106,6 +117,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onClickSignIN(View view) {
+        loader.setVisibility(View.VISIBLE);
         String userName = userNameEditText.getText().toString();
         String userPassword = userPasswordEditText.getText().toString();
         if(isStringEmpty(userName, userPassword)){
@@ -218,6 +230,7 @@ public class LoginActivity extends AppCompatActivity {
 
         return builder;
     }
+
 
 
 }

@@ -27,6 +27,7 @@ import androidx.navigation.Navigation;
 import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.example.ignite19.DataCommunication;
+import com.example.ignite19.LoginActivity;
 import com.example.ignite19.MainActivity;
 import com.example.ignite19.MyAnimations;
 import com.example.ignite19.R;
@@ -39,6 +40,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import am.appwise.components.ni.NoInternetDialog;
 import es.dmoral.toasty.Toasty;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
@@ -52,6 +54,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+       NoInternetDialog noInternetDialog= new NoInternetDialog.Builder(root.getContext()).build();
+
         return root;
     }
 

@@ -25,6 +25,7 @@ import com.hsalf.smilerating.SmileRating;
 
 import java.util.HashMap;
 
+import am.appwise.components.ni.NoInternetDialog;
 import es.dmoral.toasty.Toasty;
 import me.zhanghai.android.materialedittext.MaterialEditText;
 
@@ -45,6 +46,7 @@ private String website_desc,ignite_desc,app_desc,hospitality_desc,clg_name;
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_feedback, null);
+        NoInternetDialog noInternetDialog= new NoInternetDialog.Builder(root.getContext()).build();
 
         final MaterialEditText ignite_desc_var,website_desc_var,app_desc_var,hospitality_desc_var;
         Button submit_btn=root.findViewById(R.id.feedback_submit_btn);
