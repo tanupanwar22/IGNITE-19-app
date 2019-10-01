@@ -40,7 +40,6 @@ tools:context=".ui.AboutIGNITE.Fragment_AboutIgnite">
 
                     android:contentDescription="@string/app_name"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/igg"
                     app:layout_collapseMode="parallax" />
                 <androidx.appcompat.widget.Toolbar
 
