@@ -8,174 +8,110 @@
     tools:context=".MainActivity"
     android:background="@drawable/login_page_background"
     >
-    <LinearLayout
-
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
 
 
-        <ImageView
-            android:padding="16dp"
-            android:id="@+id/imageView"
-            android:layout_width="match_parent"
-            android:layout_height="140dp"
-            android:layout_marginTop="48dp"
-            android:layout_marginBottom="8dp"
-            app:srcCompat="@drawable/login_page_image" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginTop="80dp"
-            >
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:id="@+id/gif"
-                android:src="@drawable/loader"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                />
-        </RelativeLayout>
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fillViewport="true">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
 
-        <androidx.cardview.widget.CardView
-            android:elevation="8dp"
-            android:id="@+id/cardView"
+        <ImageView
+            android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="240dp"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"
-            android:layout_marginTop="30dp"
+            android:layout_height="140dp"
+            android:padding="16dp"
 
-            app:cardCornerRadius="12dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/login_page_image"
+            android:layout_marginTop="50dp"
+            />
+
+        <ImageView
+            android:id="@+id/gif"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:layout_centerHorizontal="true"
-            android:shape="rectangle"
+            android:layout_centerVertical="true"
+            android:src="@drawable/loader"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="20dp"
+         />
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="10dp"
+            app:layout_constraintTop_toBottomOf="@+id/gif"
+            android:layout_marginTop="50dp"
+            app:cardCornerRadius="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:elevation="20dp"
             >
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toTopOf="parent"
-
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
                 >
+
+                <me.zhanghai.android.materialedittext.MaterialTextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    >
+
+                    <me.zhanghai.android.materialedittext.MaterialEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Username"
+                        android:id="@+id/username_editText"
+                        android:textSize="20sp"
+                        android:textAlignment="center"
+                        />
+
+                </me.zhanghai.android.materialedittext.MaterialTextInputLayout>
+
+
+                <me.zhanghai.android.materialedittext.MaterialTextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    >
+
+                    <me.zhanghai.android.materialedittext.MaterialEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/password_editText"
+                        android:textAlignment="center"
+                        android:hint="Password"
+                        android:textSize="20sp"
+                        android:inputType="textPassword"/>
+
+                </me.zhanghai.android.materialedittext.MaterialTextInputLayout>
 
                 <Button
                     android:id="@+id/sign_in_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="137dp"
                     android:background="@color/igniteSecondaryDark"
-
-                    android:elevation="6dp"
-                    android:padding="16dp"
                     android:text="SIGN IN"
                     android:textColor="@color/lightgray"
                     android:transitionName="@string/my_shared_button_transition"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/materialTextInputLayout2" />
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    />
 
 
-                <me.zhanghai.android.materialedittext.MaterialTextInputLayout
-                    android:id="@+id/materialTextInputLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+            </LinearLayout>
 
-                    <me.zhanghai.android.materialedittext.MaterialEditText
-                        android:id="@+id/username_editText"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="Username"
-                        android:inputType="textPersonName"
-                        android:singleLine="true">
-
-                    </me.zhanghai.android.materialedittext.MaterialEditText>
-
-                </me.zhanghai.android.materialedittext.MaterialTextInputLayout>
-
-                <me.zhanghai.android.materialedittext.MaterialTextInputLayout
-                    android:id="@+id/materialTextInputLayout2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    app:layout_constraintEnd_toEndOf="@+id/materialTextInputLayout"
-                    app:layout_constraintStart_toStartOf="@+id/materialTextInputLayout"
-                    app:layout_constraintTop_toBottomOf="@+id/materialTextInputLayout">
-
-                    <me.zhanghai.android.materialedittext.MaterialEditText
-                        android:id="@+id/password_editText"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:hint="Password"
-                        android:inputType="textPassword"
-                        android:singleLine="true">
-
-                    </me.zhanghai.android.materialedittext.MaterialEditText>
-
-                </me.zhanghai.android.materialedittext.MaterialTextInputLayout>
-
-                <!--<me.zhanghai.android.materialedittext.MaterialEditText
-                    android:id="@+id/username_editText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="56dp"
-                    android:layout_marginEnd="56dp"
-                    android:layout_marginBottom="16dp"
-                    android:backgroundTint="#FFFFFF"
-                    android:ems="10"
-                    android:hint="username"
-                    android:inputType="textPersonName"
-                    android:textColor="#FFFFFF"
-                    android:textColorHint="#FFFFFF"
-                    app:layout_constraintBottom_toTopOf="@+id/password_editText"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" /> -->
-
-                <!--
-
-                <me.zhanghai.android.materialedittext.MaterialEditText
-                    android:id="@+id/password_editText"
-                    android:layout_width="0dp"
-
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="24dp"
-                    android:backgroundTint="#FFFFFF"
-                    android:ems="10"
-                    android:hint="password"
-                    android:inputType="textPassword"
-                    android:textColor="#FFFFFF"
-                    android:textColorHint="#FFFFFF"
-                    app:layout_constraintBottom_toTopOf="@+id/sign_in_button"
-                    app:layout_constraintEnd_toEndOf="@+id/username_editText"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="@+id/username_editText" />-->
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
 
-    </LinearLayout>
+
+
 </ScrollView>

@@ -59,7 +59,6 @@ public class LoginActivity extends AppCompatActivity {
 
       if(!isConnected(LoginActivity.this)){
           //buildDialog(LoginActivity.this).show();
-          noInternetDialog= new NoInternetDialog.Builder(LoginActivity.this).build();
 
 
       }else {
@@ -77,6 +76,7 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         loader=findViewById(R.id.gif);
         loader.setVisibility(View.INVISIBLE);
+        noInternetDialog= new NoInternetDialog.Builder(LoginActivity.this).build();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 
@@ -232,5 +232,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        noInternetDialog.onDestroy();
+    }
 }
