@@ -1,5 +1,5 @@
 1.Each team has only 1 member.
 2.The team should have a person who is having good commands over Django web framework.
-3.Each team should have their own equipment for this event(ex..Laptop etc.).
-4.There shouldn\’t be any malpractice.
+3.Each team should have their own equipment for this event(ex. Laptop etc.).
+4.There shouldn't be any malpractice.
 5.Judges decision will be final decision.
