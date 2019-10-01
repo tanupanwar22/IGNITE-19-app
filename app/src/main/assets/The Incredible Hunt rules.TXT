@@ -1,7 +1,5 @@
-RULES
-
 1.	Any number of students from any college can participate.
 2.	Only participants from MCA will be eligible for prizes.
 3.	The participants eligible for prizes has to provide us with their college ID cards.
-4.	Any sort of malpractices won’t be tolerated and will lead to immediate disqualification.
+4.	Any sort of malpractices won't be tolerated and will lead to immediate disqualification.
 5.	In case of any discrepancy, the decision of IGNITE 2K19 organizing committee will be final.
