@@ -63,7 +63,6 @@ public class LoginActivity extends AppCompatActivity {
 
       if(!isConnected(LoginActivity.this)){
           //buildDialog(LoginActivity.this).show();
-          noInternetDialog= new NoInternetDialog.Builder(LoginActivity.this).build();
 
 
       }else {
@@ -82,12 +81,7 @@ public class LoginActivity extends AppCompatActivity {
             loader=findViewById(R.id.gif);
         loader.setVisibility(View.INVISIBLE);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-       /* if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-
-        }*/
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -251,5 +245,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(noInternetDialog!=null)
+        noInternetDialog.onDestroy();
+    }
 }

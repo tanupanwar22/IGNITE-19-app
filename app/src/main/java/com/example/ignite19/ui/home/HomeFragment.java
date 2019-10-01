@@ -50,11 +50,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     Boolean flag2Status;
     LottieAnimationView eventLoader,eventRegistrationLoader,seeParticipantsLoader,leaderboardLoader;
     ArrayList<String> eventList;
+    NoInternetDialog noInternetDialog;
+
     ImageView bg_gif;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
+        noInternetDialog= new NoInternetDialog.Builder(getContext()).build();
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-       NoInternetDialog noInternetDialog= new NoInternetDialog.Builder(root.getContext()).build();
 
         return root;
     }
@@ -214,6 +217,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             default:
                 break;
         }
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(noInternetDialog!=null)
+        noInternetDialog.onDestroy();
     }
 
 }

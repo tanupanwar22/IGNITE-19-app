@@ -44,6 +44,9 @@ public class SeeParticipantsUser2 extends Fragment {
     View v;
     String uuid;
     DataCommunication dataCommunication;
+    NoInternetDialog noInternetDialog;
+
+
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -64,11 +67,12 @@ public class SeeParticipantsUser2 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              final Bundle savedInstanceState) {
+
+        noInternetDialog= new NoInternetDialog.Builder(getContext()).build();
         // Inflate the layout for this fragment
         uuid = dataCommunication.getUUID();
         v = inflater.inflate(R.layout.fragment_see_participants_user2, container, false);
         recyclerView = v.findViewById(R.id.see_paricipants_recycler_view_user);
-        NoInternetDialog noInternetDialog= new NoInternetDialog.Builder(v.getContext()).build();
 
         mAdapter = new AllParticipantsAdapter(getContext(),eventWiseParticipantDetailArrayList);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
@@ -113,5 +117,10 @@ public class SeeParticipantsUser2 extends Fragment {
         });
         return v;
     }
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(noInternetDialog!=null)
+        noInternetDialog.onDestroy();
+    }
 }

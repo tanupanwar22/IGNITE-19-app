@@ -37,6 +37,7 @@ public class FragmentLeaderBoard extends Fragment {
     DataCommunication dataCommunication;
 
     ArrayList<UserDataAndEventList> userDataAndEventLists = new ArrayList<>();
+    NoInternetDialog noInternetDialog;
 public List<String> results_event_name_list=new ArrayList<>();
 RecyclerView results_recyclerview;
 int cnt=0;
@@ -81,8 +82,14 @@ int cnt=0;
 
         results_recyclerview.setLayoutManager(new LinearLayoutManager(v.getContext()));
         results_recyclerview.setAdapter(new resultsAdapter(getContext(), results_event_name_list));
-        NoInternetDialog noInternetDialog= new NoInternetDialog.Builder(v.getContext()).build();
+         noInternetDialog= new NoInternetDialog.Builder(v.getContext()).build();
 
         return v;
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if(noInternetDialog!=null)
+            noInternetDialog.onDestroy();
     }
 }
