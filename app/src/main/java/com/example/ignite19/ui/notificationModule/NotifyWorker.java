@@ -53,7 +53,9 @@ public class NotifyWorker extends Worker {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, 0);
 
-        //pending intent for directions Button action
+        //pending intent for directions Button action ,
+
+
         String myUri = String.format ("geo:%f,%f?q=%f,%f(%s)",mLatitude,mLongitude,mLatitude,mLongitude,"myLocation");
         Uri gmmIntentUri = Uri.parse(myUri);
         Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
@@ -69,7 +71,7 @@ public class NotifyWorker extends Worker {
                 .setAutoCancel(true)
                 .setGroup(GROUP_IGNITE19)
                 .setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400})
-                .addAction(R.drawable.ic_notifications_active_black_24dp,"Directions",mapPendingIntent);
+                .addAction(R.drawable.location,"Directions",mapPendingIntent);
         if(Build.VERSION.SDK_INT < Build.VERSION_CODES.O){
             //setting priority for devices less than android oreo version
             builder.setPriority(NotificationCompat.PRIORITY_MAX);

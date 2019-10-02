@@ -179,10 +179,6 @@ public class LoginActivity extends AppCompatActivity {
     private void updateUI(FirebaseUser user) {
         int pos = Objects.requireNonNull(user.getEmail()).indexOf("@");
         String displayName = user.getEmail().substring(0 , pos);
-
-
-
-
         firebaseNotificationContent = (String)LoginActivity.this.getIntent().getStringExtra("text");
         firebaseNotificationTitle = (String)LoginActivity.this.getIntent().getStringExtra("title");
         Log.d(TAG, "updateUI: sierra"  + firebaseNotificationTitle + firebaseNotificationContent);
