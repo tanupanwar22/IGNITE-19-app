@@ -381,7 +381,7 @@
                 <com.google.android.material.appbar.CollapsingToolbarLayout
                     android:layout_width="wrap_content"
                     android:layout_height="225dp"
-                    app:contentScrim="?attr/colorPrimary"
+
                     app:expandedTitleTextAppearance="@android:color/transparent"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed">
 

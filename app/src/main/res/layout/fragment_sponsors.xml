@@ -66,7 +66,7 @@
                             android:layout_width="90dp"
 
                             android:layout_height="90dp"
-                            android:src="@drawable/google"
+                            android:src="@drawable/kla"
                             />
 
                     </androidx.cardview.widget.CardView>
@@ -81,7 +81,7 @@
                             android:layout_width="90dp"
 
                             android:layout_height="90dp"
-                            android:src="@drawable/google"
+                            android:src="@drawable/bell"
                             />
 
                     </androidx.cardview.widget.CardView>
@@ -95,7 +95,7 @@
                             android:layout_width="90dp"
 
                             android:layout_height="90dp"
-                            android:src="@drawable/google"
+                            android:src="@drawable/big"
                             />
 
                     </androidx.cardview.widget.CardView>
@@ -143,7 +143,7 @@
                             android:layout_width="90dp"
 
                             android:layout_height="90dp"
-                            android:src="@drawable/radio"
+                            android:src="@drawable/kamath"
                             />
 
                     </androidx.cardview.widget.CardView>
