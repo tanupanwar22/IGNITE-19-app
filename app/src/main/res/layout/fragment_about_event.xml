@@ -147,10 +147,14 @@ tools:context=".ui.AboutIGNITE.Fragment_AboutIgnite">
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
-                        <ImageView
+                        <com.airbnb.lottie.LottieAnimationView
                             android:id="@+id/imageView6"
                             android:layout_width="32dp"
                             android:layout_height="32dp"
+                            app:lottie_fileName="mapmaker.json"
+                            app:lottie_autoPlay="true"
+                            app:lottie_loop="true"
+
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="8dp"
                             android:src="@drawable/ic_venue"

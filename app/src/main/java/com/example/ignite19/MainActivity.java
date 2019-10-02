@@ -205,6 +205,7 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                     .build();
             channel.setSound(alarmSound,att);
             channel.enableLights(true);
+            channel.enableLights(true);
             channel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             try{
@@ -668,7 +669,12 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
             //pass this event list builder to further function to add more user related details
             //add these events to notification channel
             //configure notification channel changes
-            configureNotifications(userEventList);
+
+            /*workmanager notification are being removed because we can schedule notifications from firebase itself,
+            its better to schedule them from firebase because that will give us independence from timing change issues
+
+             */
+            //configureNotifications(userEventList);
 
         }
         @Override
