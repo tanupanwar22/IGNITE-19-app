@@ -11,13 +11,9 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.HandlerThread;
-import android.os.RemoteException;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.ExpandableListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,9 +43,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 import es.dmoral.toasty.Toasty;
@@ -326,7 +319,6 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                     }
                     else {
                         registeredEventNames.add(key);
-
                     }
                     userParticipationDetails.add(new Participation.Builder(value,key).build());
                 }
@@ -424,7 +416,7 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                             mEventList.setNumber_of_participants(4);
                             mEventList.setEvent_venue("LHC-S");
                             mEventList.setEvent_duration("01:00:00");
-                            mEventList.setEvent_icon_uri(R.drawable.scattergorries);
+                            mEventList.setEvent_icon_uri(R.drawable.scattergorries_ic);
                             mEventList.setEvent_image_uri(R.drawable.scattergories_p2);
                             break;
 
@@ -515,7 +507,7 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                             mEventList.setNumber_of_participants(2);
                             mEventList.setEvent_venue("LHC-C");
                             mEventList.setEvent_duration("01:00:00");
-                            mEventList.setEvent_icon_uri(R.drawable.code_infinity);
+                            mEventList.setEvent_icon_uri(R.drawable.code_infinity_ic);
                             mEventList.setEvent_image_uri(R.drawable.code_infinity_p2);
                             break;
 
@@ -651,7 +643,7 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                             mEventList.setNumber_of_participants(2);
                             mEventList.setEvent_venue("LHC-C");
                             mEventList.setEvent_duration("01:00:00");
-                            mEventList.setEvent_icon_uri(R.drawable.search_of_the_gauntlet);
+                            mEventList.setEvent_icon_uri(R.drawable.search_of_the_gauntlet_ic);
                             mEventList.setEvent_image_uri(R.drawable.the_search_of_the_gaunt_p2);
                             break;
 

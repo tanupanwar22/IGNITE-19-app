@@ -58,7 +58,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         noInternetDialog= new NoInternetDialog.Builder(getContext()).build();
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-
         return root;
     }
 
@@ -99,7 +98,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             @Override
             public void run() {
                 while(!dataCommunication.getFirstListenerFlagStatus() || !dataCommunication.getSecondListenerFlagStatus());
-
 
                 eventLoader.post(new Runnable() {
                     @Override

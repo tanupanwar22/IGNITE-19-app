@@ -83,7 +83,7 @@ public class DateTimeConverter {
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(Objects.requireNonNull(date));
            // formattedDateTime = new SimpleDateFormat("dd/MM/yyyy KK:mm a").format(date);
-            formattedDateTime = new SimpleDateFormat("E, dd MMM, KK:mm a").format(date);
+            formattedDateTime = new SimpleDateFormat("E, dd MMM KK:mm a").format(date);
         }
         catch (ParseException e){
             e.printStackTrace();
