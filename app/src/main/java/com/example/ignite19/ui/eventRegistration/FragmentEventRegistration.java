@@ -23,9 +23,7 @@ import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.airbnb.lottie.LottieAnimationView;
 import com.example.ignite19.DataCommunication;
-import com.example.ignite19.MainActivity;
 import com.example.ignite19.Participation;
 import com.example.ignite19.R;
 import com.example.ignite19.UserDetail;
@@ -34,35 +32,33 @@ import com.example.ignite19.ui.eventRegistration.RegisterEventsAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import es.dmoral.toasty.Toasty;
 import static androidx.constraintlayout.widget.Constraints.TAG;
 public class FragmentEventRegistration extends Fragment {
     DataCommunication dataCommunication;
     FloatingActionButton floatingActionButton;
-    ArrayList<UserDataAndEventList> mList;
-    ArrayList<UserDataAndEventList> registeredEventList  = new ArrayList<>();
-    HashSet<UserDataAndEventList> registeredEventHashSet = new HashSet<>();
-    ArrayList<Participation> participationArrayList;
     TextView eventDescTextView;
     RegisterEventsAdapter registerEventsAdapter;
     View alertView;
     TextView numberOfParticipantsTextView;
+    ArrayList<Participation> registeredList = new ArrayList<>();
     AlertDialog alertDialog;
     CheckBox one,two,three,four,five;
     String uuid;
-    HashMap<String,Integer> map = new HashMap<>();
-    //final List<String> keys = new ArrayList<>();
     UserDetail userDetail;
     RecyclerView recyclerView;
+    ArrayList<Participation> notRegisteredList = new ArrayList<>();
+   ArrayList<String> eventNamesForDropDown = new ArrayList<>();
     View view;
-    List<String > eventNamesForDropDown;
     public static FragmentEventRegistration newInstance() {
         return new FragmentEventRegistration();
     }
@@ -76,117 +72,407 @@ public class FragmentEventRegistration extends Fragment {
                     + " must implement DataCommunication");
         }
     }
-    @Override
-    public void onPause() {
-        super.onPause();
-        map.clear();
-    }
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        map.clear();
-    }
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        map.clear();
-    }
-    @Override
-    public void onStop() {
-        super.onStop();
-        //  numberOfParticipants.clear();
-        // unRegisteredEvents.clear();
-        map.clear();
-    }
+
+
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelableArrayList("mList",mList);
-        outState.putParcelableArrayList("participationArrayList",participationArrayList);
         outState.putParcelable("userDetail",userDetail);
         outState.putString("uuid",uuid);
     }
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        map.clear();
-    }
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        map.clear();
-    }
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        map.clear();
-    }
-    @Override
-    public void onResume() {
-        super.onResume();
-        if(registeredEventList!=null){
-            registeredEventList.clear();
-        }
-        map.clear();
-        for(Participation x : participationArrayList){
-            for(UserDataAndEventList y: mList){
-                if(x.getEvent_name().equalsIgnoreCase(y.getEvent_name())){
-                    if(x.getParticipation() == 0){
-                        map.put(y.getEvent_name(),y.getNumber_of_participants());
-                    }
-                    else{
-                        registeredEventHashSet.add(y);
-                        //  registeredEventList.add(y);
-                    }
-                }
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable final Bundle savedInstanceState) {
+
+            view = inflater.inflate(R.layout.fragment_event_registration, container, false);
+            if(savedInstanceState!=null){
+                userDetail = savedInstanceState.getParcelable("userDetail");
+                uuid = savedInstanceState.getString("uuid");
             }
-        }
-        //registeredEventList.clear();
-        registeredEventList = new ArrayList<>(registeredEventHashSet);
-        //code from oncreateview
-        registerEventsAdapter = new RegisterEventsAdapter(getContext(),registeredEventList);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),3));
-        recyclerView.setAdapter(registerEventsAdapter);
-        //code ends
-        eventNamesForDropDown = new ArrayList<>(map.keySet());
-        //  registerEventsAdapter.notifyDataSetChanged();
+            else {
+                userDetail = dataCommunication.getUserDetail();
+                uuid = dataCommunication.getUUID();
+            }
+            recyclerView = (RecyclerView) view.findViewById(R.id.recyler_view_registered_events);
+            recyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
+            registerEventsAdapter = new RegisterEventsAdapter(getContext(),registeredList);
+             recyclerView.setAdapter(registerEventsAdapter);
+            floatingActionButton = view.findViewById(R.id.floatingActionButton);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openDialogFragment();
             }
         });
-    }
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        if(view == null){
-            view = inflater.inflate(R.layout.fragment_event_registration, container, false);
-            if(savedInstanceState!=null){
-                mList = savedInstanceState.getParcelableArrayList("mList");
-                userDetail = savedInstanceState.getParcelable("userDetail");
-                participationArrayList = savedInstanceState.getParcelableArrayList("participationArrayList");
-                uuid = savedInstanceState.getString("uuid");
-            }
-            else {
-                userDetail = dataCommunication.getUserDetail();
-                mList = dataCommunication.getAllEventList();
-                participationArrayList = dataCommunication.getUserParticipationDetails();
-                uuid = dataCommunication.getUUID();
-            }
-            recyclerView = (RecyclerView) view.findViewById(R.id.recyler_view_registered_events);
-            floatingActionButton = view.findViewById(R.id.floatingActionButton);
-        }
+
+            //without these, items will keep getting multiplied by two
+            registeredList.clear();
+            registerEventsAdapter.notifyDataSetChanged();
+            //
+            FirebaseDatabase.getInstance().getReference("Users").child(uuid).child("participation").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for(DataSnapshot snapshot:dataSnapshot.getChildren()) {
+                        Participation.Builder p = snapshot.getValue(Participation.Builder.class);
+                        if (p.getEvent_name() != null && p.getParticipation() == 1) {
+                            switch (p.getEvent_name()) {
+
+                                case "Agomotto's Amet":
+                                    p.setEventIconURI(R.drawable.agomotto_amet_ic);
+                                    break;
+
+                                case "Death's Head":
+                                    p.setEventIconURI(R.drawable.deaths_head_ic);
+
+                                    break;
+
+                                case  "Scattergories":
+                                    p.setEventIconURI(R.drawable.scattergorries_ic);
+                                    break;
+
+
+                                case "C for Codetta":
+                                    p.setEventIconURI(R.drawable.c_for_codetta_ic);
+                                    break;
+
+                                case "Captain Algorika":
+                                    p.setEventIconURI(R.drawable.captain_algorika_ic);
+                                    break;
+                                case "Cerebro":
+                                    p.setEventIconURI(R.drawable.cerebro_ic);
+                                    break;
+                                case "Code Infinity":
+                                    p.setEventIconURI(R.drawable.code_infinity_ic);
+                                    break;
+
+                                case "Dormammu's Loop":
+                                    p.setEventIconURI(R.drawable.dormammu_loop_ic);
+                                    break;
+
+                                case "Krypthon":
+                                    p.setEventIconURI(R.drawable.krypthon_ic);
+                                    break;
+                                case "Merc with the Mouth":
+                                    p.setEventIconURI(R.drawable.merc_with_the_mouth);
+                                    break;
+                                case "ORM Master":
+                                    p.setEventIconURI(R.drawable.orm_master_ic);
+                                    break;
+                                case "Rage of Ultron":
+                                    p.setEventIconURI(R.drawable.rage_of_ultron_ic);
+                                    break;
+
+                                case "The Search of Gauntlet":
+                                    p.setEventIconURI(R.drawable.search_of_the_gauntlet_ic);
+                                    break;
+
+                                default:
+                                    Log.d(TAG, "onDataChange: some error has occured inside switch case of database listener");
+                                    break;
+                            }
+                            registeredList.add(0,p.build());
+                            registerEventsAdapter.notifyItemInserted(0);
+
+                        }
+                        else{
+                           // Toasty.error(getContext(),"Failed to get event Description",Toast.LENGTH_LONG).show();
+                            Log.d(TAG, "onDataChange: Failed to get event Description" );
+                        }
+                    }
+
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+
+
         return view;
     }
-    @Override
-    public void onStart() {
-        super.onStart();
-        //now lets find events with participation value 0
-        // registeredEventList.clear();
-        map.clear();
-    }
+
     private void openDialogFragment() {
+        //remove all items from not registered list
+        notRegisteredList.clear();
+        eventNamesForDropDown.clear();
+        FirebaseDatabase.getInstance().getReference("Users").child(uuid).child("participation").addListenerForSingleValueEvent(new ValueEventListener() {
+
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for(DataSnapshot snapshot:dataSnapshot.getChildren()) {
+                        Participation.Builder p = snapshot.getValue(Participation.Builder.class);
+                        if (p.getEvent_name() != null && p.getParticipation() == 0) {
+                            eventNamesForDropDown.add(p.getEvent_name());
+                            switch (p.getEvent_name()) {
+
+                                case "Agomotto's Amet":
+                                    String desctexta="";
+                                    try  {
+                                        InputStream is = getActivity().getAssets().open("Agomotto's Amet desc.TXT");
+                                        int size=is.available();
+                                        byte[] buffer=new byte[size];
+                                        is.read(buffer);
+                                        is.close();
+                                        desctexta=new String(buffer);
+                                    }
+                                    catch (IOException ex){
+                                        ex.printStackTrace();
+                                    }
+                                    p.setEventDesc(desctexta);
+                                    p.setNumberOfParticipants(2);
+                                    p.setEventIconURI(R.drawable.agomotto_amet_ic);
+
+                                    break;
+
+                                case "Death's Head":
+                                    String desctextd="";
+                                    try  {
+                                        InputStream is = getActivity().getAssets().open("Death's Head desc.TXT");
+                                        int size=is.available();
+                                        byte[] buffer=new byte[size];
+                                        is.read(buffer);
+                                        is.close();
+                                        desctextd=new String(buffer);
+                                    }
+                                    catch (IOException ex){
+                                        ex.printStackTrace();
+                                    }
+                                    p.setEventDesc(desctextd);
+                                    p.setNumberOfParticipants(5);
+                                    p.setEventIconURI(R.drawable.deaths_head_ic);
+                                    break;
+
+
+
+                                case "Scattergories":
+                                    String desctexts="";
+                                    try  {
+                                        InputStream is = getActivity().getAssets().open("Scattergories desc.TXT");
+                                        int size=is.available();
+                                        byte[] buffer=new byte[size];
+                                        is.read(buffer);
+                                        is.close();
+                                        desctexts=new String(buffer);
+                                    }
+                                    catch (IOException ex){
+                                        ex.printStackTrace();
+                                    }
+                                    p.setEventDesc(desctexts);
+                                    p.setNumberOfParticipants(4);
+                                    p.setEventIconURI(R.drawable.scattergorries_ic);
+                                    break;
+
+
+                                case "C for Codetta":
+                                    String desctextc="";
+                                    try  {
+                                        InputStream is = getActivity().getAssets().open("C for Codetta desc.TXT");
+                                        int size=is.available();
+                                        byte[] buffer=new byte[size];
+                                        is.read(buffer);
+                                        is.close();
+                                        desctextc=new String(buffer);
+                                    }
+                                    catch (IOException ex){
+                                        ex.printStackTrace();
+                                    }
+                                    p.setEventDesc(desctextc);
+                                    p.setNumberOfParticipants(2);
+                                    p.setEventIconURI(R.drawable.c_for_codetta_ic);
+                                    break;
+
+                                case "Captain Algorika":
+                                    String desctextca="";
+                                    try  {
+                                        InputStream is = getActivity().getAssets().open("Captain Algorika desc.TXT");
+                                        int size=is.available();
+                                        byte[] buffer=new byte[size];
+                                        is.read(buffer);
+                                        is.close();
+                                        desctextca=new String(buffer);
+                                    }
+                                    catch (IOException ex){
+                                        ex.printStackTrace();
+                                    }
+                                    p.setEventDesc(desctextca);
+                                    p.setNumberOfParticipants(3);
+                                    p.setEventIconURI(R.drawable.captain_algorika_ic);
+                                    break;
+                                case "Cerebro":
+                                    String desctextce="";
+                                    try  {
+                                        InputStream is = getActivity().getAssets().open("Cerebro desc.TXT");
+                                        int size=is.available();
+                                        byte[] buffer=new byte[size];
+                                        is.read(buffer);
+                                        is.close();
+                                        desctextce=new String(buffer);
+                                    }
+                                    catch (IOException ex){
+                                        ex.printStackTrace();
+                                    }
+                                    p.setEventDesc(desctextce);
+                                    p.setNumberOfParticipants(2);
+                                    p.setEventIconURI(R.drawable.cerebro_ic);
+                                    break;
+                                case "Code Infinity":
+                                    String desctextci="";
+                                    try  {
+                                        InputStream is = getActivity().getAssets().open("Code Infinity desc.TXT");
+                                        int size=is.available();
+                                        byte[] buffer=new byte[size];
+                                        is.read(buffer);
+                                        is.close();
+                                        desctextci=new String(buffer);
+                                    }
+                                    catch (IOException ex){
+                                        ex.printStackTrace();
+                                    }
+                                    p.setEventDesc(desctextci);
+                                    p.setNumberOfParticipants(2);
+                                    p.setEventIconURI(R.drawable.code_infinity_ic);
+                                    break;
+
+                                case "Dormammu's Loop":
+                                    String desctextdl="";
+                                    try  {
+                                        InputStream is = getActivity().getAssets().open("Dormammu's Loop desc.TXT");
+                                        int size=is.available();
+                                        byte[] buffer=new byte[size];
+                                        is.read(buffer);
+                                        is.close();
+                                        desctextdl=new String(buffer);
+                                    }
+                                    catch (IOException ex){
+                                        ex.printStackTrace();
+                                    }
+                                    p.setEventDesc(desctextdl);
+                                    p.setNumberOfParticipants(3);
+                                    p.setEventIconURI(R.drawable.dormammu_loop_ic);
+                                    break;
+
+                                case "Krypthon":
+                                    String desctextk="";
+                                    try  {
+                                        InputStream is = getActivity().getAssets().open("Krypthon desc.TXT");
+                                        int size=is.available();
+                                        byte[] buffer=new byte[size];
+                                        is.read(buffer);
+                                        is.close();
+                                        desctextk=new String(buffer);
+                                    }
+                                    catch (IOException ex){
+                                        ex.printStackTrace();
+                                    }
+                                    p.setEventDesc(desctextk);
+
+                                    p.setNumberOfParticipants(2);
+                                    p.setEventIconURI(R.drawable.krypthon_ic);
+                                    break;
+                                case "Merc with the Mouth":
+                                    String desctextm="";
+                                    try  {
+                                        InputStream is = getActivity().getAssets().open("Merc with the Mouth desc.TXT");
+                                        int size=is.available();
+                                        byte[] buffer=new byte[size];
+                                        is.read(buffer);
+                                        is.close();
+                                        desctextm=new String(buffer);
+                                    }
+                                    catch (IOException ex){
+                                        ex.printStackTrace();
+                                    }
+                                    p.setEventDesc(desctextm);
+
+                                   p.setNumberOfParticipants(2);
+
+                                    p.setEventIconURI(R.drawable.merc_with_the_mouth);
+                                    break;
+                                case "ORM Master":
+                                    String desctexto="";
+                                    try  {
+                                        InputStream is = getActivity().getAssets().open("ORM Master desc.TXT");
+                                        int size=is.available();
+                                        byte[] buffer=new byte[size];
+                                        is.read(buffer);
+                                        is.close();
+                                        desctexto=new String(buffer);
+                                    }
+                                    catch (IOException ex){
+                                        ex.printStackTrace();
+                                    }
+                                    p.setEventDesc(desctexto);
+
+                                    p.setNumberOfParticipants(2);
+                                    p.setEventIconURI(R.drawable.orm_master_ic);
+                                    break;
+                                case "Rage of Ultron":
+                                    String desctextr="";
+                                    try  {
+                                        InputStream is = getActivity().getAssets().open("Rage of Ultron desc.TXT");
+                                        int size=is.available();
+                                        byte[] buffer=new byte[size];
+                                        is.read(buffer);
+                                        is.close();
+                                        desctextr=new String(buffer);
+                                    }
+                                    catch (IOException ex){
+                                        ex.printStackTrace();
+                                    }
+                                    p.setEventDesc(desctextr);
+
+                                    p.setNumberOfParticipants(3);
+                                    p.setEventIconURI(R.drawable.rage_of_ultron_ic);
+                                    break;
+
+                                case "The Search of Gauntlet":
+
+                                    String desctexttsg="";
+                                    try  {
+                                        InputStream is = getActivity().getAssets().open("The Search of Gauntlet desc.TXT");
+                                        int size=is.available();
+                                        byte[] buffer=new byte[size];
+                                        is.read(buffer);
+                                        is.close();
+                                        desctexttsg=new String(buffer);
+                                    }
+                                    catch (IOException ex){
+                                        ex.printStackTrace();
+                                    }
+                                    p.setEventDesc(desctexttsg);
+
+                                    p.setNumberOfParticipants(2);
+                                    p.setEventIconURI(R.drawable.search_of_the_gauntlet_ic);
+                                    break;
+
+                                default:
+                                    Log.d(TAG, "onDataChange: some error has occured inside switch case of database listener");
+                                    break;
+                            }
+                            notRegisteredList.add(0,p.build());
+
+                        }
+                        else{
+                           // Toasty.error(getContext(),"Failed to get event Description",Toast.LENGTH_LONG).show();
+                            Log.d(TAG, "onDataChange: Failed to get event Description" );
+                        }
+                    }
+
+                   afterFirebase();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public void afterFirebase(){
+
         LayoutInflater inflater = LayoutInflater.from(getActivity());
         alertView = inflater.inflate(R.layout.dialog_register_event, null);
         eventDescTextView = alertView.findViewById(R.id.event_desc_text_view_in_dialog);
@@ -207,41 +493,25 @@ public class FragmentEventRegistration extends Fragment {
                 new ArrayAdapter<String>(Objects.requireNonNull(getContext(),"context cannot be null here"),  android.R.layout.simple_spinner_dropdown_item,eventNamesForDropDown);
         adapter.setDropDownViewResource( android.R.layout.simple_list_item_checked);
         mSpinner.setAdapter(adapter);
-        //mSpinner.setOnItemSelectedListener(mListener);
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                // String event_name_X = unRegisteredEvents.get(i).toString();
-                String event_name_x = eventNamesForDropDown.get(i).toString();
-                numberOfParticipantsTextView.setText(map.get(event_name_x).toString());
-                ((TextView)adapterView.getChildAt(0)).setTypeface(Typeface.DEFAULT_BOLD);
-                //
-                String event_desc;
-                for(UserDataAndEventList m : mList){
+                String event_name_x = eventNamesForDropDown.get(i);
+                for(Participation m : notRegisteredList){
                     if(m.getEvent_name().equalsIgnoreCase(event_name_x)){
-                        eventDescTextView.setText(m.getEvent_description());
+                        eventDescTextView.setText(m.getEventDesc());
+                        numberOfParticipantsTextView.setText(String.valueOf(m.getNumberOfParticipants()));
                     }
                 }
-                // eventDescTextView.setText(map.get);
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
-        //TextView textView = new TextView(getContext());
-        //textView.setText("Event Registration");
-        //textView.setTypeface(Typeface.DEFAULT_BOLD);
-        //textView.setPadding(20, 30, 20, 30);
-        //textView.setTextSize(20F);
-        //textView.drawabl
-        // textView.setBackgroundColor(Color.CYAN);
-        //textView.setTextColor(getResources().getColor(R.color.contrasText));
-        //textView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_eventssvg, 0, 0, 0);
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext()).setView(alertView);
         builder.setPositiveButton("ADD", null);
         builder.setNegativeButton("CANCEL", null);
         builder.setTitle("Event Registration");
-        //builder.setCustomTitle(textView);
         builder.setIcon(R.drawable.ic_eventssvg);
         alertDialog = builder.create();
         alertDialog.show();
@@ -259,19 +529,19 @@ public class FragmentEventRegistration extends Fragment {
                 }
                 else{
                     String event_name =   mSpinner.getSelectedItem().toString();
-                int xnumberOfParticipants = Integer.valueOf(numberOfParticipantsTextView.getText().toString());
-                int count = findCheckedItems();
-                if(count == xnumberOfParticipants){
-                    //great
-                    addSelectedItemsToFirebase(event_name,xnumberOfParticipants);
-                    //map.remove(event_name);
-                    //unRegisteredEvents.remove(event_name);
-                    eventNamesForDropDown.remove(event_name);
-                    adapter.notifyDataSetChanged();
-                }
-                else{
-                    Toasty.info(getContext(), "Please select correct number of participants", Toast.LENGTH_SHORT).show();
-                }
+                    int xnumberOfParticipants = Integer.valueOf(numberOfParticipantsTextView.getText().toString());
+                    int count = findCheckedItems();
+                    if(count == xnumberOfParticipants){
+                        //great
+                        addSelectedItemsToFirebase(event_name,xnumberOfParticipants);
+
+                        eventNamesForDropDown.remove(event_name);
+                        adapter.notifyDataSetChanged();
+
+                    }
+                    else{
+                        Toasty.info(getContext(), "Please select correct number of participants", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
 
@@ -284,6 +554,9 @@ public class FragmentEventRegistration extends Fragment {
             }
         });
     }
+
+
+
     private void addSelectedItemsToFirebase(String event_name,int numberOfParticipants) {
         ArrayList<String> selectedNames = new ArrayList<>();
         Participation.Builder p = new Participation.Builder(1,event_name);
@@ -324,19 +597,21 @@ public class FragmentEventRegistration extends Fragment {
             p.setParticipant5(selectedNames.get(4));
         }
         Participation participation = p.build();
-        for(UserDataAndEventList m:mList){
-            if(event_name.equalsIgnoreCase(m.getEvent_name())){
-                registeredEventList.add(m);
-                registeredEventHashSet.add(m);
-            }
-        }
+
+       for(Participation m : notRegisteredList)
+       {
+           if(event_name.equalsIgnoreCase(m.getEvent_name())){
+               registeredList.add(m);
+           }
+       }
+
         //now store participation in database
         FirebaseDatabase.getInstance().getReference("Users").child(uuid).child("participation").child(event_name).setValue(participation).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
                     Toasty.success(getContext(),"Registered successfully",Toast.LENGTH_LONG).show();
-                    registerEventsAdapter.notifyDataSetChanged();
+                   registerEventsAdapter.notifyDataSetChanged();
                     alertDialog.dismiss();
                 }
                 else{
@@ -364,4 +639,5 @@ public class FragmentEventRegistration extends Fragment {
         }
         return count;
     }
+
 }

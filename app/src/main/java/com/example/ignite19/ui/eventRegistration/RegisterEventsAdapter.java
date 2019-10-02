@@ -18,6 +18,7 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ignite19.BuildConfig;
+import com.example.ignite19.Participation;
 import com.example.ignite19.R;
 import com.example.ignite19.UserDataAndEventList;
 
@@ -29,13 +30,14 @@ public class RegisterEventsAdapter extends RecyclerView.Adapter<RegisterEventsAd
 
 
     private Context ct;
-    private ArrayList<UserDataAndEventList> userDataAndEventLists = new ArrayList<>();
+    private ArrayList<Participation> userDataAndEventLists = new ArrayList<>();
+
 
     RegisterEventsAdapter(){
 
     }
 
-    public RegisterEventsAdapter(Context ct, ArrayList<UserDataAndEventList> userDataAndEventLists) {
+    public RegisterEventsAdapter(Context ct, ArrayList<Participation> userDataAndEventLists) {
         this.ct = ct;
         this.userDataAndEventLists = userDataAndEventLists;
     }
@@ -50,7 +52,7 @@ public class RegisterEventsAdapter extends RecyclerView.Adapter<RegisterEventsAd
 
     @Override
     public void onBindViewHolder(@NonNull MyOwnHolder holder, final int position) {
-        holder.event_image.setImageResource(userDataAndEventLists.get(position).getEvent_icon_uri());
+        holder.event_image.setImageResource(userDataAndEventLists.get(position).getEventIconUri());
         holder.event_name.setText(userDataAndEventLists.get(position).getEvent_name());
         holder.mCardVIew.setOnClickListener(new View.OnClickListener() {
             @Override
