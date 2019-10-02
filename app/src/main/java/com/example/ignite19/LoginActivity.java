@@ -4,19 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
@@ -78,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
          getSupportActionBar().hide();
-            loader=findViewById(R.id.gif);
+            loader=findViewById(R.id.gif1);
         loader.setVisibility(View.INVISIBLE);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
@@ -113,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
 
-            loader = findViewById(R.id.gif);
+            loader = findViewById(R.id.gif1);
            Glide.with(getApplicationContext()).load(R.drawable.loader).transform(new CircleCrop()).into(loader);
 
            loader.setVisibility(View.INVISIBLE);
@@ -195,7 +192,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(adminIntent);
         }
         else{
-            Intent userIntent = new Intent(LoginActivity.this,MainActivity.class);
+            Intent userIntent = new Intent(LoginActivity.this,splash.class);
             userIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             userIntent.putExtra("UUID",user.getUid());
             userIntent.putExtra("userName",user.getDisplayName());
