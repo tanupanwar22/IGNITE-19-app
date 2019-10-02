@@ -31,10 +31,10 @@
     <color name="ignitePrimary">#FFB9182D</color>
     <color name="ignitePrimaryLight">#C63143</color>
     <color name="ignitePrimaryDark">#9E0819</color>
-    <color name="igniteSecondaryLight">#847379</color>
+    <color name="igniteSecondaryLight">#5D5052</color>
     <color name="igniteSecondaryDark">#3E3638</color>
     <color name="igniteSecondary">#5D5052</color>
-     <color name="colorAccent">#AED581</color>
+     <color name="colorAccent">#4CAF50</color>
     <color name="materialGreen">#4CAF50</color>
      <color name="transparentGray">#B31E88E5</color>
       <color name="lightgray">#ededed</color>
