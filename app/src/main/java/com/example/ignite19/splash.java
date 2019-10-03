@@ -3,12 +3,9 @@ package com.example.ignite19;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -23,17 +20,7 @@ String s1,s2,s3,s4;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        getSupportActionBar().hide();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-                    WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        }
-
-
-
-
-        loader1=findViewById(R.id.gif1);
+        loader1=findViewById(R.id.gif2);
         loader1.setVisibility(View.INVISIBLE);
         Intent intent1=getIntent();
         s1=intent1.getStringExtra("UUID");
@@ -41,8 +28,8 @@ String s1,s2,s3,s4;
         s3=intent1.getStringExtra("title");
         s4=intent1.getStringExtra("content");
 
-        loader1 = findViewById(R.id.gif1);
-        Glide.with(getApplicationContext()).load(R.drawable.loader1).transform(new CircleCrop()).into(loader1);
+        loader1 = findViewById(R.id.gif2);
+        Glide.with(getApplicationContext()).load(R.drawable.flameloader).transform(new CircleCrop()).into(loader1);
 
         loader1.setVisibility(View.INVISIBLE);
         loader1.setVisibility(View.VISIBLE);
