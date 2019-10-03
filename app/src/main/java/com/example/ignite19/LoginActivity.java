@@ -16,6 +16,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -50,8 +51,8 @@ public class LoginActivity extends AppCompatActivity {
     private final String TAG = "ALPHA";
     NoInternetDialog noInternetDialog;
 
-    String firebaseNotificationTitle;
-    String firebaseNotificationContent;
+    String fcmTitle;
+    String fcmText,fcmVenue,fcmGeoLocation,fcmEventName,fcmLatitude,fcmLongitude;
 
     @Override
     public void onStart() {
@@ -104,6 +105,8 @@ public class LoginActivity extends AppCompatActivity {
                 public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                     if (actionId == EditorInfo.IME_ACTION_DONE) {
                         signin.performClick();
+                        InputMethodManager imm = (InputMethodManager) v.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
                         return true;
                     }
                     return false;
@@ -176,9 +179,19 @@ public class LoginActivity extends AppCompatActivity {
     private void updateUI(FirebaseUser user) {
         int pos = Objects.requireNonNull(user.getEmail()).indexOf("@");
         String displayName = user.getEmail().substring(0 , pos);
-        firebaseNotificationContent = (String)LoginActivity.this.getIntent().getStringExtra("text");
-        firebaseNotificationTitle = (String)LoginActivity.this.getIntent().getStringExtra("title");
-        Log.d(TAG, "updateUI: sierra"  + firebaseNotificationTitle + firebaseNotificationContent);
+        Intent intent = getIntent();
+        if(getIntent() != null){
+            fcmTitle = intent.getStringExtra("mTitle");
+            fcmText = intent.getStringExtra("mText");
+            fcmEventName = intent.getStringExtra("mEventName");
+            fcmVenue = intent.getStringExtra("mEventVenue");
+            fcmLatitude =  intent.getStringExtra("mLatitude");
+            fcmLongitude =  intent.getStringExtra("mLongitude");
+        }
+
+        Log.d(TAG, "loginActivity " + fcmTitle + fcmText + fcmEventName + fcmLongitude + fcmLatitude);
+        //fcmGeoLocation = (String)LoginActivity.this.getIntent().getStringExtra("mEventGeoLocation");
+
         if(displayName.equalsIgnoreCase("ADMIN")){
             Intent adminIntent = new Intent(LoginActivity.this, AdminHomeAcitivity.class);
             adminIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -188,12 +201,17 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(adminIntent);
         }
         else{
-            Intent userIntent = new Intent(LoginActivity.this,splash.class);
+           Intent userIntent = new Intent(LoginActivity.this,splash.class);
+            //Intent userIntent = new Intent(LoginActivity.this,MainActivity.class);
             userIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             userIntent.putExtra("UUID",user.getUid());
             userIntent.putExtra("userName",user.getDisplayName());
-            userIntent.putExtra("title",firebaseNotificationTitle);
-            userIntent.putExtra("content",firebaseNotificationContent);
+            userIntent.putExtra("mTitle",fcmTitle);
+            userIntent.putExtra("mText",fcmText);
+            userIntent.putExtra("mEventName",fcmEventName);
+            userIntent.putExtra("mEventVenue",fcmVenue);
+            userIntent.putExtra("mLongitude",fcmLongitude);
+            userIntent.putExtra("mLatitude",fcmLatitude);
             startActivity(userIntent);
         }
     }

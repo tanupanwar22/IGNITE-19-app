@@ -52,7 +52,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.My
     @Override
     public void onBindViewHolder(@NonNull MyOwnHolder holder, final int position) {
         holder.eventListVenue.setText(mEventList.get(position).getEvent_venue());
-        setAnimation(holder.itemView,position);
+        //setAnimation(holder.itemView,position);
         holder.eventListImage.setImageResource(mEventList.get(position).getEvent_image_uri());
         holder.mEventName.setText(mEventList.get(position).getEvent_name());
         holder.eventDateTime.setText(DateTimeConverter.changeDateFormat(mEventList.get(position).getEvent_date()));
@@ -101,7 +101,7 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.My
     @Override
     public void onViewDetachedFromWindow(@NonNull MyOwnHolder holder) {
         super.onViewDetachedFromWindow(holder);
-        holder.clearAnimation();
+        //holder.clearAnimation();
     }
 
     private void setAnimation(View viewToAnimate, int position)
@@ -138,8 +138,5 @@ public class EventsListAdapter extends RecyclerView.Adapter<EventsListAdapter.My
         }
 
 
-        public void clearAnimation() {
-            itemView.clearAnimation();
-        }
     }
 }

@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -62,22 +63,17 @@ public class FragmentEvents extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
     }
+
+
+
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-
-        if(savedInstanceState != null){
-            eventsArrayList = savedInstanceState.getParcelableArrayList("mList");
-        }
-        else{
             eventsArrayList = dataCommunication.getAllEventList();
-        }
-
 
         v = inflater.inflate(R.layout.fragment_events, container, false);
         recyclerView = (RecyclerView)v.findViewById(R.id.events_tabx);

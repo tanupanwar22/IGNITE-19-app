@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -20,6 +21,9 @@ String s1,s2,s3,s4;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+        getSupportActionBar().hide();
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+                WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
         loader1=findViewById(R.id.gif2);
         loader1.setVisibility(View.INVISIBLE);
         Intent intent1=getIntent();
