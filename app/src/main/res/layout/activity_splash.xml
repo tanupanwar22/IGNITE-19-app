@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".splash">
 
 
@@ -17,7 +18,7 @@
 
 
     <ImageView
-        android:id="@+id/gif1"
+        android:id="@+id/gif2"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_marginBottom="24dp"
@@ -26,6 +27,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/loader1" />
+        app:srcCompat="@drawable/flameloader" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
