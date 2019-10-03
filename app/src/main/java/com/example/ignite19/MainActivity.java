@@ -7,24 +7,28 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.AudioAttributes;
 import android.media.RingtoneManager;
+import android.app.AlertDialog;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.example.ignite19.ui.notificationModule.NotifyWorker;
 import com.example.ignite19.ui.schedule.eventSchedule;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -32,6 +36,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -67,8 +74,18 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
     private String displayName;
     private  boolean FLAG1 = false;
     private boolean FLAG2 = false;
-    String firebaseNotificationTitle;
-    String firebaseNotificationContent;
+    String fcmTitle;
+    String fcmText;
+    String fcmVenue;
+    String fcmEventName;
+   // String fcmGeoLocation;
+    String fcmLatitude;
+    String fcmLongitude;
+    AlertDialog alertDialog;
+
+
+    TextView fcmTitleTextView,fcmTextTextView,fcmEventNameTextView,fcmEventVenueTextView,fcmEventParticipantsTextView;
+
 
     private ArrayList<String > registeredEventNames = new ArrayList<>();
     private ArrayList<String > unRegisteredEventNames = new ArrayList<>();
@@ -92,15 +109,14 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
         userEventListBuilder.clear();
         registeredEventNames.clear();
         unRegisteredEventNames.clear();
-        Intent intent = getIntent();
-        uuid = intent.getStringExtra("UUID");
-        displayName = intent.getStringExtra("userName");
+
+      //  fcmGeoLocation = intent.getStringExtra("mEventGeoLocation");
         referenceToEventDesc.addValueEventListener(eventDescEventListener);
         referenceToUserParticipation = FirebaseDatabase.getInstance().getReference("Users").child(uuid).child("participation");
         referenceToUserParticipation.addValueEventListener(participationListener);
         //load user college name is navigation header
         new someBackgroundTask().execute();
-
+        Log.d("FCMToken", "token "+ FirebaseInstanceId.getInstance().getToken());
 
 
         //background calculation thread
@@ -129,18 +145,44 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
         View hView = navigationView.getHeaderView(0);
         userNameHeaderTextView = hView.findViewById(R.id.user_name_header);
 
+
+
+        Intent intent = getIntent();
+        uuid = intent.getStringExtra("UUID");
+        displayName = intent.getStringExtra("userName");
+        fcmTitle = intent.getStringExtra("mTitle");
+        fcmText = intent.getStringExtra("mText");
+        fcmEventName = intent.getStringExtra("mEventName");
+        fcmVenue = intent.getStringExtra("mEventVenue");
+        fcmLatitude = intent.getStringExtra("mLatitude");
+        fcmLongitude = intent.getStringExtra("mLongitude");
+        Log.d(TAG, "onCreate: before psspss" + fcmTitle + fcmText + fcmEventName + fcmLongitude + fcmLatitude);
+        Log.d(TAG, "onCreate: " + " before psspss");
+        if(fcmTitle!=null){
+            Log.d(TAG, "onCreate: " + " inside psspss");
+            createAlertDialogForFirebaseNotification();
+        }
+
+        //firebase messageing token
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+                String token = instanceIdResult.getToken();
+                // send it to server
+                int oneTimeID = (int) SystemClock.uptimeMillis();
+                FirebaseDatabase.getInstance().getReference("Tokens").child(uuid).child(String.valueOf(oneTimeID)).setValue(token);
+
+            }
+        });
+        //store this token in firebase with uuid as key
+
+
         // Intent intent = getIntent();
         //uuid = intent.getStringExtra("UUID");
         //displayName = intent.getStringExtra("userName");
         //referenceToUserParticipation = FirebaseDatabase.getInstance().getReference("Users").child(uuid).child("participation");
         //referenceToUserParticipation.addValueEventListener(participationListener);
-        Intent intent = getIntent();
-         firebaseNotificationTitle = intent.getStringExtra("title");
-        firebaseNotificationContent = intent.getStringExtra("content");
-        Log.d(TAG, "onCreate: wiggle" + firebaseNotificationTitle + "          \n" +firebaseNotificationContent);
-        if(firebaseNotificationTitle!=null){
-            createAlertDialogForNotificationContent(firebaseNotificationTitle,firebaseNotificationContent);
-        }
+
 
 
         createNotificationChannel();
@@ -162,7 +204,7 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
 
     }
 
-    private void createAlertDialogForNotificationContent(String firebaseNotificationTitle, String firebaseNotificationContent) {
+  /*  private void createAlertDialogForNotificationContent(String firebaseNotificationTitle, String firebaseNotificationContent) {
         final AlertDialog.Builder mBuilder = new AlertDialog.Builder(this);
         mBuilder.setTitle(firebaseNotificationTitle);
         mBuilder.setIcon(R.drawable.ic_notification);
@@ -177,13 +219,7 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
 
         AlertDialog m1 = mBuilder.create();
         m1.show();
-    }
-
-    String inaug,post,work,datp,codp,relay,debug,scatte,agomotto,death,codeprob,brain,bid,nexus,game,treasure,datafinal,codefinal,codeathon,algo,non,cult,stress,award;
-
-
-
-
+    }*/
 
     private void createNotificationChannel() {
         final Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
@@ -814,4 +850,135 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
             super.onPostExecute(s);
         }
     }
+
+
+
+
+    private void createAlertDialogForFirebaseNotification() {
+        LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
+        final View alertView;
+        alertView = inflater.inflate(R.layout.fcm_alert_dialog, null);
+        fcmTextTextView = alertView.findViewById(R.id.fcm_title);
+        fcmTitleTextView = alertView.findViewById(R.id.fcm_text);
+        fcmEventNameTextView = alertView.findViewById(R.id.fcm_event_name);
+        fcmEventVenueTextView = alertView.findViewById(R.id.fcm_event_venue);
+        fcmEventParticipantsTextView = alertView.findViewById(R.id.fcm_participants);
+        fcmTitleTextView.setText(fcmTitle);
+        fcmTextTextView.setText(fcmText);
+        fcmEventNameTextView.setText(fcmEventName);
+        fcmEventVenueTextView.setText(fcmVenue);
+        Log.d(TAG, "createAlertDialogForFirebaseNotification: " + "psspss" + fcmEventName + " " + fcmTitle + " " + fcmText + " " + fcmLatitude + fcmLongitude);
+
+
+
+
+        //for fcm participants
+        FirebaseDatabase.getInstance().getReference("Users").child(uuid).child("participation").child(fcmEventName).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Participation p = dataSnapshot.getValue(Participation.class);
+                if(p != null){
+                    if(p.getParticipation() == 0){
+                        //user have not registered for that event
+                    }
+                    else{
+                        String p1 = null,p2 = null ,p3 = null ,p4 = null,p5= null;
+                        if(p.getParticipant1() != null){
+                            p1 = p.getParticipant1();
+                        }
+                        if(p.getParticipant2() != null){
+                            p2 =  p.getParticipant2();
+                        }
+                        if(p.getParticipant3() != null){
+                            p3 = p.getParticipant3();
+                        }
+                        if(p.getParticipant4() != null){
+                            p4 = p.getParticipant4();
+                        }
+                        if(p.getParticipant5() != null){
+                            p5 = p.getParticipant5();
+                        }
+
+                        if(p1 !=null && p2!=null && p3 != null && p4 != null && p5!=null){
+                            String x1 = p1 + "\n" + p2 + "\n" + p3 + "\n" + p4 + "\n" + p5;
+                            fcmEventParticipantsTextView.setText(x1);
+
+                        }
+                        else if(p1 !=null && p2!=null && p3 != null && p4 != null ){
+                            String x2 = p1 + "\n" + p2 + "\n" + p3 + "\n" + p4;
+                            fcmEventParticipantsTextView.setText(x2);
+                        }
+                        else if(p1 !=null && p2!=null && p3 != null ){
+                            String x3 = p1 + "\n" + p2 + "\n" + p3 ;
+                            fcmEventParticipantsTextView.setText(x3);
+                        }
+                        else if(p1 !=null && p2!=null ){
+                            String x4 = p1 + "\n " + p2;
+                            fcmEventParticipantsTextView.setText(x4);
+                        }
+                        else if(p1 !=null){
+                            fcmEventParticipantsTextView.setText(p1);
+                        }
+                }
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+        // AlertDialog builder = new AlertDialog.Builder(getApplicationContext()).setView(alertView);
+   AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this).setView(alertView);
+        builder.setPositiveButton("OK", null);
+        builder.setNegativeButton("CANCEL", null);
+        builder.setNeutralButton("DIRECTIONS",null);
+        builder.setTitle("Notification");
+        builder.setIcon(R.drawable.ic_notification);
+
+        //final AlertDialog dialog = builder.create();
+        alertDialog = builder.create();
+        alertDialog.show();
+        Button positive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        Button negative = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+        Button neutral = alertDialog.getButton(AlertDialog.BUTTON_NEUTRAL);
+        neutral.setTextColor(getResources().getColor(R.color.materialGreen));
+        positive.setTextColor(getResources().getColor(R.color.materialGreen));
+        negative.setTextColor(getResources().getColor(R.color.materialGreen));
+
+        positive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.dismiss();
+            }
+        });
+
+        negative.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                alertDialog.cancel();
+            }
+        });
+
+        neutral.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String myUri = String.format ("geo:%f,%f?q=%f,%f(%s)",Double.valueOf(fcmLatitude),Double.valueOf(fcmLongitude),Double.valueOf(fcmLatitude),Double.valueOf(fcmLongitude),"Mylocation");
+                Uri gmmIntentUri = Uri.parse(myUri);
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                if (mapIntent.resolveActivity(getApplicationContext().getPackageManager()) != null) {
+                    startActivity(mapIntent);
+                }
+                alertDialog.dismiss();
+            }
+        });
+
+    }
+
 }

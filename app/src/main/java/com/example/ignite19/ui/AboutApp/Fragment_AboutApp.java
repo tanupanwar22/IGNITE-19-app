@@ -43,13 +43,13 @@ public class Fragment_AboutApp extends Fragment {
                 Navigation.findNavController(view).navigate(R.id.action_nav_about_app_to_fragmentOurTeam);
             }
         });
-        TextView tv=root.findViewById(R.id.ourTeam);
-        tv.setOnClickListener(new View.OnClickListener() {
+       // TextView tv=root.findViewById(R.id.ourTeam);
+        /*tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(root.getContext(),ourTeam.class));
             }
-        });
+        });*/
 
         return root;
     }

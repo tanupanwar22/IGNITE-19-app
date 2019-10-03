@@ -508,6 +508,7 @@ public class FragmentEventRegistration extends Fragment {
             public void onNothingSelected(AdapterView<?> adapterView) {
             }
         });
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext()).setView(alertView);
         builder.setPositiveButton("ADD", null);
         builder.setNegativeButton("CANCEL", null);
