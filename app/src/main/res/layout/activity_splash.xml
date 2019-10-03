@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@drawable/bgg"
     tools:context=".splash">
 
 
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:layout_marginTop="250dp"
-        android:src="@drawable/spl"
+        android:src="@drawable/spl2"
         />
 
 
