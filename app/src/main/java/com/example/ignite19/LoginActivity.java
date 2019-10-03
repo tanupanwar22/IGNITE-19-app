@@ -201,8 +201,8 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(adminIntent);
         }
         else{
-           // Intent userIntent = new Intent(LoginActivity.this,splash.class);
-            Intent userIntent = new Intent(LoginActivity.this,MainActivity.class);
+           Intent userIntent = new Intent(LoginActivity.this,splash.class);
+            //Intent userIntent = new Intent(LoginActivity.this,MainActivity.class);
             userIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             userIntent.putExtra("UUID",user.getUid());
             userIntent.putExtra("userName",user.getDisplayName());
