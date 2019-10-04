@@ -28,7 +28,9 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import com.example.ignite19.ui.notificationModule.NotifyWorker;
 import com.example.ignite19.ui.schedule.eventSchedule;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -38,6 +40,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
@@ -162,6 +165,20 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
             Log.d(TAG, "onCreate: " + " inside psspss");
             createAlertDialogForFirebaseNotification();
         }
+
+        //subscribe to topic
+        FirebaseMessaging.getInstance().subscribeToTopic("asmanjas")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        String msg = "succesfully subscribed";
+                        if (!task.isSuccessful()) {
+                            msg = "subscription failed";
+                        }
+                        Log.d(TAG, msg);
+                        Toasty.info(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+                    }
+                });
 
         //firebase messageing token
         FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {

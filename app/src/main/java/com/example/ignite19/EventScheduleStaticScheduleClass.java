@@ -55,12 +55,9 @@ public class EventScheduleStaticScheduleClass {
         day2CompleteSchedule.add(new eventSchedule("02:00 pm","Non-Technical","Finale","LHC-C Seminar Hall","Sunday","13"));
         day2CompleteSchedule.add(new eventSchedule("04:00 pm","Cultural","Cultural","LHC-C Seminar Hall","Sunday","13"));
         day2CompleteSchedule.add(new eventSchedule("05:30 pm","Snacks","Snacks","LHC-C Seminar Hall","Sunday","13"));
-
         day2CompleteSchedule.add(new eventSchedule("04:30 pm","Non-Technical","Cultural Fest","LHC-C Seminar Hall","Sunday","13"));
         day2CompleteSchedule.add(new eventSchedule("06:00 pm","Non-Technical","End Game","LHC-C Seminar Hall","Sunday","13"));
-        
         day2CompleteSchedule.add(new eventSchedule("07:00 pm","Closing","Award Ceremony","LHC-C Seminar Hall","Sunday","13"));
-
         day2CompleteSchedule.add(new eventSchedule("08:30 pm","Meal","Dinner","Trishul Block Mess","Sunday","13"));
         return day2CompleteSchedule;
     }
