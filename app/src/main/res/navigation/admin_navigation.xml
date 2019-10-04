@@ -38,6 +38,13 @@
             app:exitAnim="@anim/exit_to_left"
             app:popEnterAnim="@anim/enter_from_left"
             app:popExitAnim="@anim/exit_to_right" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_sendNotification"
+            app:destination="@id/sendNotification"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
     </fragment>
     <fragment
         android:id="@+id/adminUpdateLeaderBoard"
@@ -113,4 +120,9 @@
         android:name="com.example.ignite19.FragmentOurTeam"
         android:label="fragment_our_team"
         tools:layout="@layout/fragment_our_team" />
+    <fragment
+        android:id="@+id/sendNotification"
+        android:name="com.example.ignite19.Admin.SendNotification.SendNotification"
+        android:label="fragment_send_notification"
+        tools:layout="@layout/fragment_send_notification" />
 </navigation>

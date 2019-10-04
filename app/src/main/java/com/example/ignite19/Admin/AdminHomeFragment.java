@@ -19,16 +19,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.ignite19.Admin.AdminAddTeam.AdminRegisterTeam;
 import com.example.ignite19.DataCommunication;
 import com.example.ignite19.LoginActivity;
+import com.example.ignite19.MainActivity;
 import com.example.ignite19.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import es.dmoral.toasty.Toasty;
 
@@ -40,10 +44,11 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 public class AdminHomeFragment extends Fragment implements View.OnClickListener {
 
 
-    private CardView addTeamButton,updateLeaderBoardButton,updateEventTimingButton,signout,seeParticipantsButton;
+    private CardView addTeamButton,updateLeaderBoardButton,updateEventTimingButton,seeParticipantsButton,sendNotificationButton;
     AdminDataCommunication dataCommunication;
     ArrayList<String > eventList = new ArrayList<>();
-    LottieAnimationView adminUpdateLeaderBoard,adminCreateTeam,adminUpdateEventTiming,adminSeeParticipants;
+    LottieAnimationView adminUpdateLeaderBoard,adminCreateTeam,adminUpdateEventTiming,adminSeeParticipants,adminSendNotification;
+    ArrayList<String > selectedNames = new ArrayList<>();
 
 
 
@@ -69,7 +74,13 @@ public class AdminHomeFragment extends Fragment implements View.OnClickListener 
         addTeamButton = view.findViewById(R.id.button_admin_add_team);
         updateLeaderBoardButton = view.findViewById(R.id.button_admin_update_leaderboard);
         seeParticipantsButton = view.findViewById(R.id.see_participants_btn);
+
         seeParticipantsButton.setOnClickListener(this);
+
+        sendNotificationButton = view.findViewById(R.id.btn_admin_send_notification);
+        adminSendNotification = view.findViewById(R.id.loader_admin_xx);
+
+        sendNotificationButton.setOnClickListener(this);
 
         updateEventTimingButton = view.findViewById(R.id.button_admin_update_event_timing);
         addTeamButton.setOnClickListener(this);
@@ -87,6 +98,8 @@ public class AdminHomeFragment extends Fragment implements View.OnClickListener 
         adminUpdateLeaderBoard.setAnimation("loader.json");
         adminUpdateEventTiming.setAnimation("loader.json");
 
+        adminSendNotification.setAnimation("loader.json");
+        adminSendNotification.playAnimation();
 
         adminSeeParticipants.playAnimation();
         adminUpdateLeaderBoard.playAnimation();
@@ -118,6 +131,12 @@ public class AdminHomeFragment extends Fragment implements View.OnClickListener 
                         adminUpdateLeaderBoard.setImageResource(R.drawable.ic_check);
 
 
+                    }
+                });
+                adminSendNotification.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        adminSendNotification.setImageResource(R.drawable.ic_check);
                     }
                 });
 
@@ -258,6 +277,97 @@ public class AdminHomeFragment extends Fragment implements View.OnClickListener 
                     Toasty.info(getContext(),"list empty,wait for data to load",Toast.LENGTH_LONG).show();
                 }
                 break;
+
+
+            case R.id.btn_admin_send_notification:
+                final ArrayList<String> college_names = dataCommunication.getCollegeNames();
+
+
+
+                if(eventList.size() != 0) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    String[] collegeNames = new String[college_names.size()];
+                    final boolean[] checkedCollegeNames = new boolean[college_names.size()];
+                    for(int i = 0 ; i < college_names.size();++i){
+                        collegeNames[i]  = college_names.get(i);
+                        checkedCollegeNames[i] = false;
+                    }
+                    builder.setMultiChoiceItems(collegeNames, checkedCollegeNames, new DialogInterface.OnMultiChoiceClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+
+                            // Update the current focused item's checked status
+                             checkedCollegeNames[which] = isChecked;
+
+                            // Get the current focused item
+                            String currentItem = college_names.get(which);
+                        }
+                    });
+
+                    // Specify the dialog is not cancelable
+                    builder.setCancelable(false);
+
+                    // Set a title for alert dialog
+                    builder.setTitle("Select Institutes");
+                    builder.setIcon(R.drawable.ic_notification);
+
+                    // Set the positive/yes button click listener
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Do something when click positive button
+                            //  tv.setText("Your preferred colors..... \n");
+                            selectedNames.clear();
+                          for (int i = 0; i < checkedCollegeNames.length; i++) {
+                                boolean checked = checkedCollegeNames[i];
+                                if (checked) {
+                                    //  tv.setText(tv.getText() + colorsList.get(i) + "\n");
+                                    selectedNames.add(college_names.get(i));
+                                }
+                            }
+                          //lets go to next fragment with data
+                            Bundle bundle = new Bundle();
+                            bundle.putStringArrayList("college_names",selectedNames);
+                            Toasty.info(getContext(),selectedNames.size() + " Institutes selected",Toasty.LENGTH_LONG ).show();
+                            Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_sendNotification,bundle);
+                        }
+                    });
+
+                    // Set the negative/no button click listener
+                    builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Do something when click the negative button
+
+                        }
+                    });
+
+                    // Set the neutral/cancel button click listener
+                    builder.setNeutralButton("select All", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Do something when click the neutral button
+                            Toasty.info(getContext(),"All Institutes selected " , Toasty.LENGTH_LONG).show();
+                            selectedNames = college_names;
+                            Bundle bundle2 = new Bundle();
+                            bundle2.putStringArrayList("college_names",college_names);
+                            Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_sendNotification,bundle2);
+
+
+                        }
+                    });
+
+                    AlertDialog dialog = builder.create();
+                    // Display the alert dialog on interface
+                    dialog.show();
+                  }
+   //     });
+    //}
+                else{
+                    Toasty.info(getContext(),"list empty,wait for data to load",Toast.LENGTH_LONG).show();
+                }
+                break;
+
 
             default:
                 break;
