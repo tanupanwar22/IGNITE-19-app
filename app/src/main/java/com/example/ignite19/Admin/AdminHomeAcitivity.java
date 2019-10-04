@@ -46,12 +46,13 @@ public class AdminHomeAcitivity extends AppCompatActivity implements AdminDataCo
     private ArrayList<eventSchedule> day1CompleteSchedule = new ArrayList<>();
     private ArrayList<eventSchedule> day2CompleteSchedule = new ArrayList<>();
     private HashMap<String ,String> eventWithDateTime = new HashMap<>();
+    private HashMap<String,String> uuidList = new HashMap<>();
     Boolean flag1Status = false,flag2Status = false;
 
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home_acitivity);
         getSupportActionBar().setTitle("Admin Panel");
@@ -77,9 +78,13 @@ public class AdminHomeAcitivity extends AppCompatActivity implements AdminDataCo
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
               for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                  String uuid = snapshot.getKey();
+                  Log.d("milk", "onDataChange: uuid of collges" + uuid);
                   UserDetail userDetail = snapshot.getValue(UserDetail.class);
                   String college_name = userDetail.getCollege_name();
                   collegeNames.add(college_name);
+                  String topicNameForCollegeName = college_name.replaceAll(" ","_").toLowerCase();
+                  uuidList.put(topicNameForCollegeName,uuid);
               }
               flag1Status = true;
             }
@@ -123,6 +128,11 @@ public class AdminHomeAcitivity extends AppCompatActivity implements AdminDataCo
     @Override
     public HashMap<String, String> getEventWithDateAndTime() {
         return eventWithDateTime;
+    }
+
+    @Override
+    public HashMap<String,String> getAllUUIDs() {
+        return uuidList;
     }
 
     @Override

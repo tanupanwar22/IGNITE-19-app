@@ -38,9 +38,7 @@
             app:exitAnim="@anim/exit_to_left"
             app:popEnterAnim="@anim/enter_from_left"
             app:popExitAnim="@anim/exit_to_right" />
-        <action
-            android:id="@+id/action_nav_home_to_seeParticipants"
-            app:destination="@id/seeParticipants" />
+
         <action
             android:id="@+id/action_nav_home_to_seeParticipantsUser2"
             app:destination="@id/seeParticipantsUser2"
@@ -58,6 +56,13 @@
         <action
             android:id="@+id/action_nav_home_to_nav_about_app"
             app:destination="@id/nav_about_app" />
+        <action
+            android:id="@+id/action_nav_home_to_notificationsUser"
+            app:destination="@id/notificationsUser"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
     </fragment>
 
     <fragment
@@ -164,11 +169,7 @@
             app:popEnterAnim="@anim/enter_from_left"
             app:popExitAnim="@anim/exit_to_right" />
     </fragment>
-    <fragment
-        android:id="@+id/seeParticipants"
-        android:name="com.example.ignite19.ui.SeeParticipants.SeeParticipants"
 
-        tools:layout="@layout/fragment_see_participants" />
     <fragment
         android:id="@+id/eventResultsUser"
         android:name="com.example.ignite19.ui.LeaderBoard.EventResultsUser"
@@ -189,4 +190,9 @@
         android:name="com.example.ignite19.FragmentOurTeam"
         android:label="Our team"
         tools:layout="@layout/fragment_our_team" />
+    <fragment
+        android:id="@+id/notificationsUser"
+        android:name="com.example.ignite19.ui.Notifications.NotificationsUser"
+        android:label="Notifications"
+        tools:layout="@layout/fragment_notifications_user" />
 </navigation>

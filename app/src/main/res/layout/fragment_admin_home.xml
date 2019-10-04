@@ -268,44 +268,57 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/btn_admin_send_notification"
                     android:layout_width="160dp"
                     android:layout_height="190dp"
                     android:layout_margin="10dp"
                     android:clickable="true"
-                    android:foreground="?android:attr/selectableItemBackground"
-                    android:visibility="invisible">
+                    android:foreground="?android:attr/selectableItemBackground">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:background="@color/igniteSecondaryLight"
                         android:gravity="center"
                         android:orientation="vertical">
+
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:id="@+id/loader_admin_xx"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="right"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginRight="4dp"
+                            app:lottie_loop="true"></com.airbnb.lottie.LottieAnimationView>
 
                         <ImageView
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:padding="10dp" />
+                            android:padding="10dp"
+                            android:src="@drawable/ic_notification" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="Links"
+                            android:text="Send Notification"
+                            android:textColor="@color/contrasText"
                             android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:padding="5dp"
-                            android:text="Check your bank activities"
-                            android:textColor="@android:color/darker_gray" />
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_margin="10dp"
                             android:background="@color/lightgray" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:padding="5dp"
+                            android:text="Send Notifications to teams"
+
+                            android:textColor="@color/contrasText" />
 
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>

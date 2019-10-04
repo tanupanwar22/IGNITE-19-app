@@ -114,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
             });
 
             loader = findViewById(R.id.gif1);
-           Glide.with(getApplicationContext()).load(R.drawable.loader).transform(new CircleCrop()).into(loader);
+          // Glide.with(getApplicationContext()).load(R.drawable.loader).transform(new CircleCrop()).into(loader);
 
            loader.setVisibility(View.INVISIBLE);
 

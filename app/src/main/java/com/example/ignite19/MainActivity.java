@@ -15,6 +15,8 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -22,10 +24,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import com.example.ignite19.ui.Notifications.NotificationPOJO;
 import com.example.ignite19.ui.notificationModule.NotifyWorker;
 import com.example.ignite19.ui.schedule.eventSchedule;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -37,6 +44,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
@@ -148,8 +156,6 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
         View hView = navigationView.getHeaderView(0);
         userNameHeaderTextView = hView.findViewById(R.id.user_name_header);
 
-
-
         Intent intent = getIntent();
         uuid = intent.getStringExtra("UUID");
         displayName = intent.getStringExtra("userName");
@@ -166,32 +172,24 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
             createAlertDialogForFirebaseNotification();
         }
 
-        //subscribe to topic
-        FirebaseMessaging.getInstance().subscribeToTopic("asmanjas")
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        String msg = "succesfully subscribed";
-                        if (!task.isSuccessful()) {
-                            msg = "subscription failed";
-                        }
-                        Log.d(TAG, msg);
-                        Toasty.info(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
-                    }
-                });
+        //creating dummy notificATION TO READ FROM
+        NotificationPOJO pojo = new NotificationPOJO("asmanjas","this is body of the message",ServerValue.TIMESTAMP);
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Notifications");
+        String key = databaseReference.push().getKey();
+       databaseReference.child(key).setValue(pojo);
 
-        //firebase messageing token
-        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(new OnSuccessListener<InstanceIdResult>() {
-            @Override
-            public void onSuccess(InstanceIdResult instanceIdResult) {
-                String token = instanceIdResult.getToken();
-                // send it to server
-                int oneTimeID = (int) SystemClock.uptimeMillis();
-                FirebaseDatabase.getInstance().getReference("Tokens").child(uuid).child(String.valueOf(oneTimeID)).setValue(token);
 
-            }
-        });
-        //store this token in firebase with uuid as key
+
+
+
+
+
+
+
+
+
+
+
 
 
         // Intent intent = getIntent();
@@ -279,7 +277,19 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                 || super.onSupportNavigateUp();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        return NavigationUI.onNavDestinationSelected(item, navController)
+                || super.onOptionsItemSelected(item);
+    }
 
     @Override
     public ArrayList<eventSchedule> getDay0CompleteSchedule() {
@@ -851,6 +861,21 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                     userNameHeaderTextView.startAnimation(MyAnimations.in(1000));
                     if(userDetail !=null) {
                         userNameHeaderTextView.setText(userDetail.getCollege_name());
+
+                        //subscribe to topic
+                        String college_name = userDetail.getCollege_name();
+                        String topicNameForCollege = college_name.replaceAll(" ","_").toLowerCase();
+                        FirebaseMessaging.getInstance().subscribeToTopic(topicNameForCollege)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        String msg = "succesfully subscribed";
+                                        if (!task.isSuccessful()) {
+                                            msg = "subscription failed";
+                                        }
+                                        Log.d(TAG, msg);
+                                    }
+                                });
                     }
                 }
 
