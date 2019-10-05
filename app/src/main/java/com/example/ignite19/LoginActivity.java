@@ -50,9 +50,7 @@ public class LoginActivity extends AppCompatActivity {
     private LinearLayout linearLayout;
     private final String TAG = "ALPHA";
     NoInternetDialog noInternetDialog;
-
-    String fcmTitle;
-    String fcmText,fcmVenue,fcmGeoLocation,fcmEventName,fcmLatitude,fcmLongitude;
+    String fcmFLAG;
 
     @Override
     public void onStart() {
@@ -190,16 +188,8 @@ public class LoginActivity extends AppCompatActivity {
         String displayName = user.getEmail().substring(0 , pos);
         Intent intent = getIntent();
         if(getIntent() != null){
-            fcmTitle = intent.getStringExtra("mTitle");
-            fcmText = intent.getStringExtra("mText");
-            fcmEventName = intent.getStringExtra("mEventName");
-            fcmVenue = intent.getStringExtra("mEventVenue");
-            fcmLatitude =  intent.getStringExtra("mLatitude");
-            fcmLongitude =  intent.getStringExtra("mLongitude");
+            fcmFLAG = intent.getStringExtra("mFlag");
         }
-
-        Log.d(TAG, "loginActivity " + fcmTitle + fcmText + fcmEventName + fcmLongitude + fcmLatitude);
-        //fcmGeoLocation = (String)LoginActivity.this.getIntent().getStringExtra("mEventGeoLocation");
 
         if(displayName.equalsIgnoreCase("ADMIN")){
             Intent adminIntent = new Intent(LoginActivity.this, AdminHomeAcitivity.class);
@@ -215,12 +205,7 @@ public class LoginActivity extends AppCompatActivity {
             userIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             userIntent.putExtra("UUID",user.getUid());
             userIntent.putExtra("userName",user.getDisplayName());
-            userIntent.putExtra("mTitle",fcmTitle);
-            userIntent.putExtra("mText",fcmText);
-            userIntent.putExtra("mEventName",fcmEventName);
-            userIntent.putExtra("mEventVenue",fcmVenue);
-            userIntent.putExtra("mLongitude",fcmLongitude);
-            userIntent.putExtra("mLatitude",fcmLatitude);
+            userIntent.putExtra("mFlag",fcmFLAG);
             startActivity(userIntent);
         }
     }

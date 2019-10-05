@@ -55,7 +55,12 @@
      See README(https://goo.gl/l4GJaQ) for more. -->
             <meta-data
                 android:name="com.google.firebase.messaging.default_notification_icon"
-                android:resource="@drawable/ic_fire" />
+                android:resource="@drawable/ic_stat_logo33" />
+
+            <meta-data
+                android:name="com.google.firebase.messaging.default_notification_color"
+                android:resource="@color/goldenYellow" />
+
         </service>
     </application>
     <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />

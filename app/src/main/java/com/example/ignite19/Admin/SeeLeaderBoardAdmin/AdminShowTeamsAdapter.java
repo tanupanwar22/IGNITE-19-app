@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.bumptech.glide.Glide;
 import com.example.ignite19.R;
 import com.example.ignite19.ui.LeaderBoard.showTeamsAdapter;
@@ -40,8 +41,10 @@ public class AdminShowTeamsAdapter extends RecyclerView.Adapter<AdminShowTeamsAd
     @Override
     public void onBindViewHolder(@NonNull MyOwnHolder holder, int position) {
         String teamname=team_name.get(position);
+        holder.victory.setVisibility(View.INVISIBLE);
         if (!teamname.equalsIgnoreCase("No data available yet")){
-            Glide.with(context).load(R.drawable.victory).into(holder.victory);
+           // Glide.with(context).load(R.drawable.victory).into(holder.victory);
+            holder.victory.setVisibility(View.VISIBLE);
         }
         setAnimation(holder.itemView,position);
         holder.team_name_tv.setText(teamname);
@@ -70,7 +73,7 @@ public class AdminShowTeamsAdapter extends RecyclerView.Adapter<AdminShowTeamsAd
 
     public class MyOwnHolder extends RecyclerView.ViewHolder {
         TextView team_name_tv;
-        ImageView victory;
+        LottieAnimationView victory;
         public MyOwnHolder(@NonNull View itemView) {
             super(itemView);
             team_name_tv=itemView.findViewById(R.id.team_name_tv);
