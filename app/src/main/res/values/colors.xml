@@ -43,6 +43,8 @@
     <color name="TextLight">#8A000000</color>
     <color name="alertDialogTextColor">#F4511E</color>
     <color name="TextDark">#DE000000</color>
+    <color name="lime">#FFA000</color>
+    <color name="goldenYellow">#ffdf00</color>
 
 
 </resources>

@@ -114,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
             });
 
             loader = findViewById(R.id.gif1);
-           Glide.with(getApplicationContext()).load(R.drawable.loader).transform(new CircleCrop()).into(loader);
+          // Glide.with(getApplicationContext()).load(R.drawable.loader).transform(new CircleCrop()).into(loader);
 
            loader.setVisibility(View.INVISIBLE);
 
@@ -177,6 +177,15 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void updateUI(FirebaseUser user) {
+        if (getIntent().getExtras() != null) {
+            for (String key : getIntent().getExtras().keySet()) {
+                String value = getIntent().getExtras().getString(key);
+                Log.d(TAG, "Key: asmanjasKalundia" + key + " Value: " + value);
+            }
+        }
+
+
+
         int pos = Objects.requireNonNull(user.getEmail()).indexOf("@");
         String displayName = user.getEmail().substring(0 , pos);
         Intent intent = getIntent();
