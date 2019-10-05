@@ -1,4 +1,4 @@
-package com.example.ignite19.ui.LeaderBoard;
+package com.example.ignite19.Admin.SeeLeaderBoardAdmin;
 
 
 import android.content.Context;
@@ -13,9 +13,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.ignite19.Admin.AdminDataCommunication;
 import com.example.ignite19.DataCommunication;
 import com.example.ignite19.R;
 import com.example.ignite19.UserDataAndEventList;
+import com.example.ignite19.ui.LeaderBoard.resultsAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,15 +27,15 @@ import am.appwise.components.ni.NoInternetDialog;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentLeaderBoard extends Fragment {
-    DataCommunication dataCommunication;
+public class SeeLeaderBoardAdmin extends Fragment {
 
-    ArrayList<UserDataAndEventList> userDataAndEventLists = new ArrayList<>();
+    AdminDataCommunication dataCommunication;
+
+    ArrayList<String > collegeNames = new ArrayList<>();
     NoInternetDialog noInternetDialog;
-public List<String> results_event_name_list=new ArrayList<>();
-RecyclerView results_recyclerview;
-int cnt=0;
-    public FragmentLeaderBoard() {
+    RecyclerView results_recyclerview;
+    int cnt=0;
+    public SeeLeaderBoardAdmin() {
         // Required empty public constructor
     }
 
@@ -41,7 +43,7 @@ int cnt=0;
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try {
-            dataCommunication = (DataCommunication) context;
+            dataCommunication = (AdminDataCommunication) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString()
                     + " must implement DataCommunication");
@@ -51,7 +53,7 @@ int cnt=0;
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putParcelableArrayList("mList",userDataAndEventLists);
+        outState.putStringArrayList("mList",collegeNames);
     }
 
     @Override
@@ -59,22 +61,16 @@ int cnt=0;
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         if(savedInstanceState != null){
-            userDataAndEventLists = savedInstanceState.getParcelableArrayList("mList");
+            collegeNames = savedInstanceState.getStringArrayList("mList");
         }else{
-            userDataAndEventLists = dataCommunication.getAllEventList();
+            collegeNames = dataCommunication.getEventNames();
         }
 
-        results_event_name_list.clear();
-        for (UserDataAndEventList m : userDataAndEventLists) {
-            results_event_name_list.add(m.getEvent_name());
-        }
-        final View v = inflater.inflate(R.layout.fragment_leader_board, container, false);
-
-        results_recyclerview = v.findViewById(R.id.results_recyclerview2);
-
-        results_recyclerview.setLayoutManager(new LinearLayoutManager(v.getContext()));
-        results_recyclerview.setAdapter(new resultsAdapter(getContext(), results_event_name_list));
-         noInternetDialog= new NoInternetDialog.Builder(v.getContext()).build();
+        final View v = inflater.inflate(R.layout.fragment_see_leader_board_admin, container, false);
+        results_recyclerview = v.findViewById(R.id.results_recyclerview2x);
+        results_recyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
+        results_recyclerview.setAdapter(new AdminResultsAdapter(getContext(), collegeNames));
+        noInternetDialog= new NoInternetDialog.Builder(v.getContext()).build();
 
         return v;
     }

@@ -23,6 +23,8 @@ import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.ignite19.DataCommunication;
 import com.example.ignite19.Participation;
 import com.example.ignite19.R;
@@ -58,6 +60,7 @@ public class FragmentEventRegistration extends Fragment {
     RecyclerView recyclerView;
     ArrayList<Participation> notRegisteredList = new ArrayList<>();
    ArrayList<String> eventNamesForDropDown = new ArrayList<>();
+   LottieAnimationView lottieAnimationView;
     View view;
     public static FragmentEventRegistration newInstance() {
         return new FragmentEventRegistration();
@@ -98,6 +101,8 @@ public class FragmentEventRegistration extends Fragment {
             registerEventsAdapter = new RegisterEventsAdapter(getContext(),registeredList);
              recyclerView.setAdapter(registerEventsAdapter);
             floatingActionButton = view.findViewById(R.id.floatingActionButton);
+            lottieAnimationView = view.findViewById(R.id.lottie_event_reg);
+            lottieAnimationView.setVisibility(View.INVISIBLE);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -529,6 +534,8 @@ public class FragmentEventRegistration extends Fragment {
                     Toasty.error(getContext(),"you have already registered in all the events",Toasty.LENGTH_SHORT).show();
                 }
                 else{
+                    lottieAnimationView.setVisibility(View.VISIBLE);
+
                     String event_name =   mSpinner.getSelectedItem().toString();
                     int xnumberOfParticipants = Integer.valueOf(numberOfParticipantsTextView.getText().toString());
                     int count = findCheckedItems();
@@ -541,6 +548,8 @@ public class FragmentEventRegistration extends Fragment {
 
                     }
                     else{
+                        lottieAnimationView.setVisibility(View.INVISIBLE);
+
                         Toasty.info(getContext(), "Please select correct number of participants", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -612,7 +621,8 @@ public class FragmentEventRegistration extends Fragment {
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
                     Toasty.success(getContext(),"Registered successfully",Toast.LENGTH_LONG).show();
-                   registerEventsAdapter.notifyDataSetChanged();
+                    lottieAnimationView.setVisibility(View.INVISIBLE);
+                  registerEventsAdapter.notifyDataSetChanged();
                     alertDialog.dismiss();
                 }
                 else{

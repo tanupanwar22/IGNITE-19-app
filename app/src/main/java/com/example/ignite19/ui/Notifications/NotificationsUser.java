@@ -87,6 +87,9 @@ public class NotificationsUser extends Fragment {
 
                 }
                 lottieAnimationView.setVisibility(View.INVISIBLE);
+                if(mList.size() == 0){
+                    mList.add(new NotificationPOJO("No notifications yet",null,null));
+                }
                 recyclerView.setVisibility(View.VISIBLE);
                 Collections.reverse(mList);
                 adapter.notifyDataSetChanged();

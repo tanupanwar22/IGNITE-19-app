@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ignite19.R;
 import com.example.ignite19.ui.navigation.NavigationRecyclerAdapter;
+import com.example.ignite19.ui.schedule.RecyclerViewAdapter;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,6 +43,8 @@ public class DisplayCollegeNamesAdapter extends RecyclerView.Adapter<DisplayColl
     @Override
     public void onBindViewHolder(@NonNull MyOwnHolder holder, int position) {
         holder.college_name.setText(college_name.get(position));
+       // holder.itemPosition.setText(String.valueOf(position + 1));
+
     }
 
     @Override
@@ -54,6 +57,7 @@ public class DisplayCollegeNamesAdapter extends RecyclerView.Adapter<DisplayColl
         if (fromPosition < toPosition) {
             for (int i = fromPosition; i < toPosition; i++) {
                 Collections.swap(college_name, i, i + 1);
+
             }
         }
         else {
@@ -66,7 +70,7 @@ public class DisplayCollegeNamesAdapter extends RecyclerView.Adapter<DisplayColl
 
     @Override
     public void onRowSelected(MyOwnHolder myViewHolder) {
-
+        //myViewHolder.itemPosition.setText("");
     }
 
     public ArrayList<String> getCollege_name() {
@@ -77,10 +81,13 @@ public class DisplayCollegeNamesAdapter extends RecyclerView.Adapter<DisplayColl
         return eventName;
     }
 
+
     @Override
     public void onRowClear(MyOwnHolder myViewHolder) {
+
         myViewHolder.itemPosition.setText(String.valueOf(myViewHolder.getLayoutPosition() + 1));
     }
+
 
     public class MyOwnHolder extends RecyclerView.ViewHolder {
         TextView itemPosition;

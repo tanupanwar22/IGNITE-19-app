@@ -104,8 +104,8 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="12dp"
                                 android:padding="12dp"
-                                android:text="Ignite 2k'19 welcomes you all!"
-                                android:textColor="@color/contrasText"
+                                android:text="IGNITE 2k'19 welcomes you all!"
+                                android:textColor="@color/lime"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
@@ -123,13 +123,13 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:layout_marginTop="12dp"
                                 android:lineSpacingMultiplier="1.5"
                                 android:padding="12dp"
-                                android:layout_gravity="center"
                                 android:text="ORIGIN"
                                 android:textAlignment="center"
-                                android:textColor="@color/contrasText"
+                                android:textColor="@color/lime"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
 
@@ -147,15 +147,15 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:layout_marginTop="12dp"
                                 android:lineSpacingMultiplier="1.5"
                                 android:padding="12dp"
-                                android:layout_gravity="center"
                                 android:text="VISION"
                                 android:textAlignment="center"
-                                android:textColor="@color/contrasText"
+                                android:textColor="@color/lime"
                                 android:textSize="18sp"
-                                android:textStyle="bold"  />
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -171,15 +171,15 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:layout_marginTop="12dp"
                                 android:lineSpacingMultiplier="1.5"
                                 android:padding="12dp"
-                                android:layout_gravity="center"
                                 android:text="AIM"
                                 android:textAlignment="center"
-                                android:textColor="@color/contrasText"
+                                android:textColor="@color/lime"
                                 android:textSize="18sp"
-                                android:textStyle="bold"  />
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -194,15 +194,15 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:layout_gravity="center"
                                 android:layout_marginTop="12dp"
                                 android:lineSpacingMultiplier="1.5"
                                 android:padding="12dp"
-                                android:layout_gravity="center"
                                 android:text="RULES"
                                 android:textAlignment="center"
-                                android:textColor="@color/contrasText"
+                                android:textColor="@color/lime"
                                 android:textSize="18sp"
-                                android:textStyle="bold"  />
+                                android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"

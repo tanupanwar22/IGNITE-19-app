@@ -19,39 +19,41 @@
         android:layout_height="match_parent">
 
 
-    <Button
-        android:id="@+id/admin_update_time_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="32dp"
-        android:text="Update Time"
-        android:padding="8dp"
-        android:background="@drawable/button_shape"
-        app:layout_constraintEnd_toEndOf="@+id/update_time_edt"
-        app:layout_constraintStart_toStartOf="@+id/update_time_edt"
-        app:layout_constraintTop_toBottomOf="@+id/update_time_edt" />
+        <Button
+            android:id="@+id/admin_update_time_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/button_shape"
+            android:padding="8dp"
+            android:text="Update Time"
+            android:textColor="@color/contrasText"
+            app:layout_constraintEnd_toEndOf="@+id/update_time_edt"
+            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintStart_toStartOf="@+id/update_time_edt"
+            app:layout_constraintTop_toBottomOf="@+id/update_time_edt" />
 
-    <EditText
-        android:id="@+id/update_time_edt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="32dp"
-        android:hint="24 hr format: HH:MM"
-        android:singleLine="true"
-        android:background="@drawable/edit_text_shape2"
-        android:padding="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+        <EditText
+            android:id="@+id/update_time_edt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/edit_text_shape2"
+            android:hint="24 hr format: HH:MM"
+            android:padding="8dp"
+            android:singleLine="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:background="@drawable/edit_text_shape"
+
         android:textColor="@color/contrasText"
         android:padding="8dp"
         android:layout_marginTop="96dp"
@@ -62,13 +64,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+
         android:id="@+id/textView8_event_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:text="TextView"
-        android:background="@drawable/edit_text_shape"
-        android:textColor="@color/contrasText"
+
+        android:textColor="@color/lime"
         android:padding="8dp"
         android:textSize="18sp"
         android:textStyle="italic"
@@ -83,10 +86,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:background="@drawable/edit_text_shape"
+
         android:textColor="@color/contrasText"
         android:padding="8dp"
-        android:text="Event Time:"
+        android:text="Current event Time:"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/textView6"
@@ -94,38 +97,37 @@
         app:layout_constraintStart_toStartOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
-    <TextView
-        android:id="@+id/textView8_event_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edit_text_shape"
-        android:textColor="@color/contrasText"
-        android:padding="8dp"
-        android:layout_marginStart="24dp"
-        android:text="TextView"
-        android:textSize="18sp"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toBottomOf="@+id/textView9"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView9"
-        app:layout_constraintTop_toTopOf="@+id/textView9" />
+        <TextView
+            android:id="@+id/textView8_event_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
 
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edit_text_shape"
-        android:padding="8dp"
-        android:layout_marginTop="32dp"
-        android:text="Set New Event Time:"
-        android:textColor="@color/contrasText"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/textView9"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView9"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:padding="8dp"
+            android:textColor="@color/lime"
+            android:textSize="18sp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textView9"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_marginTop="32dp"
+            android:padding="8dp"
+            android:text="Set New Event Time:"
+            android:textColor="@color/contrasText"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/textView9"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textView9"
+            app:layout_constraintTop_toBottomOf="@+id/textView8_event_time" />
     </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

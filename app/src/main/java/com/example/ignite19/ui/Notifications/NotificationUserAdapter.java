@@ -40,12 +40,21 @@ public class NotificationUserAdapter extends RecyclerView.Adapter<NotificationUs
 
     @Override
     public void onBindViewHolder(@NonNull MyOwnAdapter holder, int position) {
-        holder.body.setText(mList.get(position).getBody().toString());
-        holder.title.setText(mList.get(position).getTitle().toString());
-        Calendar cal = Calendar.getInstance(Locale.ENGLISH);
-        cal.setTimeInMillis(mList.get(position).timeStamp());
-        String date = DateFormat.format("E, dd MMM KK:mm a", cal).toString();
-        holder.timeStampTextView.setText(date);
+        if(mList.get(position).getTitle() != null){
+            holder.title.setText(mList.get(position).getTitle().toString());
+        }
+        if(mList.get(position).getBody()!=null){
+            holder.body.setText(mList.get(position).getBody().toString());
+        }
+
+
+        if(mList.get(position).getTimeStamp() != null){
+            Calendar cal = Calendar.getInstance(Locale.ENGLISH);
+            cal.setTimeInMillis(mList.get(position).timeStamp());
+            String date = DateFormat.format("E, dd MMM KK:mm a", cal).toString();
+            holder.timeStampTextView.setText(date);
+        }
+
     }
 
     @Override

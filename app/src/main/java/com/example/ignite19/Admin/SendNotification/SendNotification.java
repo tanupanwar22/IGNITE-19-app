@@ -1,19 +1,27 @@
 package com.example.ignite19.Admin.SendNotification;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -21,6 +29,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.ignite19.Admin.AdminDataCommunication;
+import com.example.ignite19.Admin.NotificationSender;
+import com.example.ignite19.Participation;
 import com.example.ignite19.R;
 import com.example.ignite19.ui.Notifications.NotificationPOJO;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,6 +45,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 import es.dmoral.toasty.Toasty;
 
@@ -51,6 +62,8 @@ public class SendNotification extends Fragment implements View.OnClickListener {
     HashMap<String ,String> uuidList = new HashMap<>();
     String titleInput,bodyInput;
     View v;
+    View alertView;
+    AlertDialog alertDialog;
 
     public SendNotification() {
         // Required empty public constructor
@@ -75,14 +88,7 @@ public class SendNotification extends Fragment implements View.OnClickListener {
         Bundle bundle = getArguments();
         if(bundle!=null){
             collegeNames = bundle.getStringArrayList("college_names");
-
         }
-
-
-        for(int i = 0 ; i < collegeNames.size();++i){
-            Log.d("milk", "onCreateView: " + collegeNames.get(i));
-        }
-
         v = inflater.inflate(R.layout.fragment_send_notification, container, false);
         titleEditText = v.findViewById(R.id.not_title);
         bodyEditText = v.findViewById(R.id.not_body);
@@ -92,89 +98,65 @@ public class SendNotification extends Fragment implements View.OnClickListener {
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(final View view) {
         switch (view.getId()){
             case R.id.not_button:
                 if(checkEditTextEmptyOrNot()){
-                    //now lets put this input in the form of message and send it as post request and message
-                    for(int i = 0 ; i <collegeNames.size();++i){
-                        //changing college name to proper format
-                       String topicCollegeName = collegeNames.get(i).replaceAll(" ","_").toLowerCase();
-                       String uuid = uuidList.get(topicCollegeName);
-                        Log.d("milk", "onClick: " + uuid  + " " + topicCollegeName);
-                       uploadToFirebase(titleInput,bodyInput,topicCollegeName,uuid);
-                    }
+                    InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+                    //show alertdialog here
+                    TextView headerTextView,bodyTextView;
+                    LayoutInflater inflater = LayoutInflater.from(getActivity());
+                    alertView = inflater.inflate(R.layout.alert_dialog_confirmation_admin, null);
+                     headerTextView = alertView.findViewById(R.id.titlemm);
+                     bodyTextView = alertView.findViewById(R.id.bodymm);
+                     headerTextView.setText(titleInput);
+                     bodyTextView.setText(bodyInput);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext()).setView(alertView);
+                    builder.setPositiveButton("I CONFIRM", null);
+                    builder.setNegativeButton("CANCEL", null);
+                    builder.setTitle("Please Acknowledge");
+                    builder.setIcon(R.drawable.ic_notification);
+                    alertDialog = builder.create();
+                    alertDialog.show();
+                    alertDialog.setCancelable(false);
+                    Button b = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                    Button c = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+                    c.setTextColor(getResources().getColor(R.color.materialGreen));
+                    b.setTextColor(getResources().getColor(R.color.materialGreen));
+                    b.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
 
-                  //  sendToFirebase(titleInput,bodyInput);
+                            for(int i = 0 ; i <collegeNames.size();++i){
+                                //changing college name to proper format
+                                String topicCollegeName = collegeNames.get(i).replaceAll(" ","_").toLowerCase();
+                                String uuid = uuidList.get(topicCollegeName);
+                                NotificationSender.uploadToFirebase(getContext(),titleInput,bodyInput,topicCollegeName,uuid);
+                            }
+                            alertDialog.dismiss();
+
+
+                            Navigation.findNavController(view).navigate(R.id.action_sendNotification_to_adminHomeFragment);
+                        }
+                    });
+                    c.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            alertDialog.cancel();
+                        }
+                    });
+                    //now lets put this input in the form of message and send it as post request and message
+
                 }
                 else{
                     Toasty.error(getContext(),"Please enter values in both the fields",Toasty.LENGTH_SHORT).show();
                 }
+                break;
+                default:
+                    break;
         }
     }
-
-    private void uploadToFirebase(final String titleInput, final String bodyInput, final String topicCollegeName, String uuid) {
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("Users").child(uuid);
-        String pushKey = databaseReference.push().getKey();
-
-        //make an object of type notification
-        NotificationPOJO pojo = new NotificationPOJO(titleInput,bodyInput, ServerValue.TIMESTAMP);
-        databaseReference.child("Notifications").child(pushKey).setValue(pojo).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                sendPostRequest(titleInput,bodyInput,topicCollegeName);
-            }
-        });
-    }
-
-
-
-    private void sendPostRequest(String titleInput, String bodyInput, final String collegeName) {
-        try{
-
-            RequestQueue queue = Volley.newRequestQueue(getContext());
-            String url = "https://fcm.googleapis.com/fcm/send";
-            JSONObject data = new JSONObject();
-            data.put("title", titleInput);
-            data.put("text", bodyInput);
-            data.put("android_channel_id","com.example.ignite19");
-            JSONObject notification_data = new JSONObject();
-            notification_data.put("data", data);
-            //can specify the topics here
-            notification_data.put("to","/topics/" + collegeName);
-
-            JsonObjectRequest request = new JsonObjectRequest(url, notification_data, new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    Log.d("milk", "onResponse: success" + " from" + collegeName + response.toString());
-                    Toasty.success(getContext(),"Notified " + collegeName,Toasty.LENGTH_SHORT).show();
-
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Log.d("milk", "onResponse: error from " + collegeName + error.toString());
-                    Toasty.error(getContext(),"failed to notify " + collegeName ,Toasty.LENGTH_LONG).show();
-                }
-            }) {
-                @Override
-                public Map<String, String> getHeaders() {
-                    String api_key_header_value = "key=AAAAH8C3opc:APA91bEX5yIMAfRseTVmtSF9LgY_5c2tu1-LL-GxQ1DLcA0CuXVE4XpQitSUVk4TFbHAng-iai9VsNwHJdHYPO3S_10YrTsTVTck4crDiC4DBqPsgeeOyx6TkXrvlxHl3e8hM8EhF-GR";
-                    Map<String, String> headers = new HashMap<>();
-                    headers.put("Content-Type", "application/json");
-                    headers.put("Authorization", api_key_header_value);
-                    return headers;
-                }
-            };
-
-            queue.add(request);
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
-
     private boolean checkEditTextEmptyOrNot() {
         titleInput = titleEditText.getText().toString();
         bodyInput = bodyEditText.getText().toString();

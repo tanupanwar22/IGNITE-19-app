@@ -32,14 +32,17 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.ignite19.Admin.AdminDataCommunication;
 import com.example.ignite19.Admin.AdminHomeAcitivity;
+import com.example.ignite19.Admin.NotificationSender;
 import com.example.ignite19.DataCommunication;
 import com.example.ignite19.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -50,6 +53,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Observable;
@@ -70,6 +74,8 @@ public class AdminUpdateLeaderBoard extends Fragment implements View.OnClickList
     Button submitButton;
     DisplayCollegeNamesAdapter adapter;
     int numberOfCollegesToSelect;
+    LottieAnimationView lottieAnimationView;
+    HashMap<String,String> uuidList = new HashMap<>();
 
 
     @Override
@@ -108,7 +114,9 @@ public class AdminUpdateLeaderBoard extends Fragment implements View.OnClickList
         }
         else {
             college_names = dataCommunication.getCollegeNames();
+
         }
+        uuidList = dataCommunication.getAllUUIDs();
         eventName = getArguments().getString("eventName");
         ((AdminHomeAcitivity)getActivity()).getSupportActionBar().setTitle(eventName);
 
@@ -117,6 +125,9 @@ public class AdminUpdateLeaderBoard extends Fragment implements View.OnClickList
         numberOfTeams = (EditText)v.findViewById(R.id.editText_numbers_to_select);
         recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view_admin_update_leader_board);
         submitButton.setOnClickListener(this);
+        lottieAnimationView = v.findViewById(R.id.lottiell);
+        lottieAnimationView.setVisibility(View.INVISIBLE);
+
 
         adapter = new DisplayCollegeNamesAdapter(getContext(),college_names,eventName);
         ItemTouchHelper.Callback callback = new ItemMoveCallback(adapter);
@@ -131,6 +142,8 @@ public class AdminUpdateLeaderBoard extends Fragment implements View.OnClickList
     public void onClick(final View view) {
         switch (view.getId()){
             case R.id.button_submit_update_event:
+                InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
                 ArrayList<String > updatedCollegeList = new ArrayList<>();
                 //this is a modified college list adjusted according to drag and drop
                 updatedCollegeList = adapter.getCollege_name();
@@ -171,17 +184,28 @@ public class AdminUpdateLeaderBoard extends Fragment implements View.OnClickList
                                 //upload data to firebase
                                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("LeaderBoards").child(eventName);
                                 databaseReference.removeValue();
+                                lottieAnimationView.setVisibility(View.VISIBLE);
 
                                 for(int x = 0 ; x < numberOfCollegesToSelect; ++x){
                                     String key = databaseReference.push().getKey();
                                     LeaderBoardDataPOJO data = new LeaderBoardDataPOJO(x+1, finalUpdatedCollegeList.get(x));
+
+                                    //for sending notification
+                                    String topicName = finalUpdatedCollegeList.get(x).replaceAll(" ","_").toLowerCase();
+                                    String uuid= uuidList.get(topicName);
+                                    NotificationSender.uploadToFirebase(getContext(),"Congratulations","Your team has been shortlisted in: " + eventName + ". All the best for upcoming rounds.",topicName,uuid);
+
+
+
                                     databaseReference.child(key).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if(task.isSuccessful()){
+                                                lottieAnimationView.setVisibility(View.INVISIBLE);
                                                 Toasty.success(getContext(),"Successfully Uploaded",Toast.LENGTH_SHORT).show();
                                             }
                                             else{
+                                                lottieAnimationView.setVisibility(View.INVISIBLE);
                                                 Toasty.error(getContext(),"Try again",Toast.LENGTH_SHORT).show();
                                             }
                                         }

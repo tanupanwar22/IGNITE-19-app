@@ -9,11 +9,12 @@ import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.Objects;
 
 public class DateTimeConverter {
 
-    private  static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+    private  static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     public   static long convertDateToEpoch(String dateString){
         long epochTime = 0;
         try{
@@ -83,7 +84,24 @@ public class DateTimeConverter {
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(Objects.requireNonNull(date));
            // formattedDateTime = new SimpleDateFormat("dd/MM/yyyy KK:mm a").format(date);
-            formattedDateTime = new SimpleDateFormat("E, dd MMM KK:mm a").format(date);
+            formattedDateTime = new SimpleDateFormat("E, dd MMM hh:mm a", Locale.ENGLISH).format(date);
+        }
+        catch (ParseException e){
+            e.printStackTrace();
+        }
+        return formattedDateTime;
+    }
+
+
+
+    public static String changeDateFormatToTime(String dateTimeString){
+        String formattedDateTime = null;
+        try {
+            Date date = sdf.parse(dateTimeString);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(Objects.requireNonNull(date));
+            // formattedDateTime = new SimpleDateFormat("dd/MM/yyyy KK:mm a").format(date);
+            formattedDateTime = new SimpleDateFormat("hh:mm a", Locale.ENGLISH).format(date);
         }
         catch (ParseException e){
             e.printStackTrace();

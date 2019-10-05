@@ -159,11 +159,24 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
-                android:background="@color/lightgray"
+                android:background="@drawable/button_shape"
                 android:text="Register"
+                android:textColor="@color/contrasText"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edx_p5" />
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/xxxlottie"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                app:lottie_fileName="standardloader.json"
+                app:layout_constraintBottom_toBottomOf="@+id/button_register_team"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+               app:lottie_autoPlay="true"
+                app:lottie_loop="true"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

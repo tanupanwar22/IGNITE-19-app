@@ -28,7 +28,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:padding="8dp"
-        android:background="@drawable/edit_text_shape"
+
         android:textColor="@color/contrasText"
         android:text="Enter number of Teams to select:-"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +70,6 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
 
-        android:background="@drawable/edit_text_shape"
         android:padding="8dp"
         android:textColor="@color/contrasText"
         android:text="Long press and drag items from lower postion to upper to adjust them according to position:"
@@ -78,5 +77,17 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottiell"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        app:lottie_fileName="standardloader.json"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

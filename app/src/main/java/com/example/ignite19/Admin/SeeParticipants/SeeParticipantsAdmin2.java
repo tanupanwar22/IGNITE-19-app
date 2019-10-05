@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.ignite19.Admin.AdminHomeAcitivity;
 import com.example.ignite19.Participation;
 import com.example.ignite19.R;
@@ -33,13 +34,14 @@ import java.util.List;
  */
 public class SeeParticipantsAdmin2 extends Fragment {
 
-    private static final String TAG = "zoono";
+
     AllParticipantsAdapter allParticipantsAdapter;
     String eventName;
     View v;
     HashMap<String,String > map = new HashMap<>();
     RecyclerView recyclerView;
     //TextView eventNameTextView;
+    LottieAnimationView lottieAnimationView;
     ArrayList<EventWiseParticipantDetail > mList = new ArrayList<>();
 
 
@@ -59,6 +61,8 @@ public class SeeParticipantsAdmin2 extends Fragment {
         eventName = getArguments().getString("eventName").toString();
         //eventNameTextView.setText(eventName);
         ((AdminHomeAcitivity)getActivity()).getSupportActionBar().setTitle(eventName);
+        lottieAnimationView = v.findViewById(R.id.lottie_seeadmin);
+        lottieAnimationView.setVisibility(View.VISIBLE);
 
         allParticipantsAdapter = new AllParticipantsAdapter(getContext(),mList);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
@@ -68,7 +72,6 @@ public class SeeParticipantsAdmin2 extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot: dataSnapshot.getChildren()){
                     map.put(snapshot.getKey(),snapshot.child("college_name").getValue().toString());
-                    Log.d(TAG, "onDataChange: " + snapshot.getKey() + " " + snapshot.child("college_name").getValue());
                 }
                 secondListenerForValues(map);
             }
@@ -86,7 +89,7 @@ public class SeeParticipantsAdmin2 extends Fragment {
     private void secondListenerForValues(final HashMap<String, String > map) {
         final int mapSize = map.size();
         for(final String uuid : map.keySet()){
-            Log.d("juliet", "secondListenerForValues: " + uuid);
+
             FirebaseDatabase.getInstance().getReference("Users").child(uuid).child("participation").child(eventName).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -94,8 +97,6 @@ public class SeeParticipantsAdmin2 extends Fragment {
                     Participation mParticipation = dataSnapshot.getValue(Participation.class);
                     EventWiseParticipantDetail.Builder mBuilder = new EventWiseParticipantDetail.Builder(uuid,collegeName);
                     if(mParticipation.getParticipation() == 1){
-                        Log.d(TAG, "onDataChange: " + mParticipation.getEvent_name());
-                        Log.d(TAG, "onDataChange: " + mParticipation.getParticipant1());
                             mBuilder.setEventName(mParticipation.getEvent_name());
                             if(mParticipation.getParticipant1()!=null){
                                 mBuilder.setParticipant1(mParticipation.getParticipant1());
@@ -116,7 +117,7 @@ public class SeeParticipantsAdmin2 extends Fragment {
                         }
 
                         EventWiseParticipantDetail eventWiseParticipantDetail = mBuilder.build();
-
+                        lottieAnimationView.setVisibility(View.INVISIBLE);
                         mList.add(eventWiseParticipantDetail);
                         allParticipantsAdapter.notifyDataSetChanged();
 

@@ -34,12 +34,12 @@ public class FragmentNavigation extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         //add the venues here to the venue_list arrayList
         //this is local data . Changing data in firebase won't affect it
-        venue_list.add(new VenueList("Central Computer Center (CCC)",13.009387,74.795793));
+        venue_list.add(new VenueList("Central Computer Center (CCC)",13.009490,74.795780));
         venue_list.add(new VenueList("Lecture Hall Complex A(LHC-A, ATB)",13.009661,74.793849));
         venue_list.add(new VenueList("Lecture Hall Complex B(LHC-B, NTB)",13.009319,74.794500));
         venue_list.add(new VenueList("Lecture Hall Complex C(LHC-C)",13.010462,74.792499));
         venue_list.add(new VenueList("Pavilion",13.011202,74.794678));
-        venue_list.add(new VenueList("Rest Rooms",13.007833,74.794848));
+       // venue_list.add(new VenueList("Rest Rooms",13.007833,74.794848));
         venue_list.add(new VenueList("SACA Lab",13.009699,74.794659));
         venue_list.add(new VenueList("Trishul Block Mess",13.007429,74.794230));
 

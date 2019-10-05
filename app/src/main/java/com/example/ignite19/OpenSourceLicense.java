@@ -42,6 +42,10 @@ public class OpenSourceLicense extends Fragment {
         mList.add(new OpenSourcePOJO("SubmitButton","https://github.com/SparkYuan/SubmitButton","https://github.com/SparkYuan/SubmitButton/blob/master/LICENSE"));
         mList.add(new OpenSourcePOJO("Icons","By freepik,ultimatearm,smashicons and iconnice  ","https://flaticon.com"));
         mList.add(new OpenSourcePOJO("Lottie Loader and green tick","By Jojo Lafrite and Lottie Files","https://lottiefiles.com"));
+        mList.add(new OpenSourcePOJO("No Internet Dialog","https://github.com/appwise-labs/NoInternetDialog","https://github.com/appwise-labs/NoInternetDialog/blob/master/LICENSE"));
+        mList.add(new OpenSourcePOJO("Timeline-View","https://github.com/vipulasri/Timeline-View","https://github.com/vipulasri/Timeline-View/blob/master/LICENSE"));
+
+
         v =  inflater.inflate(R.layout.fragment_open_source_license, container, false);
 
 
