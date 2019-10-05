@@ -120,7 +120,7 @@
                     android:layout_height="wrap_content"
                     android:text="Gamer's Eve"
 
-                    android:textColor="@color/contrasText"
+                    android:textColor="@color/lime"
                     android:textSize="20dp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
