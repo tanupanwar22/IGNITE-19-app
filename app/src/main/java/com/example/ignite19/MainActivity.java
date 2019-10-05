@@ -109,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
     @Override
     protected void onStart() {
         super.onStart();
+        uuid=FirebaseAuth.getInstance().getUid();
 
     }
 

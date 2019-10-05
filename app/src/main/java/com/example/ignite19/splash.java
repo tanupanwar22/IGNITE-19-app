@@ -16,7 +16,7 @@ public class splash extends AppCompatActivity {
 private static int splashtimeout=3000;
 
 String s1,s2,s3,s4;
-    private ImageView loader1;
+    private ImageView loader1,img1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +31,8 @@ String s1,s2,s3,s4;
         s2=intent1.getStringExtra("username");
         s3=intent1.getStringExtra("title");
         s4=intent1.getStringExtra("content");
+        img1 = findViewById(R.id.backgif);
+        Glide.with(getApplicationContext()).load(R.drawable.universe).into(img1);
 
         loader1 = findViewById(R.id.gif2);
       //  Glide.with(getApplicationContext()).load(R.drawable.flameloader).transform(new CircleCrop()).into(loader1);
