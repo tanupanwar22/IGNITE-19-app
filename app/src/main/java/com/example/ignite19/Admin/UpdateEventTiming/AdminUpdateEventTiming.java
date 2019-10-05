@@ -13,9 +13,11 @@ import androidx.navigation.Navigation;
 
 import android.text.TextUtils;
 import android.text.style.UpdateAppearance;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +27,7 @@ import android.widget.Toast;
 
 import com.example.ignite19.Admin.AdminDataCommunication;
 import com.example.ignite19.Admin.AdminHomeAcitivity;
+import com.example.ignite19.Admin.NotificationSender;
 import com.example.ignite19.DataCommunication;
 import com.example.ignite19.DateTimeConverter;
 import com.example.ignite19.R;
@@ -58,11 +61,15 @@ public class AdminUpdateEventTiming extends Fragment implements View.OnClickList
     String event_date;
     TextView eventNameTextView, eventTimeTextView;
     HashMap<String, String> eventNameWithDate = new HashMap<>();
-    String event_date_time;
+   // String event_date_time;
 
     String event_name;
+    HashMap<String,String> uuidList = new HashMap<>();
     EditText edt;
     List<String> temp = new ArrayList<>();
+    String newTime;
+    String finalDate;
+    String dateTimeFromFirebase;
 
 
     public AdminUpdateEventTiming() {
@@ -96,16 +103,30 @@ public class AdminUpdateEventTiming extends Fragment implements View.OnClickList
 
             eventNameWithDate = dataCommunication.getEventWithDateAndTime();
         }
+        uuidList = dataCommunication.getAllUUIDs();
         // Inflate the layout for this fragment
         final View v = inflater.inflate(R.layout.fragment_admin_update_event_timing, container, false);
         eventNameTextView = v.findViewById(R.id.textView8_event_name);
         eventTimeTextView = v.findViewById(R.id.textView8_event_time);
         updateTiming = v.findViewById(R.id.admin_update_time_btn);
         event_name = getArguments().getString("eventName");
-        event_date_time = eventNameWithDate.get(event_name);
-        event_date = DateTimeConverter.convertDateTimeToDate(event_date_time);
+        FirebaseDatabase.getInstance().getReference("EventDesc").child(event_name).child("event_date").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                dateTimeFromFirebase = dataSnapshot.getValue().toString();
+                event_date = DateTimeConverter.convertDateTimeToDate(dateTimeFromFirebase);
+                eventTimeTextView.setText(dateTimeFromFirebase);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+      //  event_date_time = eventNameWithDate.get(event_name);
+
         eventNameTextView.setText(event_name);
-        eventTimeTextView.setText(event_date_time);
+
         edt = v.findViewById(R.id.update_time_edt);
         updateTiming.setOnClickListener(this);
         return v;
@@ -115,19 +136,34 @@ public class AdminUpdateEventTiming extends Fragment implements View.OnClickList
     public void onClick(final View view) {
         switch (view.getId()){
             case R.id.admin_update_time_btn:
-                String newTime  = edt.getText().toString();
+
+               newTime  = edt.getText().toString();
                 if(TextUtils.isEmpty(newTime) || !checkTimeFormat(newTime)){
                     Toasty.info(getContext(),"Please enter time properly",Toast.LENGTH_LONG).show();
                 }
             else {
+                    InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
                     String temp = newTime;
-                    newTime = event_date + " " + temp + ":00";
-                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("EventDesc").child(event_name);
-                    databaseReference.child("event_date").setValue(newTime).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    //some m
+                    finalDate = event_date + " " + temp + ":00";
+                    final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("EventDesc").child(event_name);
+                    databaseReference.child("event_date").setValue(finalDate).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isComplete()){
-                                Toasty.success(getContext(),"Time updated Successfully",Toast.LENGTH_LONG).show();
+                                //send notification to everyone
+
+                                for (Map.Entry<String,String> entry : uuidList.entrySet()) {
+                                    String key = entry.getKey();
+                                    String value = entry.getValue();
+                                    String xtime = DateTimeConverter.changeDateFormatToTime(finalDate);
+                                    NotificationSender.uploadToFirebase(getContext(),"Timing Update",event_name + " timing has been changed from  " + DateTimeConverter.changeDateFormat(dateTimeFromFirebase) + " to "  + xtime ,key,value);
+                                    // do stuff
+                                }
+                                 Toasty.success(getContext(),"Time updated Successfully",Toast.LENGTH_LONG).show();
+
+
                                 Navigation.findNavController(view).navigate(R.id.action_adminUpdateEventTiming_to_adminHomeFragment);
                             }
                             else{

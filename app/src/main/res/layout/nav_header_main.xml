@@ -19,12 +19,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:textColor="@color/contrasText"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/contrasText"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.75" />
+        app:layout_constraintVertical_bias="0.65999997" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

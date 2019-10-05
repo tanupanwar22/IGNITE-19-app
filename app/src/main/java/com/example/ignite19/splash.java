@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 
 public class splash extends AppCompatActivity {
-private static int splashtimeout=4000;
+private static int splashtimeout=3000;
 
 String s1,s2,s3,s4;
     private ImageView loader1;
@@ -33,7 +33,7 @@ String s1,s2,s3,s4;
         s4=intent1.getStringExtra("content");
 
         loader1 = findViewById(R.id.gif2);
-        Glide.with(getApplicationContext()).load(R.drawable.flameloader).transform(new CircleCrop()).into(loader1);
+      //  Glide.with(getApplicationContext()).load(R.drawable.flameloader).transform(new CircleCrop()).into(loader1);
 
         loader1.setVisibility(View.INVISIBLE);
         loader1.setVisibility(View.VISIBLE);

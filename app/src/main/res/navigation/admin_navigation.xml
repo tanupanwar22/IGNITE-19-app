@@ -24,13 +24,7 @@
             app:exitAnim="@anim/exit_to_left"
             app:popEnterAnim="@anim/enter_from_left"
             app:popExitAnim="@anim/exit_to_right" />
-        <action
-            android:id="@+id/action_adminHomeFragment_to_seeParticipantsAdmin"
-            app:destination="@id/seeParticipantsAdmin"
-            app:enterAnim="@anim/enter_from_right"
-            app:exitAnim="@anim/exit_to_left"
-            app:popEnterAnim="@anim/enter_from_left"
-            app:popExitAnim="@anim/exit_to_right" />
+
         <action
             android:id="@+id/action_adminHomeFragment_to_seeParticipantsAdmin2"
             app:destination="@id/seeParticipantsAdmin2"
@@ -41,6 +35,13 @@
         <action
             android:id="@+id/action_adminHomeFragment_to_sendNotification"
             app:destination="@id/sendNotification"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_seeLeaderBoardAdmin"
+            app:destination="@id/seeLeaderBoardAdmin"
             app:enterAnim="@anim/enter_from_right"
             app:exitAnim="@anim/exit_to_left"
             app:popEnterAnim="@anim/enter_from_left"
@@ -64,11 +65,7 @@
             android:id="@+id/action_adminUpdateEventTiming_to_adminHomeFragment"
             app:destination="@id/adminHomeFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/seeParticipantsAdmin"
-        android:name="com.example.ignite19.Admin.SeeParticipants.SeeParticipantsAdmin"
-        android:label="See Participants"
-        tools:layout="@layout/fragment_see_participants_admin" />
+
 
     <fragment android:id="@+id/nav_about_ignite_admin"
         android:name="com.example.ignite19.ui.AboutIGNITE.Fragment_AboutIgnite"
@@ -123,6 +120,32 @@
     <fragment
         android:id="@+id/sendNotification"
         android:name="com.example.ignite19.Admin.SendNotification.SendNotification"
-        android:label="fragment_send_notification"
-        tools:layout="@layout/fragment_send_notification" />
+        android:label="Send Notification"
+        tools:layout="@layout/fragment_send_notification" >
+        <action
+            android:id="@+id/action_sendNotification_to_adminHomeFragment"
+            app:destination="@id/adminHomeFragment"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/seeLeaderBoardAdmin"
+        android:name="com.example.ignite19.Admin.SeeLeaderBoardAdmin.SeeLeaderBoardAdmin"
+        android:label="See Leaderboard"
+        tools:layout="@layout/fragment_see_leader_board_admin" >
+        <action
+            android:id="@+id/action_seeLeaderBoardAdmin_to_adminEventResults"
+            app:destination="@id/adminEventResults"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminEventResults"
+        android:name="com.example.ignite19.Admin.SeeLeaderBoardAdmin.AdminEventResults"
+        android:label="fragment_admin_event_results"
+        tools:layout="@layout/fragment_admin_event_results" />
 </navigation>

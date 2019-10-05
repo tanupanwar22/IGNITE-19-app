@@ -12,17 +12,27 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:layout_marginTop="10dp"
-            android:id="@+id/congo"
+            android:id="@+id/congo2"
             />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/mlottie2"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+            app:lottie_fileName="standardloader.json"
+            app:lottie_loop="true"
+            app:lottie_autoPlay="true" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/selected_team_list_recyclerview"
+            android:id="@+id/selected_team_list_recyclerview2"
             >
 
         </androidx.recyclerview.widget.RecyclerView>

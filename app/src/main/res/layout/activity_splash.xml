@@ -11,22 +11,22 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:layout_marginTop="250dp"
         android:src="@drawable/spl2"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-
-    <ImageView
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/gif2"
         android:layout_width="90dp"
         android:layout_height="90dp"
-        android:layout_marginBottom="24dp"
-        android:layout_marginTop="550dp"
+        android:layout_marginBottom="56dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/flameloader" />
+        app:lottie_fileName="standardloader.json"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

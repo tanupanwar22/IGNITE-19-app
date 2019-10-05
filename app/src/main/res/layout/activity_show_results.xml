@@ -15,13 +15,13 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginTop="10dp"
-        android:id="@+id/congo"
+        android:id="@+id/congo2"
         />
 
     <androidx.recyclerview.widget.RecyclerView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/selected_team_list_recyclerview"
+    android:id="@+id/selected_team_list_recyclerview2"
     >
 
 </androidx.recyclerview.widget.RecyclerView>

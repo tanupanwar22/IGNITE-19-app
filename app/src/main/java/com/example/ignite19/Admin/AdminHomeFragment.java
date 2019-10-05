@@ -46,6 +46,8 @@ public class AdminHomeFragment extends Fragment implements View.OnClickListener 
 
     private CardView addTeamButton,updateLeaderBoardButton,updateEventTimingButton,seeParticipantsButton,sendNotificationButton;
     AdminDataCommunication dataCommunication;
+    CardView adminSeeLeaderBoardButton;
+    LottieAnimationView adminSeeLeaderBoardLottiAnimation;
     ArrayList<String > eventList = new ArrayList<>();
     LottieAnimationView adminUpdateLeaderBoard,adminCreateTeam,adminUpdateEventTiming,adminSeeParticipants,adminSendNotification;
     ArrayList<String > selectedNames = new ArrayList<>();
@@ -74,6 +76,9 @@ public class AdminHomeFragment extends Fragment implements View.OnClickListener 
         addTeamButton = view.findViewById(R.id.button_admin_add_team);
         updateLeaderBoardButton = view.findViewById(R.id.button_admin_update_leaderboard);
         seeParticipantsButton = view.findViewById(R.id.see_participants_btn);
+        adminSeeLeaderBoardButton = view.findViewById(R.id.admin_leaderboard_button);
+        adminSeeLeaderBoardLottiAnimation = view.findViewById(R.id.lottie_admin_leaderboard);
+        adminSeeLeaderBoardButton.setOnClickListener(this);
 
         seeParticipantsButton.setOnClickListener(this);
 
@@ -97,9 +102,11 @@ public class AdminHomeFragment extends Fragment implements View.OnClickListener 
         adminSeeParticipants.setAnimation("loader.json");
         adminUpdateLeaderBoard.setAnimation("loader.json");
         adminUpdateEventTiming.setAnimation("loader.json");
+        adminSeeLeaderBoardLottiAnimation.setAnimation("loader.json");
 
         adminSendNotification.setAnimation("loader.json");
         adminSendNotification.playAnimation();
+        adminSeeLeaderBoardLottiAnimation.playAnimation();
 
         adminSeeParticipants.playAnimation();
         adminUpdateLeaderBoard.playAnimation();
@@ -112,7 +119,12 @@ public class AdminHomeFragment extends Fragment implements View.OnClickListener 
             public void run() {
                 while(!dataCommunication.getFlag1Status() || !dataCommunication.getFlag2Status());
 
-
+                adminSeeLeaderBoardLottiAnimation.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        adminSeeLeaderBoardLottiAnimation.setImageResource(R.drawable.ic_check);
+                    }
+                });
                 adminSeeParticipants.post(new Runnable() {
                     @Override
                     public void run() { adminSeeParticipants.setImageResource(R.drawable.ic_check);
@@ -315,21 +327,25 @@ public class AdminHomeFragment extends Fragment implements View.OnClickListener 
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            // Do something when click positive button
-                            //  tv.setText("Your preferred colors..... \n");
                             selectedNames.clear();
                           for (int i = 0; i < checkedCollegeNames.length; i++) {
                                 boolean checked = checkedCollegeNames[i];
                                 if (checked) {
-                                    //  tv.setText(tv.getText() + colorsList.get(i) + "\n");
                                     selectedNames.add(college_names.get(i));
                                 }
                             }
                           //lets go to next fragment with data
                             Bundle bundle = new Bundle();
                             bundle.putStringArrayList("college_names",selectedNames);
-                            Toasty.info(getContext(),selectedNames.size() + " Institutes selected",Toasty.LENGTH_LONG ).show();
-                            Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_sendNotification,bundle);
+                            if(selectedNames.size() == 0){
+                               Toasty.info(getContext(),"Please select at least one institute",Toasty.LENGTH_SHORT).show();
+
+                            }
+                            else {
+                                Toasty.info(getContext(),selectedNames.size() + " Institutes selected",Toasty.LENGTH_SHORT ).show();
+                                Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_sendNotification,bundle);
+                            }
+
                         }
                     });
 
@@ -346,9 +362,9 @@ public class AdminHomeFragment extends Fragment implements View.OnClickListener 
                     builder.setNeutralButton("select All", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+
                             // Do something when click the neutral button
                             Toasty.info(getContext(),"All Institutes selected " , Toasty.LENGTH_LONG).show();
-                            selectedNames = college_names;
                             Bundle bundle2 = new Bundle();
                             bundle2.putStringArrayList("college_names",college_names);
                             Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_sendNotification,bundle2);
@@ -365,6 +381,19 @@ public class AdminHomeFragment extends Fragment implements View.OnClickListener 
     //}
                 else{
                     Toasty.info(getContext(),"list empty,wait for data to load",Toast.LENGTH_LONG).show();
+                }
+                break;
+
+            case R.id.admin_leaderboard_button:
+            boolean flag1 = dataCommunication.getFlag1Status();
+            boolean flag2 = dataCommunication.getFlag2Status();
+
+
+                if(flag1 && flag2){
+                    Navigation.findNavController(view).navigate(R.id.action_adminHomeFragment_to_seeLeaderBoardAdmin);
+                }
+                else{
+                    Toasty.info(getContext(),"Please wait for data to load",Toast.LENGTH_LONG).show();
                 }
                 break;
 

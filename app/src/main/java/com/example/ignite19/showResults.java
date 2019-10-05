@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.ignite19.ui.LeaderBoard.showTeamsAdapter;
@@ -30,12 +29,12 @@ public class showResults extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_results);
-        showResults=findViewById(R.id.selected_team_list_recyclerview);
+        showResults=findViewById(R.id.selected_team_list_recyclerview2);
         Intent i=getIntent();
         String event_name=i.getStringExtra("event");
         showResults.setLayoutManager(new LinearLayoutManager(this));
 
-        congo=findViewById(R.id.congo);
+        congo=findViewById(R.id.congo2);
         Glide.with(showResults.this).load(R.drawable.congo).into(congo);
 
 

@@ -1,18 +1,22 @@
 package com.example.ignite19.ui.Feedback;
 
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.ignite19.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,6 +40,8 @@ import me.zhanghai.android.materialedittext.MaterialEditText;
 public class Fragment_Feedback extends Fragment {
 private int website_rating,ignite_rating,app_rating,hospitality_rating;
 private String website_desc,ignite_desc,app_desc,hospitality_desc,clg_name;
+LottieAnimationView lottieAnimationView;
+CardView c1,c2,c3,c4;
 
     public Fragment_Feedback() {
         // Required empty public constructor
@@ -55,6 +61,13 @@ private String website_desc,ignite_desc,app_desc,hospitality_desc,clg_name;
         app_desc_var=root.findViewById(R.id.app_desc_tv);
         hospitality_desc_var=root.findViewById(R.id.hospitality_desc_tv);
         website_desc_var=root.findViewById(R.id.website_desc_tv);
+        lottieAnimationView = root.findViewById(R.id.feedbackload);
+        c1 = root.findViewById(R.id.c1);
+        c2 = root.findViewById(R.id.c2);
+        c3 = root.findViewById(R.id.c3);
+        c4 = root.findViewById(R.id.c4);
+        lottieAnimationView.setVisibility(View.INVISIBLE);
+
 
         website_rating=ignite_rating=app_rating=hospitality_rating=-1;
 
@@ -82,6 +95,8 @@ private String website_desc,ignite_desc,app_desc,hospitality_desc,clg_name;
                 // reselected is false when user selects different smiley that previously selected one
                 // true when the same smiley is selected.
                 // Except if it first time, then the value will be false.
+                InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
 
                 switch (smiley) {
                     case SmileRating.BAD:
@@ -218,34 +233,67 @@ private String website_desc,ignite_desc,app_desc,hospitality_desc,clg_name;
         submit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
+                lottieAnimationView.setVisibility(View.VISIBLE);
+                c1.setVisibility(View.INVISIBLE);
+                c2.setVisibility(View.INVISIBLE);
+                c3.setVisibility(View.INVISIBLE);
+                c4.setVisibility(View.INVISIBLE);
+
 
                 website_desc=website_desc_var.getText().toString();
                 ignite_desc=ignite_desc_var.getText().toString();
                 app_desc=app_desc_var.getText().toString();
                 hospitality_desc=hospitality_desc_var.getText().toString();
-                if(website_rating!=-1 && ignite_rating!=-1 && app_rating!= -1 && hospitality_rating!=-1 && !website_desc.isEmpty() && !ignite_desc.isEmpty() && !app_desc.isEmpty() && !hospitality_desc.isEmpty()) {
+              //  if(website_rating!=-1 && ignite_rating!=-1 && app_rating!= -1 && hospitality_rating!=-1 && !website_desc.isEmpty() && !ignite_desc.isEmpty() && !app_desc.isEmpty() && !hospitality_desc.isEmpty()) {
+                if(website_rating!=-1 || ignite_rating!=-1 || app_rating!= -1 || hospitality_rating!=-1 || !website_desc.isEmpty() || !ignite_desc.isEmpty()  ||!app_desc.isEmpty() || !hospitality_desc.isEmpty()) {
+
+
                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Feedbacks").child(clg_name);
 
                     HashMap<String, Object> result = new HashMap<>();
-                    result.put("website_rating", String.valueOf(website_rating));
-                    result.put("ignite_rating", String.valueOf(ignite_rating));
-                    result.put("app_rating", String.valueOf(app_rating));
+                    if(website_rating!=-1){
+                        result.put("website_rating", String.valueOf(website_rating));
+                    }
+                    if(ignite_rating != -1){
+                        result.put("ignite_rating", String.valueOf(ignite_rating));
+                    }
+                    if(app_rating != -1){
+                        result.put("app_rating", String.valueOf(app_rating));
+                    }
+                if(hospitality_rating!= -1) {
                     result.put("hospitality_rating", String.valueOf(hospitality_rating));
+                }
+                if(website_desc != null){
                     result.put("website_views", String.valueOf(website_desc));
-                    result.put("ignite_views", String.valueOf(ignite_desc));
-                    result.put("app_views", String.valueOf(app_desc));
-                    result.put("hospitality_views", String.valueOf(hospitality_desc));
-                    reference.updateChildren(result).addOnSuccessListener(new OnSuccessListener<Void>() {
+                }
+                  if(ignite_desc!=null){
+                      result.put("ignite_views", String.valueOf(ignite_desc));
+                  }
+                  if(app_desc!=null){
+                      result.put("app_views", String.valueOf(app_desc));
+                  }
+                    if(hospitality_desc!=null){
+                        result.put("hospitality_views", String.valueOf(hospitality_desc));
+                    }
+                    String key = reference.push().getKey();
+                    reference.child(key).setValue(result).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
+
                             Toasty.success(getContext(), "Feedback Submitted.", Toast.LENGTH_LONG).show();
                             Navigation.findNavController(view).navigate(R.id.action_nav_feedback_to_nav_home);
                         }
                     });
 
+
                 }
                 else{
-                    Toasty.info(getContext(),"Please Give Feedback for each mentioned field.",Toast.LENGTH_LONG).show();
+                    Toasty.info(getContext(),"Please Give Feedback for atleast one field.",Toast.LENGTH_LONG).show();
+                    lottieAnimationView.setVisibility(View.INVISIBLE);
+                    c1.setVisibility(View.VISIBLE);
+                    c2.setVisibility(View.VISIBLE);
+                    c3.setVisibility(View.VISIBLE);
+                    c4.setVisibility(View.VISIBLE);
                 }
             }
         });

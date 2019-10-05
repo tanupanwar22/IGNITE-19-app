@@ -88,7 +88,7 @@ tools:context=".ui.AboutIGNITE.Fragment_AboutIgnite">
 
                         <TextView
                             android:id="@+id/event_rules_about_event"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="8dp"
@@ -107,7 +107,7 @@ tools:context=".ui.AboutIGNITE.Fragment_AboutIgnite">
                             android:id="@+id/textView15"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
+                            android:layout_marginStart="16dp"
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="8dp"
                             android:lineSpacingMultiplier="1.5"

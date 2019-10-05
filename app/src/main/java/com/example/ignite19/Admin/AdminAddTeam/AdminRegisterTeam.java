@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.ignite19.LoginActivity;
 import com.example.ignite19.Participation;
 import com.example.ignite19.R;
@@ -36,6 +37,7 @@ public class AdminRegisterTeam extends AppCompatActivity implements View.OnClick
     String userName,password,collegeName,participant1,participant2,participant3,participant4,participant5;
     Button registerButton;
     FirebaseAuth mAuth;
+    LottieAnimationView lottieAnimationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +53,8 @@ public class AdminRegisterTeam extends AppCompatActivity implements View.OnClick
         edParticipant4 = (EditText)findViewById(R.id.edx_p4);
         edPartcipant5= (EditText)findViewById(R.id.edx_p5);
         registerButton = (Button)findViewById(R.id.button_register_team);
+        lottieAnimationView = findViewById(R.id.xxxlottie);
+        lottieAnimationView.setVisibility(View.INVISIBLE);
         registerButton.setOnClickListener(this);
     }
 
@@ -59,6 +63,7 @@ public class AdminRegisterTeam extends AppCompatActivity implements View.OnClick
         switch (view.getId()){
             case R.id.button_register_team:
                 if(checkEditTextIsEmptyOrNot()){
+                    lottieAnimationView.setVisibility(View.VISIBLE);
                     mAuth = FirebaseAuth.getInstance();
                     mAuth.createUserWithEmailAndPassword(userName+"@ignite.com",password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -71,6 +76,7 @@ public class AdminRegisterTeam extends AppCompatActivity implements View.OnClick
                                 for(int i = 0 ; i < mList.size();++i){
                                     FirebaseDatabase.getInstance().getReference("Users").child(uuid).child("participation").child(mList.get(i).getEvent_name()).setValue(mList.get(i));
                                 }
+                                lottieAnimationView.setVisibility(View.INVISIBLE);
                                 Toasty.success(getApplicationContext(),"User creation Successful, ",Toast.LENGTH_LONG).show();
                                 mAuth.signOut();
                                 Intent intent = new Intent(AdminRegisterTeam.this, LoginActivity.class);
