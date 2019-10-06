@@ -146,7 +146,7 @@
     </fragment>
     <fragment android:id="@+id/nav_contact_us"
         android:name="com.example.ignite19.ui.ContactUS.Fragment_ContactUs"
-        android:label="@string/menu_contact_us"
+        android:label="Team IGNITE"
         tools:layout="@layout/fragment_contact_us"/>
     <fragment android:id="@+id/nav_sponsors"
         android:name="com.example.ignite19.ui.Sponsors.Fragment_Sponsors"
