@@ -133,8 +133,14 @@ public class LoginActivity extends AppCompatActivity {
         String userPassword = userPasswordEditText.getText().toString();
         if(isStringEmpty(userName, userPassword)){
             //details are given.. lets login now
-            userName = userName + "@ignite.com";
-            fireabaseSignIN(userName, userPassword);
+         //   userName = userName;
+            if(userName.equals("admin")){
+                fireabaseSignIN(userName + "@ignite.com",userPassword);
+            }
+            else{
+                fireabaseSignIN(userName, userPassword);
+            }
+
 
 
 
