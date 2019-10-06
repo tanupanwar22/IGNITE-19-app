@@ -20,11 +20,11 @@ public class StaticListOfEventParticipation {
         eventNames.add("Merc with the Mouth");
         eventNames.add("ORM Master");
         eventNames.add("Rage of Ultron");
-        eventNames.add("Scattergories");
-        //eventNames.add("Strange Bugs");
-        //eventNames.add("Tesseract Endeavour");
+        eventNames.add("Scattegories");
         eventNames.add("The Search of Gauntlet");
-        //eventNames.add("Workshop");
+        eventNames.add("Nexus");
+        eventNames.add("End Game");
+        eventNames.add("The Last Crusade");
        for(int i = 0;i<eventNames.size();++i){
            Participation p = new Participation.Builder(0,eventNames.get(i)).build();
            mList.add(p);

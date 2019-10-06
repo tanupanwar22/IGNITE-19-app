@@ -43,6 +43,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.example.ignite19.Admin.AdminDataCommunication;
 import com.example.ignite19.Admin.AdminHomeAcitivity;
 import com.example.ignite19.Admin.NotificationSender;
+import com.example.ignite19.Admin.NotificationSenderAdmin;
 import com.example.ignite19.DataCommunication;
 import com.example.ignite19.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -189,14 +190,10 @@ public class AdminUpdateLeaderBoard extends Fragment implements View.OnClickList
                                 for(int x = 0 ; x < numberOfCollegesToSelect; ++x){
                                     String key = databaseReference.push().getKey();
                                     LeaderBoardDataPOJO data = new LeaderBoardDataPOJO(x+1, finalUpdatedCollegeList.get(x));
-
                                     //for sending notification
                                     String topicName = finalUpdatedCollegeList.get(x).replaceAll(" ","_").toLowerCase();
                                     String uuid= uuidList.get(topicName);
                                     NotificationSender.uploadToFirebase(getContext(),"Congratulations","Your team has been shortlisted in: " + eventName + ". All the best for upcoming rounds.",topicName,uuid);
-
-
-
                                     databaseReference.child(key).setValue(data).addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
@@ -211,6 +208,22 @@ public class AdminUpdateLeaderBoard extends Fragment implements View.OnClickList
                                         }
                                     });
                                 }
+
+                                //send shortlistedTeam details to admin
+                                String collgeListString = null;
+                                for(int ix = 0 ; ix < finalUpdatedCollegeList.size();++ix){
+                                    collgeListString += (finalUpdatedCollegeList.get(ix) + "\n");
+                                }
+                                NotificationSenderAdmin.uploadToFirebase(getContext(),"Shortlist for " + eventName,collgeListString,"admin_xx","00");
+
+
+
+
+
+
+
+
+
                                 Navigation.findNavController(view).navigate(R.id.action_adminUpdateLeaderBoard_to_adminHomeFragment);
 
 

@@ -46,6 +46,13 @@
             app:exitAnim="@anim/exit_to_left"
             app:popEnterAnim="@anim/enter_from_left"
             app:popExitAnim="@anim/exit_to_right" />
+        <action
+            android:id="@+id/action_adminHomeFragment_to_seeNotificationAdmin"
+            app:destination="@id/seeNotificationAdmin"
+            app:enterAnim="@anim/enter_from_right"
+            app:exitAnim="@anim/exit_to_left"
+            app:popEnterAnim="@anim/enter_from_left"
+            app:popExitAnim="@anim/exit_to_right" />
     </fragment>
     <fragment
         android:id="@+id/adminUpdateLeaderBoard"
@@ -148,4 +155,9 @@
         android:name="com.example.ignite19.Admin.SeeLeaderBoardAdmin.AdminEventResults"
         android:label="fragment_admin_event_results"
         tools:layout="@layout/fragment_admin_event_results" />
+    <fragment
+        android:id="@+id/seeNotificationAdmin"
+        android:name="com.example.ignite19.Admin.AdminSeeNotification.SeeNotificationAdmin"
+        android:label="Notifications"
+        tools:layout="@layout/fragment_see_notification_admin" />
 </navigation>

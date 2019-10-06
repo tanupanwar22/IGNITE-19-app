@@ -67,15 +67,15 @@
                             android:orientation="vertical"
                             android:layout_margin="10dp"
                             >
+
                             <TextView
-                                android:textColor="@color/lime"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Ignite'19 App"
+                                android:text="IGNITE'19 App"
+                                android:textColor="@color/lime"
 
-                                android:textStyle="bold"
                                 android:textSize="20dp"
-                                />
+                                android:textStyle="bold" />
                             <TextView
 
                                 android:layout_width="match_parent"

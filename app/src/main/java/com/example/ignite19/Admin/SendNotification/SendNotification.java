@@ -30,6 +30,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.ignite19.Admin.AdminDataCommunication;
 import com.example.ignite19.Admin.NotificationSender;
+import com.example.ignite19.Admin.NotificationSenderAdmin;
 import com.example.ignite19.Participation;
 import com.example.ignite19.R;
 import com.example.ignite19.ui.Notifications.NotificationPOJO;
@@ -64,6 +65,7 @@ public class SendNotification extends Fragment implements View.OnClickListener {
     View v;
     View alertView;
     AlertDialog alertDialog;
+    String topicCollegeName,uuid;
 
     public SendNotification() {
         // Required empty public constructor
@@ -130,10 +132,11 @@ public class SendNotification extends Fragment implements View.OnClickListener {
 
                             for(int i = 0 ; i <collegeNames.size();++i){
                                 //changing college name to proper format
-                                String topicCollegeName = collegeNames.get(i).replaceAll(" ","_").toLowerCase();
-                                String uuid = uuidList.get(topicCollegeName);
+                                topicCollegeName = collegeNames.get(i).replaceAll(" ","_").toLowerCase();
+                                uuid = uuidList.get(topicCollegeName);
                                 NotificationSender.uploadToFirebase(getContext(),titleInput,bodyInput,topicCollegeName,uuid);
                             }
+                            NotificationSenderAdmin.uploadToFirebase(getContext(),titleInput,bodyInput,"admin_xx","00");
                             alertDialog.dismiss();
 
 

@@ -178,7 +178,6 @@ public class LoginActivity extends AppCompatActivity {
         if (getIntent().getExtras() != null) {
             for (String key : getIntent().getExtras().keySet()) {
                 String value = getIntent().getExtras().getString(key);
-                Log.d(TAG, "Key: asmanjasKalundia" + key + " Value: " + value);
             }
         }
 
@@ -196,6 +195,7 @@ public class LoginActivity extends AppCompatActivity {
             adminIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
             adminIntent.putExtra("UUID",user.getUid());
             adminIntent.putExtra("userName",user.getDisplayName());
+            adminIntent.putExtra("mFlag",fcmFLAG);
 
             startActivity(adminIntent);
         }

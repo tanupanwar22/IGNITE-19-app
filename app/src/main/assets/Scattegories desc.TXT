@@ -1,0 +1,1 @@
+Scattergories is a creative-thinking category-based game. The objective of the game is to score points by uniquely naming objects within a set of categories, given an initial alphabet, within a time limit.

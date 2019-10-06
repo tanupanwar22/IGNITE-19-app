@@ -14,6 +14,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -26,12 +27,15 @@ import com.example.ignite19.R;
 import com.example.ignite19.UserDataAndEventList;
 import com.example.ignite19.UserDetail;
 import com.example.ignite19.ui.schedule.eventSchedule;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,6 +52,8 @@ public class AdminHomeAcitivity extends AppCompatActivity implements AdminDataCo
     private HashMap<String ,String> eventWithDateTime = new HashMap<>();
     private HashMap<String,String> uuidList = new HashMap<>();
     Boolean flag1Status = false,flag2Status = false;
+    String fcmFlag = null;
+    int fcmFlagInt = 0;
 
 
 
@@ -79,7 +85,6 @@ public class AdminHomeAcitivity extends AppCompatActivity implements AdminDataCo
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
               for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                   String uuid = snapshot.getKey();
-                  Log.d("milk", "onDataChange: uuid of collges" + uuid);
                   UserDetail userDetail = snapshot.getValue(UserDetail.class);
                   String college_name = userDetail.getCollege_name();
                   collegeNames.add(college_name);
@@ -113,6 +118,45 @@ public class AdminHomeAcitivity extends AppCompatActivity implements AdminDataCo
 
             }
         });
+
+        Intent intent = getIntent();
+       String uuid = intent.getStringExtra("UUID");
+        String displayName = intent.getStringExtra("userName");
+        fcmFlag = intent.getStringExtra("mFlag");
+
+        if(fcmFlag !=null){
+            fcmFlagInt = Integer.valueOf(fcmFlag);
+        }
+        if(fcmFlagInt == 1){
+            Navigation.findNavController(this, R.id.admin_host_fragment).navigate(R.id.action_adminHomeFragment_to_seeNotificationAdmin);
+        }
+
+
+        //subscribe to topic admin_xx
+        FirebaseMessaging.getInstance().subscribeToTopic("admin_xx")
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        String msg = "succesfully subscribed";
+                        if (!task.isSuccessful()) {
+                            msg = "subscription failed";
+                        }
+                   //     Log.d(TAG, msg);
+                    }
+                });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.action_bar_admin, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        NavController navController = Navigation.findNavController(this, R.id.admin_host_fragment);
+        return NavigationUI.onNavDestinationSelected(item, navController)
+                || super.onOptionsItemSelected(item);
     }
 
     @Override
