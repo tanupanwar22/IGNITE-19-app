@@ -50,6 +50,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="8dp"
+                                android:justificationMode="inter_word"
                                 android:text="IGNITE"
                                 android:textAlignment="center"
                                 android:textColor="@color/contrasText"
@@ -112,6 +113,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:justificationMode="inter_word"
                                 android:layout_marginTop="12dp"
                                 android:lineSpacingMultiplier="1.5"
                                 android:padding="12dp"
@@ -129,11 +131,13 @@
                                 android:padding="12dp"
                                 android:text="ORIGIN"
                                 android:textAlignment="center"
+                                android:justificationMode="inter_word"
                                 android:textColor="@color/lime"
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:justificationMode="inter_word"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="12dp"
@@ -145,6 +149,7 @@
                                 android:textSize="14sp" />
 
                             <TextView
+                                android:justificationMode="inter_word"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -158,6 +163,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:justificationMode="inter_word"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
@@ -169,6 +175,7 @@
 
 
                             <TextView
+                                android:justificationMode="inter_word"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -182,6 +189,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:justificationMode="inter_word"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
@@ -192,6 +200,7 @@
                                 android:textSize="14sp" />
 
                             <TextView
+                                android:justificationMode="inter_word"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -205,6 +214,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
+                                android:justificationMode="inter_word"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="fill_horizontal"
@@ -217,6 +227,7 @@
                                 android:textSize="14sp" />
 
                             <TextView
+                                android:justificationMode="inter_word"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
@@ -229,6 +240,7 @@
                                 android:textSize="14sp" />
 
                             <TextView
+                                android:justificationMode="inter_word"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
@@ -241,6 +253,7 @@
                                 android:textSize="14sp" />
 
                             <TextView
+                                android:justificationMode="inter_word"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
@@ -253,6 +266,7 @@
                                 android:textSize="14sp" />
 
                             <TextView
+                                android:justificationMode="inter_word"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
@@ -265,6 +279,7 @@
                                 android:textSize="14sp" />
 
                             <TextView
+                                android:justificationMode="inter_word"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
@@ -277,6 +292,7 @@
                                 android:textSize="14sp" />
 
                             <TextView
+                                android:justificationMode="inter_word"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
@@ -289,6 +305,7 @@
                                 android:textSize="14sp" />
 
                             <TextView
+                                android:justificationMode="inter_word"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
@@ -301,6 +318,7 @@
                                 android:textSize="14sp" />
 
                             <TextView
+                                android:justificationMode="inter_word"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
@@ -313,6 +331,7 @@
                                 android:textSize="14sp" />
 
                             <TextView
+                                android:justificationMode="inter_word"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
@@ -325,6 +344,7 @@
                                 android:textSize="14sp" />
 
                             <TextView
+                                android:justificationMode="inter_word"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
@@ -337,6 +357,7 @@
                                 android:textSize="14sp" />
 
                             <TextView
+                                android:justificationMode="inter_word"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
@@ -349,6 +370,7 @@
                                 android:textSize="14sp" />
 
                             <TextView
+                                android:justificationMode="inter_word"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
