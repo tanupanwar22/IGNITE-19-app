@@ -1,1 +1,1 @@
-A coding event in which teams have to solve 3-4 four coding problem in a given limit of time.
+A coding event in which teams have to solve 3-4 coding problems in a given limit of time.

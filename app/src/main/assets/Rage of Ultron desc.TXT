@@ -1,12 +1,1 @@
-Task for rage of Ultron:
-1.The participant will be  given 7 cups and 7 marvel & dc characters names and the chits of their letters individually.
-2.Such as AQUAMAN so the chits will be ‘A’ ,’Q’,’U’,’A’,’M’,’A’,’N’.
-3.The participants have to remember the name as they arrive on the screen.
-4.The participant will be given 20 second to remember the name and the sequence as they arrive.
-5.The participants have to fill those names in the cups as they arrive on screen.
- Ex-
- 1. Aquaman
-  2.Thor
-Then in the first cup you will fill “Aquaman” and in the second cup you will fill “Thor”.
-6.This task will be done along with the question & answers with the participant.
-7.90 second will be given to complete the task to the participant.
+Some name it Ultron, some name it Jarvis but matching them in real is the toughest task. Here we push your limits and test your patience by throwing a stream of jobs at you.

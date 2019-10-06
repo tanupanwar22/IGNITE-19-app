@@ -1,5 +1,5 @@
 Round 1:
-A event which is basically a debugging round. The participants will be given problems and they have to rectify the errors.
+This round is basically a debugging round. The participants will be given problems and they have to rectify the errors.
 
 Round 2:
-It is an event which tests logical thinking and basic programming skills. The participants will be given input and output of the problem and are asked to do reverse coding, that is to develop the source code.Every question has its own marking.
+It is a round which tests the logical thinking and basic programming skills. The participants will be given input and output of the problem and will be asked to reverse code it, that is to develop the source code. Every question has its own marking.

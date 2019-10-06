@@ -1,5 +1,5 @@
 Round 1:
-This is an online coding event where the participants will get a chance to show their versatility , logical thinking, technical skill.optimize the problems in best way.
+This is an online coding event where the participants will get a chance to show their versatility, logical thinking, and technical skills. Optimize the problems in best way. There will also be some MCQ questions.
 
 Round 2:
-This is a pen paper round . Participants will be provided with a question based on algorithms .They will be asked to write algorithm for solution of problem.Through this their presence of technical mind will be checked.The best algorithm will win the crown of Captain Algorika.
+In this round, the participants will be provided with a real world problem which can be solved using basic algorithms. They will be asked to write the pseudo code of the solution of the problem. Through this their presence of technical mind will be checked. The best algorithm will win the crown of Captain Algorika.

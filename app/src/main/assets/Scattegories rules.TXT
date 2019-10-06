@@ -1,9 +1,1 @@
-The game is played in the set of 3 rounds.
-1. Each team will be provided with 3 category lists i.e. round 1,2 and 3.
-2. We will give you an alphabet that decides the first alphabet to be used. The timer is set up for 90 seconds for each round.
-3. In the time allotted, each player must attempt to think of and write down, on the list provided, a word or term that fits each of the 10 categories and starts with the given alphabet. Any number of words in the answer is allowed, as long as the first word starts with the correct letter. For example, with a category of "vegetable" and a letter of "C", words such as "cauliflower", "carrot" and "collard greens" are acceptable, but "broccoli" is not (wrong initial letter), nor is "citrus" (wrong category).
-4. All players should stop writing when the time is over.
-5.Player score 5 marks for each correct answer.
-6. Articles (A/An/The) do not fulfill the beginning alphabet requirement. Instead, the word following the article will be the letter that counts. For instance, if the letter was “W” and the category was “TV Shows,” The Walking Dead would count as an acceptable answer; however, the answer would be unacceptable if a “T” had been rolled.
-7. Players cannot use the same answer twice in the same round. Only one of them will be accepted as a correct answer and rest will be considered wrong.
-8. Teams have to write unique words or terms in each category. For instance, if the letter was "C" and category was "Vegetable", Team X wrote " Carrot " and Team Y did the same. In this case,2 marks will be deducted from the respective category of Team X and Y.
+Rules will be disclosed on the spot.

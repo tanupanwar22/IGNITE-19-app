@@ -1,13 +1,1 @@
-• Each team will be given 20 points.
-• The events is divided into 5 levels. Each level contains 7 questions of different weightages. (Total Questions=35).
-• The number of lifeline given to each team is two. Each team can use this lifeline to skip the questions.
-• If the team answers the question correct then team points will get reduced by the respective weightage else if the answer is wrong then team points will be increased by that respective weightage.
-• To answer the question, teams has to press the buzzer but the buzzer must be pressed after the weightage is announced by the host.
- • Two warnings will be given (if the team presses the buzzer before the weightage) to the team and if it happens a third time then the team will be disqualified.
-• The team who presses the buzzer before weightage announcement will not be allowed to answer that particular question and then we will reset the buzzer and the rest of the teams can press the buzzer to answer the question. The restricted team can only answer in case of wheel of fortune.
-• Calculate your marks on your own and make sure you should not cross the upper and lower bound. If you do so you will be disqualified. E.g points < 0 or points > 40.
- • If any question goes unanswered then we will spin the wheel of fortune on which each team’s name is written. The spindle pointing the team name has to answer the question. (They can use their lifelines).
-• You can guess the answer or you can use your lifeline or you can willingly give the wrong answer its all up to you.
-• Each question will be given 25 seconds.
-• At last, the team with the minimum marks will be the winner.
-
+Rules will be disclosed on the spot.

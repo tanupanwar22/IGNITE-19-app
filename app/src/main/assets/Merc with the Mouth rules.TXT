@@ -1,16 +1,1 @@
-A participant is given any random topic and instantly has to speak, “for or against” the topic. In a duration of 2 minutes and 30 seconds, while one participant is speaking others can object and get opportunity to speak. whenever the judge commands. Loaded with instantaneous humor, the speaker is evaluated by spontaneity, humor, content and of course audience response.
-
-1.A riddle will be given and participants have to solve it within 1 minute. Whosoever solves the riddle first will get the chance to speak.
-2.The participants will get 30 seconds to collect their thoughts over the given topic.
-3.While one participant is speaking others can object him if any of the following happens:
- *Repeat
- *Pause
- *Out of context
-4.If the objection raised is sustained by the judges, then the person will get bonus and will get the chance to speak on the same topic and if not then the person who objected will get negative points and former will continue.
-5.The whole cycle will be for 2 minutes and there would be a total of 6 cycles.
-
-Score Criteria:
-1.15 points will be given for solving puzzle.
-2.If the objection raised is sustained then a bonus of 3 points is given but if overruled negative 3 points will be added.
-3.Participant who speaks for 45 seconds continuously will get a bonus of 10 points and 2 points for every next 15 seconds.
-4.Judges will decide on the scale of 30 points for each phase.
+Rules will be disclosed on the spot.

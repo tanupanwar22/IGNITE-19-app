@@ -1,1 +1,1 @@
-Death’s Head is a game of pantomimes: you have to "act out" or “draw” a word without speaking, while the other member of your team try to guess what the word is. The objective for your team is to guess the maximum words as quickly as possible.
+Death’s Head is a game of pantomimes: you have to "act out" or “draw” a word without speaking, while the other member of your team tries to guess what the word is. The objective for your team is to guess the maximum words in the given time.
