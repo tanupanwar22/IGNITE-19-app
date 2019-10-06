@@ -45,6 +45,8 @@ public class NotificationHelper {
                 .setContentIntent(pendingIntent)
                 .setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
         if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.O){
+            ct.grantUriPermission("com.android.systemui", alarmSound,
+                    Intent.FLAG_GRANT_READ_URI_PERMISSION);
             builder.setPriority(NotificationCompat.PRIORITY_MAX);
             builder.setSound(alarmSound);
         }
@@ -54,4 +56,5 @@ public class NotificationHelper {
         notificationManager.notify(oneTimeID, builder.build());
 
     }
+
 }

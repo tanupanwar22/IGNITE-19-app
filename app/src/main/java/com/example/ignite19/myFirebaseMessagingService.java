@@ -38,6 +38,13 @@ public class myFirebaseMessagingService extends FirebaseMessagingService {
         String messageEventVenue = null;
         String messageLongitude = null;
         String messageLatitude = null;
+
+
+        if(remoteMessage.getData().size() > 0){
+            Map<String ,String> mMap = remoteMessage.getData();
+            messageTitle = mMap.get("title");
+            messageText = mMap.get("text");
+        }
         triggerNotification(this,messageTitle,messageText,messageEventName,messageEventVenue,messageLatitude,messageLongitude);
     }
     public  void triggerNotification(Context ct, String messageTitle, String messageText, String messageEventName, String messageEventVenue, String latitude, String longitude){
@@ -45,27 +52,41 @@ public class myFirebaseMessagingService extends FirebaseMessagingService {
         Intent intent = new Intent(ct,LoginActivity.class);
         intent.putExtra("mFlag","1");
         PendingIntent pendingIntent = PendingIntent.getActivity(ct, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
         final Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(ct, MainActivity.CHANNEL_ID)
-                .setContentTitle(messageTitle)
-                .setContentText(messageText)
-                .setStyle(new NotificationCompat.BigTextStyle().bigText(messageText))
-                .setSmallIcon(R.drawable.ic_stat_logo33)
-                .setColor(getResources().getColor(R.color.goldenYellow))
-                .setAutoCancel(true)
-                .setSound(alarmSound)
-                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .setContentIntent(pendingIntent)
-                .setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
-        if(Build.VERSION.SDK_INT <= Build.VERSION_CODES.O){
-            builder.setPriority(NotificationCompat.PRIORITY_MAX);
-            builder.setSound(alarmSound);
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.O){
+            //for devices with notification channel
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(ct, MainActivity.CHANNEL_ID)
+                    .setContentTitle(messageTitle)
+                    .setContentText(messageText)
+                    .setStyle(new NotificationCompat.BigTextStyle().bigText(messageText))
+                    .setSmallIcon(R.drawable.ic_stat_logo33)
+                    .setColor(getResources().getColor(R.color.goldenYellow))
+                    .setAutoCancel(true)
+                    .setSound(alarmSound)
+                    .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                    .setContentIntent(pendingIntent)
+                    .setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(ct);
+            int oneTimeID = (int) SystemClock.uptimeMillis();
+            notificationManager.notify(oneTimeID, builder.build());
         }
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(ct);
-        int oneTimeID = (int) SystemClock.uptimeMillis();
-        notificationManager.notify(oneTimeID, builder.build());
-    }
+        else{
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(ct, MainActivity.CHANNEL_ID)
+                    .setContentTitle(messageTitle)
+                    .setContentText(messageText)
+                    .setStyle(new NotificationCompat.BigTextStyle().bigText(messageText))
+                    .setSmallIcon(R.drawable.ic_stat_logo33)
+                    .setColor(getResources().getColor(R.color.goldenYellow))
+                    .setAutoCancel(true)
+                    .setSound(alarmSound)
+                    .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                    .setContentIntent(pendingIntent)
+                    .setVibrate(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400})
+                    .setPriority(NotificationCompat.PRIORITY_MAX);
 
-
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(ct);
+            int oneTimeID = (int) SystemClock.uptimeMillis();
+            notificationManager.notify(oneTimeID, builder.build());
+        }
+        }
 }
