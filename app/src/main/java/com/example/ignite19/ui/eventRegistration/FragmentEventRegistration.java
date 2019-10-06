@@ -1,17 +1,13 @@
 package com.example.ignite19.ui.eventRegistration;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.text.TextPaint;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,8 +25,6 @@ import com.example.ignite19.DataCommunication;
 import com.example.ignite19.Participation;
 import com.example.ignite19.R;
 import com.example.ignite19.UserDetail;
-import com.example.ignite19.UserDataAndEventList;
-import com.example.ignite19.ui.eventRegistration.RegisterEventsAdapter;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -131,7 +125,7 @@ public class FragmentEventRegistration extends Fragment {
 
                                     break;
 
-                                case  "Scattergories":
+                                case  "Scattegories":
                                     p.setEventIconURI(R.drawable.scattergorries_ic);
                                     break;
 
@@ -170,6 +164,22 @@ public class FragmentEventRegistration extends Fragment {
                                 case "The Search of Gauntlet":
                                     p.setEventIconURI(R.drawable.search_of_the_gauntlet_ic);
                                     break;
+
+
+                                case "Nexus":
+                                    p.setEventIconURI(R.drawable.nexus_poster_ic2);
+                                    break;
+
+
+                                case "End Game":
+                                    p.setEventIconURI(R.drawable.endgame_icon);
+                                    break;
+
+                                case "The Last Crusade":
+                                    p.setEventIconURI(R.drawable.the_last_crusade_ic);
+                                    break;
+
+
 
                                 default:
                                     Log.d(TAG, "onDataChange: some error has occured inside switch case of database listener");
@@ -252,10 +262,10 @@ public class FragmentEventRegistration extends Fragment {
 
 
 
-                                case "Scattergories":
+                                case "Scattegories":
                                     String desctexts="";
                                     try  {
-                                        InputStream is = getActivity().getAssets().open("Scattergories desc.TXT");
+                                        InputStream is = getActivity().getAssets().open("Scattegories desc.TXT");
                                         int size=is.available();
                                         byte[] buffer=new byte[size];
                                         is.read(buffer);
@@ -303,7 +313,7 @@ public class FragmentEventRegistration extends Fragment {
                                         ex.printStackTrace();
                                     }
                                     p.setEventDesc(desctextca);
-                                    p.setNumberOfParticipants(3);
+                                    p.setNumberOfParticipants(2);
                                     p.setEventIconURI(R.drawable.captain_algorika_ic);
                                     break;
                                 case "Cerebro":
@@ -337,7 +347,7 @@ public class FragmentEventRegistration extends Fragment {
                                         ex.printStackTrace();
                                     }
                                     p.setEventDesc(desctextci);
-                                    p.setNumberOfParticipants(2);
+                                    p.setNumberOfParticipants(3);
                                     p.setEventIconURI(R.drawable.code_infinity_ic);
                                     break;
 
@@ -374,7 +384,7 @@ public class FragmentEventRegistration extends Fragment {
                                     }
                                     p.setEventDesc(desctextk);
 
-                                    p.setNumberOfParticipants(2);
+                                    p.setNumberOfParticipants(5);
                                     p.setEventIconURI(R.drawable.krypthon_ic);
                                     break;
                                 case "Merc with the Mouth":
@@ -449,9 +459,67 @@ public class FragmentEventRegistration extends Fragment {
                                     }
                                     p.setEventDesc(desctexttsg);
 
-                                    p.setNumberOfParticipants(2);
+                                    p.setNumberOfParticipants(4);
                                     p.setEventIconURI(R.drawable.search_of_the_gauntlet_ic);
                                     break;
+
+
+                                case "Nexus":
+                                    String desctexttsgx1="";
+                                    try  {
+                                        InputStream is = getActivity().getAssets().open("Nexus desc.TXT");
+                                        int size=is.available();
+                                        byte[] buffer=new byte[size];
+                                        is.read(buffer);
+                                        is.close();
+                                        desctexttsgx1=new String(buffer);
+                                    }
+                                    catch (IOException ex){
+                                        ex.printStackTrace();
+                                    }
+                                    p.setEventDesc(desctexttsgx1);
+                                    p.setNumberOfParticipants(5);
+                                    p.setEventIconURI(R.drawable.nexus_poster_ic2);
+                                    break;
+
+
+                                case "End Game":
+                                    String desctexttsgx12="";
+                                    try  {
+                                        InputStream is = getActivity().getAssets().open("End Game desc.TXT");
+                                        int size=is.available();
+                                        byte[] buffer=new byte[size];
+                                        is.read(buffer);
+                                        is.close();
+                                        desctexttsgx12=new String(buffer);
+                                    }
+                                    catch (IOException ex){
+                                        ex.printStackTrace();
+                                    }
+                                    p.setEventDesc(desctexttsgx12);
+                                    p.setNumberOfParticipants(1);
+                                    p.setEventIconURI(R.drawable.endgame_icon);
+                                    break;
+
+
+                                case "The Last Crusade":
+                                    String desctexttsgx123="";
+                                    try  {
+                                        InputStream is = getActivity().getAssets().open("The Last Crusade Desc.TXT");
+                                        int size=is.available();
+                                        byte[] buffer=new byte[size];
+                                        is.read(buffer);
+                                        is.close();
+                                        desctexttsgx123=new String(buffer);
+                                    }
+                                    catch (IOException ex){
+                                        ex.printStackTrace();
+                                    }
+                                    p.setEventDesc(desctexttsgx123);
+                                    p.setNumberOfParticipants(5);
+                                    p.setEventIconURI(R.drawable.the_last_crusade_ic);
+                                    break;
+
 
                                 default:
                                     Log.d(TAG, "onDataChange: some error has occured inside switch case of database listener");
@@ -461,8 +529,7 @@ public class FragmentEventRegistration extends Fragment {
 
                         }
                         else{
-                           // Toasty.error(getContext(),"Failed to get event Description",Toast.LENGTH_LONG).show();
-                            Log.d(TAG, "onDataChange: Failed to get event Description" );
+                          Log.d(TAG, "onDataChange: Failed to get event Description" );
                         }
                     }
 

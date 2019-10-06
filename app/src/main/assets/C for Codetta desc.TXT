@@ -1,2 +1,1 @@
-To reach the pinnacle it's always suggested to start from the basics. So here we throw at you the problems to make you think, to make you scratch your heads and eventually "Avenge the codes".
-
+A coding event in which teams have to solve 3-4 four coding problem in a given limit of time.

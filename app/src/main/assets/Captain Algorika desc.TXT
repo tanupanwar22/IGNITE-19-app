@@ -1,1 +1,5 @@
-Do you know your codes well enough? Do you have faith in what you code? Here is your chance to showcase your algorithm knowledge We test you and you have to come on top.
+Round 1:
+This is an online coding event where the participants will get a chance to show their versatility , logical thinking, technical skill.optimize the problems in best way.
+
+Round 2:
+This is a pen paper round . Participants will be provided with a question based on algorithms .They will be asked to write algorithm for solution of problem.Through this their presence of technical mind will be checked.The best algorithm will win the crown of Captain Algorika.

@@ -32,7 +32,6 @@ public class NotifyWorker extends Worker {
     @NonNull
     @Override
     public Result doWork() {
-        Log.d("ALPHA", "doWork: worker started" );
         triggerNotification();
         return Result.success();
     }
@@ -79,7 +78,7 @@ public class NotifyWorker extends Worker {
         }
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
         int oneTimeID = (int) SystemClock.uptimeMillis();
-        Log.d(TAG, "triggerNotification: notificationID " + oneTimeID);
+
         notificationManager.notify(oneTimeID, builder.build());
 
     }

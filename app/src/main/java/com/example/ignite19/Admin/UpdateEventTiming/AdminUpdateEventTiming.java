@@ -28,6 +28,7 @@ import android.widget.Toast;
 import com.example.ignite19.Admin.AdminDataCommunication;
 import com.example.ignite19.Admin.AdminHomeAcitivity;
 import com.example.ignite19.Admin.NotificationSender;
+import com.example.ignite19.Admin.NotificationSenderAdmin;
 import com.example.ignite19.DataCommunication;
 import com.example.ignite19.DateTimeConverter;
 import com.example.ignite19.R;
@@ -67,6 +68,7 @@ public class AdminUpdateEventTiming extends Fragment implements View.OnClickList
     HashMap<String,String> uuidList = new HashMap<>();
     EditText edt;
     List<String> temp = new ArrayList<>();
+    String xtime;
     String newTime;
     String finalDate;
     String dateTimeFromFirebase;
@@ -147,6 +149,7 @@ public class AdminUpdateEventTiming extends Fragment implements View.OnClickList
                     String temp = newTime;
                     //some m
                     finalDate = event_date + " " + temp + ":00";
+
                     final DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("EventDesc").child(event_name);
                     databaseReference.child("event_date").setValue(finalDate).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
@@ -157,10 +160,11 @@ public class AdminUpdateEventTiming extends Fragment implements View.OnClickList
                                 for (Map.Entry<String,String> entry : uuidList.entrySet()) {
                                     String key = entry.getKey();
                                     String value = entry.getValue();
-                                    String xtime = DateTimeConverter.changeDateFormatToTime(finalDate);
+                                    xtime = DateTimeConverter.changeDateFormatToTime(finalDate);
                                     NotificationSender.uploadToFirebase(getContext(),"Timing Update",event_name + " timing has been changed from  " + DateTimeConverter.changeDateFormat(dateTimeFromFirebase) + " to "  + xtime ,key,value);
                                     // do stuff
                                 }
+                                NotificationSenderAdmin.uploadToFirebase(getContext(),"Timing Update",event_name + " timing has been changed from  " + DateTimeConverter.changeDateFormat(dateTimeFromFirebase) + " to "  + xtime ,"admin_xx","00");
                                  Toasty.success(getContext(),"Time updated Successfully",Toast.LENGTH_LONG).show();
 
 
@@ -185,88 +189,5 @@ public class AdminUpdateEventTiming extends Fragment implements View.OnClickList
 }
 
 
-        /*
-        select_event=v.findViewById(R.id.admin_update_event_select_event);
-        select_event.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DatabaseReference reference= FirebaseDatabase.getInstance().getReference().child("EventDesc");
-                reference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for(DataSnapshot d: dataSnapshot.getChildren())
-                        {
-                            temp.add(d.getKey());
-                            Toast.makeText(v.getContext(),"",Toast.LENGTH_LONG);
-                            cnt++;
-                            if(cnt==21)
-                                call(v);
-                        }
-                    }
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-
-
-            }
-        });
-
-    Button update=v.findViewById(R.id.admin_update_time_btn);
-    update.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            String time=edt.getText().toString();
-            if(time.length()==5) {
-                DatabaseReference reference1 = FirebaseDatabase.getInstance().getReference().child("EventDesc").child(event_name);
-                Map<String, String> newpost = new HashMap<>();
-                newpost.put("event_name", event_name);
-                newpost.put("event_date",time );
-                reference1.setValue(newpost).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            Toast.makeText(v.getContext(),"Time Updated",Toast.LENGTH_LONG).show();
-                        }
-                        else {
-                            Toast.makeText(v.getContext(),task.getException().getMessage(),Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
-
-            }
-            else{
-                Toast.makeText(v.getContext(),"Enter in 24hr HH:MM format",Toast.LENGTH_LONG).show();
-            }
-        }
-    });
-
-
-
-
-    return v;
-    }
-
-    public void call(View v)
-    {AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
-        builder.setTitle("Select Event");
-        for(int i=0;i<temp.size();i++)
-            enames[i]=temp.get(i);
-
-// add a list
-        builder.setItems(enames, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                select_event.setText(enames[which]);
-                event_name=enames[which];
-            }
-        });
-
-// create and show the alert dialog
-        AlertDialog dialog = builder.create();
-        dialog.show();
-    }
-*/
 

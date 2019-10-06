@@ -12,31 +12,22 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.example.ignite19.ui.Notifications.NotificationPOJO;
 import com.example.ignite19.ui.notificationModule.NotifyWorker;
 import com.example.ignite19.ui.schedule.eventSchedule;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -44,10 +35,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -369,11 +357,11 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                                 ex.printStackTrace();
                             }
                             mEventList.setEvent_description(desctexta);
-                            mEventList.setEvent_latitude(13.009319);
-                            mEventList.setEvent_longitude(74.794500);
+                          //  mEventList.setEvent_latitude(13.009319);
+                           // mEventList.setEvent_longitude(74.794500);
                             mEventList.setNumber_of_participants(2);
-                            mEventList.setEvent_venue("LHC-X");
-                            mEventList.setEvent_duration("01:00:00");
+                            mEventList.setEvent_venue("MACS Lab");
+                            mEventList.setEvent_duration("00:45:00");
                             mEventList.setEvent_icon_uri(R.drawable.agomotto_amet_ic);
                             mEventList.setEvent_image_uri(R.drawable.agomotto_amet_p2);
                             break;
@@ -403,10 +391,10 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
 
 
 
-                        case "Scattergories":
+                        case "Scattegories":
                             String desctexts="";
                             try  {
-                                InputStream is = getAssets().open("Scattergories desc.TXT");
+                                InputStream is = getAssets().open("Scattegories desc.TXT");
                                 int size=is.available();
                                 byte[] buffer=new byte[size];
                                 is.read(buffer);
@@ -441,10 +429,10 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                                 ex.printStackTrace();
                             }
                             mEventList.setEvent_description(desctextc);
-                            mEventList.setEvent_latitude(13.009319);
-                            mEventList.setEvent_longitude(74.794500);
+                          //  mEventList.setEvent_latitude(13.009319);
+                           // mEventList.setEvent_longitude(74.794500);
                             mEventList.setNumber_of_participants(2);
-                            mEventList.setEvent_venue("LHC-C");
+                            mEventList.setEvent_venue("CCC");
                             mEventList.setEvent_duration("01:00:00");
                             mEventList.setEvent_icon_uri(R.drawable.c_for_codetta_ic);
                             mEventList.setEvent_image_uri(R.drawable.c_for_codetta_p2);
@@ -466,9 +454,9 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                             mEventList.setEvent_description(desctextca);
                             mEventList.setEvent_latitude(13.009319);
                             mEventList.setEvent_longitude(74.794500);
-                            mEventList.setNumber_of_participants(3);
-                            mEventList.setEvent_venue("LHC-C");
-                            mEventList.setEvent_duration("01:00:00");
+                            mEventList.setNumber_of_participants(2);
+                            mEventList.setEvent_venue("CCC and NTB");
+                            mEventList.setEvent_duration("00:45:00");
                             mEventList.setEvent_icon_uri(R.drawable.captain_algorika_ic);
                             mEventList.setEvent_image_uri(R.drawable.captain_algorika_p2);
                             break;
@@ -508,10 +496,10 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                                 ex.printStackTrace();
                             }
                             mEventList.setEvent_description(desctextci);
-                            mEventList.setEvent_latitude(13.009319);
-                            mEventList.setEvent_longitude(74.794500);
-                            mEventList.setNumber_of_participants(2);
-                            mEventList.setEvent_venue("LHC-C");
+                          //  mEventList.setEvent_latitude(13.009319);
+                            //mEventList.setEvent_longitude(74.794500);
+                            mEventList.setNumber_of_participants(3);
+                            mEventList.setEvent_venue("CCC");
                             mEventList.setEvent_duration("01:00:00");
                             mEventList.setEvent_icon_uri(R.drawable.code_infinity_ic);
                             mEventList.setEvent_image_uri(R.drawable.code_infinity_p2);
@@ -537,7 +525,7 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                             mEventList.setEvent_venue("LHC-C");
                             mEventList.setEvent_duration("01:00:00");
                             mEventList.setEvent_icon_uri(R.drawable.dormammu_loop_ic);
-                            mEventList.setEvent_image_uri(R.drawable.code_infinity_p2);
+                            mEventList.setEvent_image_uri(R.drawable.dormmamu_loop_poster);
                             break;
 
                         case "Krypthon":
@@ -554,11 +542,11 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                                 ex.printStackTrace();
                             }
                             mEventList.setEvent_description(desctextk);
-                            mEventList.setEvent_latitude(13.009319);
-                            mEventList.setEvent_longitude(74.794500);
-                            mEventList.setNumber_of_participants(2);
+                           // mEventList.setEvent_latitude(13.009319);
+                            //mEventList.setEvent_longitude(74.794500);
+                            mEventList.setNumber_of_participants(5);
                             mEventList.setEvent_venue("LHC-C");
-                            mEventList.setEvent_duration("01:00:00");
+                            mEventList.setEvent_duration("00:30:00");
                             mEventList.setEvent_icon_uri(R.drawable.krypthon_ic);
                             mEventList.setEvent_image_uri(R.drawable.krypthon_p2);
                             break;
@@ -598,10 +586,10 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                                 ex.printStackTrace();
                             }
                             mEventList.setEvent_description(desctexto);
-                            mEventList.setEvent_latitude(13.009319);
-                            mEventList.setEvent_longitude(74.794500);
+                          //  mEventList.setEvent_latitude(13.009319);
+                           // mEventList.setEvent_longitude(74.794500);
                             mEventList.setNumber_of_participants(2);
-                            mEventList.setEvent_venue("LHC-C");
+                            mEventList.setEvent_venue("MACS Lab");
                             mEventList.setEvent_duration("01:00:00");
                             mEventList.setEvent_icon_uri(R.drawable.orm_master_ic);
                             mEventList.setEvent_image_uri(R.drawable.orm_master_p2);
@@ -644,13 +632,79 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                                 ex.printStackTrace();
                             }
                             mEventList.setEvent_description(desctexttsg);
-                            mEventList.setEvent_latitude(13.009319);
-                            mEventList.setEvent_longitude(74.794500);
-                            mEventList.setNumber_of_participants(2);
-                            mEventList.setEvent_venue("LHC-C");
-                            mEventList.setEvent_duration("01:00:00");
+                          //  mEventList.setEvent_latitude(13.009319);
+                            //mEventList.setEvent_longitude(74.794500);
+                            mEventList.setNumber_of_participants(4);
+                            mEventList.setEvent_venue("NTB");
+                            mEventList.setEvent_duration("04:00:00");
                             mEventList.setEvent_icon_uri(R.drawable.search_of_the_gauntlet_ic);
                             mEventList.setEvent_image_uri(R.drawable.the_search_of_the_gaunt_p2);
+                            break;
+
+                        case "Nexus":
+                            String mSt="";
+                            try  {
+                                InputStream is = getAssets().open("Nexus desc.TXT");
+                                int size=is.available();
+                                byte[] buffer=new byte[size];
+                                is.read(buffer);
+                                is.close();
+                                mSt=new String(buffer);
+                            }
+                            catch (IOException ex){
+                                ex.printStackTrace();
+                                Log.d(TAG, "onDataChange: paani exception" + ex.toString());
+                            }
+                            mEventList.setEvent_description(mSt);
+                            mEventList.setNumber_of_participants(5);
+                            mEventList.setEvent_venue("Pavilion");
+                            mEventList.setEvent_duration("02:30:00");
+                            mEventList.setEvent_icon_uri(R.drawable.nexus_poster_ic2);
+                            mEventList.setEvent_image_uri(R.drawable.nexus_poster);
+                            break;
+
+
+                        case "End Game":
+                            String desctexttsg12="";
+                            try  {
+                                InputStream is = getAssets().open("End Game desc.TXT");
+                                int size=is.available();
+                                byte[] buffer=new byte[size];
+                                is.read(buffer);
+                                is.close();
+                                desctexttsg12=new String(buffer);
+                            }
+                            catch (IOException ex){
+                                ex.printStackTrace();
+                            }
+                            mEventList.setEvent_description("Star Event Of Ignite");
+
+                            mEventList.setNumber_of_participants(1);
+                            mEventList.setEvent_venue("LHC-C Seminar Hall");
+                            mEventList.setEvent_duration("01:00:00");
+                            mEventList.setEvent_icon_uri(R.drawable.endgame_icon);
+                            mEventList.setEvent_image_uri(R.drawable.endgame_poster);
+                            break;
+
+                        case "The Last Crusade":
+                            String desctexttsg122="";
+                            try  {
+                                InputStream is = getAssets().open("The Last Crusade desc.TXT");
+                                int size=is.available();
+                                byte[] buffer=new byte[size];
+                                is.read(buffer);
+                                is.close();
+                                desctexttsg122=new String(buffer);
+                            }
+                            catch (IOException ex){
+                                ex.printStackTrace();
+                            }
+                            mEventList.setEvent_description(desctexttsg122);
+                            mEventList.setNumber_of_participants(5);
+                            mEventList.setEvent_venue("NTB + CCC");
+                            mEventList.setEvent_duration("03:00:00");
+                            mEventList.setEvent_icon_uri(R.drawable.the_last_crusade_ic);
+                            mEventList.setEvent_image_uri(R.drawable.the_last_crusade);
                             break;
 
 

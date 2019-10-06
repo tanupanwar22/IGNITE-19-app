@@ -1,1 +1,1 @@
-Your data is your priced possession. But how well do you know your data? Come here at Ignite the data awaits you. The master will have an edge over the others and the data will bow to it's master only.
+This event is database round.Event has two rounds.First round is written and the second round will have some SQL queries.
