@@ -65,7 +65,7 @@ public class AdminRegisterTeam extends AppCompatActivity implements View.OnClick
                 if(checkEditTextIsEmptyOrNot()){
                     lottieAnimationView.setVisibility(View.VISIBLE);
                     mAuth = FirebaseAuth.getInstance();
-                    mAuth.createUserWithEmailAndPassword(userName+"@ignite.com",password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    mAuth.createUserWithEmailAndPassword(userName,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
