@@ -49,12 +49,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import es.dmoral.toasty.Toasty;
 
 
-public class MainActivity extends AppCompatActivity implements DataCommunication {
+public class MainActivity extends AppCompatActivity implements DataCommunication{
 
     private AppBarConfiguration mAppBarConfiguration;
     private TextView userNameHeaderTextView;
