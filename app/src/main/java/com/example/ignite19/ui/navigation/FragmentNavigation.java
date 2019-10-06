@@ -42,6 +42,7 @@ public class FragmentNavigation extends Fragment {
        // venue_list.add(new VenueList("Rest Rooms",13.007833,74.794848));
         venue_list.add(new VenueList("SACA Lab",13.009699,74.794659));
         venue_list.add(new VenueList("Trishul Block Mess",13.007429,74.794230));
+        venue_list.add(new VenueList("Mega Hostel(Everest)",13.007917,74.794929));
 
         v=inflater.inflate(R.layout.fragment_navigation,container,false);
         mRecylerView = (RecyclerView)v.findViewById(R.id.venue_list_recycler_view);
