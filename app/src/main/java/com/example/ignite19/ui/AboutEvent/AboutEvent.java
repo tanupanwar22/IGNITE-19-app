@@ -2,9 +2,11 @@ package com.example.ignite19.ui.AboutEvent;
 
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -21,6 +23,8 @@ import com.example.ignite19.R;
 import com.example.ignite19.UserDataAndEventList;
 
 import java.util.ArrayList;
+
+import static android.text.Layout.JUSTIFICATION_MODE_INTER_WORD;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,6 +67,7 @@ public class AboutEvent extends Fragment {
         outState.putString("eventRules",eventRules);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -99,6 +104,10 @@ public class AboutEvent extends Fragment {
         eventImageView = v.findViewById(R.id.about_page_image_view);
         eventVenueTextView = v.findViewById(R.id.about_page_venue_textview);
         ((MainActivity)getActivity()).getSupportActionBar().setTitle(eventName);
+
+        eventDescriptionTextView.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
+        eventRulesTextView.setJustificationMode(JUSTIFICATION_MODE_INTER_WORD);
+
 
         eventDateTextView.setText(DateTimeConverter.changeDateFormat(dataForThisEvent.getEvent_date()));
         eventVenueTextView.setText(dataForThisEvent.getEvent_venue());
