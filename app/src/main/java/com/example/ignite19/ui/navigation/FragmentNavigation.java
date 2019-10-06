@@ -45,7 +45,8 @@ public class FragmentNavigation extends Fragment {
         venue_list.add(new VenueList("Mega Hostel(Everest)",13.007917,74.794929));
         venue_list.add(new VenueList("Canteen(OC)",13.008491,74.795126));
         venue_list.add(new VenueList("Bakery(Everfresh)",13.012588,74.796337));
-        
+        venue_list.add(new VenueList("SBI ATM",13.009018,74.794139));
+
 
         v=inflater.inflate(R.layout.fragment_navigation,container,false);
         mRecylerView = (RecyclerView)v.findViewById(R.id.venue_list_recycler_view);
