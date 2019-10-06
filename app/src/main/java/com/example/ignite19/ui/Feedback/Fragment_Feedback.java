@@ -95,8 +95,7 @@ CardView c1,c2,c3,c4;
                 // reselected is false when user selects different smiley that previously selected one
                 // true when the same smiley is selected.
                 // Except if it first time, then the value will be false.
-                InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
+
 
                 switch (smiley) {
                     case SmileRating.BAD:
@@ -280,7 +279,10 @@ CardView c1,c2,c3,c4;
                         @Override
                         public void onSuccess(Void aVoid) {
 
+                            InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                            imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
                             Toasty.success(getContext(), "Feedback Submitted.", Toast.LENGTH_LONG).show();
+
                             Navigation.findNavController(view).navigate(R.id.action_nav_feedback_to_nav_home);
                         }
                     });
