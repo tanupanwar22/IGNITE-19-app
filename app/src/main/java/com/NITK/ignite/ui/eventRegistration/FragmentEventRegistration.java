@@ -256,7 +256,7 @@ public class FragmentEventRegistration extends Fragment {
                                         ex.printStackTrace();
                                     }
                                     p.setEventDesc(desctextd);
-                                    p.setNumberOfParticipants(5);
+                                    p.setNumberOfParticipants(2);
                                     p.setEventIconURI(R.drawable.deaths_head_ic);
                                     break;
 
@@ -276,7 +276,7 @@ public class FragmentEventRegistration extends Fragment {
                                         ex.printStackTrace();
                                     }
                                     p.setEventDesc(desctexts);
-                                    p.setNumberOfParticipants(4);
+                                    p.setNumberOfParticipants(2);
                                     p.setEventIconURI(R.drawable.scattergorries_ic);
                                     break;
 
@@ -437,7 +437,7 @@ public class FragmentEventRegistration extends Fragment {
                                     }
                                     p.setEventDesc(desctextr);
 
-                                    p.setNumberOfParticipants(3);
+                                    p.setNumberOfParticipants(1);
                                     p.setEventIconURI(R.drawable.rage_of_ultron_ic);
                                     break;
 

@@ -384,7 +384,7 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                             mEventList.setEvent_description(desctextd);
                             mEventList.setEvent_latitude(13.009319);
                             mEventList.setEvent_longitude(74.794500);
-                            mEventList.setNumber_of_participants(5);
+                            mEventList.setNumber_of_participants(2);
                             mEventList.setEvent_venue("NTB");
                             mEventList.setEvent_duration("01:00:00");
                             mEventList.setEvent_icon_uri(R.drawable.deaths_head_ic);
@@ -409,7 +409,7 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                             mEventList.setEvent_description(desctexts);
                             mEventList.setEvent_latitude(13.009319);
                             mEventList.setEvent_longitude(74.794500);
-                            mEventList.setNumber_of_participants(4);
+                            mEventList.setNumber_of_participants(2);
                             mEventList.setEvent_venue("NTB");
                             mEventList.setEvent_duration("01:00:00");
                             mEventList.setEvent_icon_uri(R.drawable.scattergorries_ic);
@@ -612,7 +612,7 @@ public class MainActivity extends AppCompatActivity implements DataCommunication
                             mEventList.setEvent_description(desctextr);
                             mEventList.setEvent_latitude(13.009319);
                             mEventList.setEvent_longitude(74.794500);
-                            mEventList.setNumber_of_participants(3);
+                            mEventList.setNumber_of_participants(1);
                             mEventList.setEvent_venue("LHC-C");
                             mEventList.setEvent_duration("01:00:00");
                             mEventList.setEvent_icon_uri(R.drawable.rage_of_ultron_ic);
