@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/adminHomeFragment"
-        android:name="com.example.ignite19.Admin.AdminHomeFragment"
+        android:name="com.NITK.ignite.Admin.AdminHomeFragment"
         android:label="Admin Panel"
         tools:layout="@layout/fragment_admin_home" >
         <action
@@ -56,7 +56,7 @@
     </fragment>
     <fragment
         android:id="@+id/adminUpdateLeaderBoard"
-        android:name="com.example.ignite19.Admin.AdminUpdateLeaderBoard.AdminUpdateLeaderBoard"
+        android:name="com.NITK.ignite.Admin.AdminUpdateLeaderBoard.AdminUpdateLeaderBoard"
         android:label="Update Leader Board"
         tools:layout="@layout/fragment_admin_update_leader_board" >
         <action
@@ -65,7 +65,7 @@
     </fragment>
     <fragment
         android:id="@+id/adminUpdateEventTiming"
-        android:name="com.example.ignite19.Admin.UpdateEventTiming.AdminUpdateEventTiming"
+        android:name="com.NITK.ignite.Admin.UpdateEventTiming.AdminUpdateEventTiming"
         android:label="Update Event timing"
         tools:layout="@layout/fragment_admin_update_event_timing" >
         <action
@@ -75,12 +75,12 @@
 
 
     <fragment android:id="@+id/nav_about_ignite_admin"
-        android:name="com.example.ignite19.ui.AboutIGNITE.Fragment_AboutIgnite"
+        android:name="com.NITK.ignite.ui.AboutIGNITE.Fragment_AboutIgnite"
         android:label="About IGNITE"
         tools:layout="@layout/fragment_about_ignite"/>
 
     <fragment android:id="@+id/nav_about_app_admin"
-        android:name="com.example.ignite19.ui.AboutApp.Fragment_AboutApp"
+        android:name="com.NITK.ignite.ui.AboutApp.Fragment_AboutApp"
         android:label="@string/menu_about_app"
         tools:layout="@layout/fragment_about_app">
         <action
@@ -100,33 +100,33 @@
     </fragment>
 
     <fragment android:id="@+id/nav_sponsors_admin"
-        android:name="com.example.ignite19.ui.Sponsors.Fragment_Sponsors"
+        android:name="com.NITK.ignite.ui.Sponsors.Fragment_Sponsors"
         android:label="@string/menu_sponsors"
         tools:layout="@layout/fragment_sponsors"/>
 
     <fragment
         android:id="@+id/nav_schedule_admin"
-        android:name="com.example.ignite19.ui.schedule.FragmentSchedule"
+        android:name="com.NITK.ignite.ui.schedule.FragmentSchedule"
         android:label="@string/nav_schedule"
         tools:layout="@layout/fragment_schedule" />
     <fragment
         android:id="@+id/seeParticipantsAdmin2"
-        android:name="com.example.ignite19.Admin.SeeParticipants.SeeParticipantsAdmin2"
+        android:name="com.NITK.ignite.Admin.SeeParticipants.SeeParticipantsAdmin2"
         android:label="Event Participants"
         tools:layout="@layout/fragment_see_participants_admin2" />
     <fragment
         android:id="@+id/openSourceLicense2"
-        android:name="com.example.ignite19.OpenSourceLicense"
+        android:name="com.NITK.ignite.OpenSourceLicense"
         android:label="fragment_open_source_license"
         tools:layout="@layout/fragment_open_source_license" />
     <fragment
         android:id="@+id/fragmentOurTeam2"
-        android:name="com.example.ignite19.FragmentOurTeam"
+        android:name="com.NITK.ignite.FragmentOurTeam"
         android:label="fragment_our_team"
         tools:layout="@layout/fragment_our_team" />
     <fragment
         android:id="@+id/sendNotification"
-        android:name="com.example.ignite19.Admin.SendNotification.SendNotification"
+        android:name="com.NITK.ignite.Admin.SendNotification.SendNotification"
         android:label="Send Notification"
         tools:layout="@layout/fragment_send_notification" >
         <action
@@ -139,7 +139,7 @@
     </fragment>
     <fragment
         android:id="@+id/seeLeaderBoardAdmin"
-        android:name="com.example.ignite19.Admin.SeeLeaderBoardAdmin.SeeLeaderBoardAdmin"
+        android:name="com.NITK.ignite.Admin.SeeLeaderBoardAdmin.SeeLeaderBoardAdmin"
         android:label="See Leaderboard"
         tools:layout="@layout/fragment_see_leader_board_admin" >
         <action
@@ -152,12 +152,12 @@
     </fragment>
     <fragment
         android:id="@+id/adminEventResults"
-        android:name="com.example.ignite19.Admin.SeeLeaderBoardAdmin.AdminEventResults"
+        android:name="com.NITK.ignite.Admin.SeeLeaderBoardAdmin.AdminEventResults"
         android:label="fragment_admin_event_results"
         tools:layout="@layout/fragment_admin_event_results" />
     <fragment
         android:id="@+id/seeNotificationAdmin"
-        android:name="com.example.ignite19.Admin.AdminSeeNotification.SeeNotificationAdmin"
+        android:name="com.NITK.ignite.Admin.AdminSeeNotification.SeeNotificationAdmin"
         android:label="Notifications"
         tools:layout="@layout/fragment_see_notification_admin" />
 </navigation>

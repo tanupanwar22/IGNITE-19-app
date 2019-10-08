@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.ignite19.ui.home.HomeFragment"
+        android:name="com.NITK.ignite.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -67,13 +67,13 @@
 
     <fragment
         android:id="@+id/nav_schedule"
-        android:name="com.example.ignite19.ui.schedule.FragmentSchedule"
+        android:name="com.NITK.ignite.ui.schedule.FragmentSchedule"
         android:label="@string/nav_schedule"
         tools:layout="@layout/fragment_schedule" />
 
     <fragment
         android:id="@+id/nav_event_registration"
-        android:name="com.example.ignite19.ui.eventRegistration.FragmentEventRegistration"
+        android:name="com.NITK.ignite.ui.eventRegistration.FragmentEventRegistration"
         android:label="@string/nav_registration"
         tools:layout="@layout/fragment_event_registration" >
         <action
@@ -87,7 +87,7 @@
 
     <fragment
         android:id="@+id/nav_events"
-        android:name="com.example.ignite19.ui.events.FragmentEvents"
+        android:name="com.NITK.ignite.ui.events.FragmentEvents"
         android:label="@string/nav_events"
         tools:layout="@layout/fragment_events" >
         <action
@@ -107,17 +107,17 @@
     </fragment>
     <fragment
         android:id="@+id/nav_navigation"
-        android:name="com.example.ignite19.ui.navigation.FragmentNavigation"
+        android:name="com.NITK.ignite.ui.navigation.FragmentNavigation"
         android:label="@string/nav_navigation"
         tools:layout="@layout/fragment_navigation"/>
 
     <fragment android:id="@+id/nav_about_ignite"
-        android:name="com.example.ignite19.ui.AboutIGNITE.Fragment_AboutIgnite"
+        android:name="com.NITK.ignite.ui.AboutIGNITE.Fragment_AboutIgnite"
         android:label="@string/menu_about_ignite"
         tools:layout="@layout/fragment_about_ignite"/>
 
     <fragment android:id="@+id/nav_about_app"
-        android:name="com.example.ignite19.ui.AboutApp.Fragment_AboutApp"
+        android:name="com.NITK.ignite.ui.AboutApp.Fragment_AboutApp"
         android:label="@string/menu_about_app"
         tools:layout="@layout/fragment_about_app">
         <action
@@ -137,7 +137,7 @@
     </fragment>
 
     <fragment android:id="@+id/nav_feedback"
-        android:name="com.example.ignite19.ui.Feedback.Fragment_Feedback"
+        android:name="com.NITK.ignite.ui.Feedback.Fragment_Feedback"
         android:label="@string/menu_feedback"
         tools:layout="@layout/fragment_feedback">
         <action
@@ -145,20 +145,20 @@
             app:destination="@id/nav_home" />
     </fragment>
     <fragment android:id="@+id/nav_contact_us"
-        android:name="com.example.ignite19.ui.ContactUS.Fragment_ContactUs"
+        android:name="com.NITK.ignite.ui.ContactUS.Fragment_ContactUs"
         android:label="Team IGNITE"
         tools:layout="@layout/fragment_contact_us"/>
     <fragment android:id="@+id/nav_sponsors"
-        android:name="com.example.ignite19.ui.Sponsors.Fragment_Sponsors"
+        android:name="com.NITK.ignite.ui.Sponsors.Fragment_Sponsors"
         android:label="@string/menu_sponsors"
         tools:layout="@layout/fragment_sponsors"/>
     <fragment
         android:id="@+id/aboutEvent"
-        android:name="com.example.ignite19.ui.AboutEvent.AboutEvent"
+        android:name="com.NITK.ignite.ui.AboutEvent.AboutEvent"
         tools:layout="@layout/fragment_about_event" />
     <fragment
         android:id="@+id/fragmentLeaderBoard"
-        android:name="com.example.ignite19.ui.LeaderBoard.FragmentLeaderBoard"
+        android:name="com.NITK.ignite.ui.LeaderBoard.FragmentLeaderBoard"
         android:label="Leaderboards"
         tools:layout="@layout/fragment_leader_board" >
         <action
@@ -172,27 +172,27 @@
 
     <fragment
         android:id="@+id/eventResultsUser"
-        android:name="com.example.ignite19.ui.LeaderBoard.EventResultsUser"
+        android:name="com.NITK.ignite.ui.LeaderBoard.EventResultsUser"
         android:label="fragment_event_results_user"
         tools:layout="@layout/fragment_event_results_user" />
     <fragment
         android:id="@+id/seeParticipantsUser2"
-        android:name="com.example.ignite19.ui.SeeParticipants.SeeParticipantsUser2"
+        android:name="com.NITK.ignite.ui.SeeParticipants.SeeParticipantsUser2"
         android:label="My participants"
         tools:layout="@layout/fragment_see_participants_user2" />
     <fragment
         android:id="@+id/openSourceLicense"
-        android:name="com.example.ignite19.OpenSourceLicense"
+        android:name="com.NITK.ignite.OpenSourceLicense"
         android:label="License"
         tools:layout="@layout/fragment_open_source_license" />
     <fragment
         android:id="@+id/fragmentOurTeam"
-        android:name="com.example.ignite19.FragmentOurTeam"
+        android:name="com.NITK.ignite.FragmentOurTeam"
         android:label="Our team"
         tools:layout="@layout/fragment_our_team" />
     <fragment
         android:id="@+id/notificationsUser"
-        android:name="com.example.ignite19.ui.Notifications.NotificationsUser"
+        android:name="com.NITK.ignite.ui.Notifications.NotificationsUser"
         android:label="Notifications"
         tools:layout="@layout/fragment_notifications_user" />
 </navigation>

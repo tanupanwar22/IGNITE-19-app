@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.ignite19">
+    package="com.NITK.ignite">
 
     <application
         android:allowBackup="true"
@@ -12,19 +12,19 @@
         android:theme="@style/AppTheme"
         tools:replace="android:theme">
 
-        <activity android:name=".splash">
+        <activity android:name="com.NITK.ignite.splash">
         </activity>
         <activity
-            android:name=".showResults"
+            android:name="com.NITK.ignite.showResults"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Admin.AdminAddTeam.AdminRegisterTeam"
+            android:name="com.NITK.ignite.Admin.AdminAddTeam.AdminRegisterTeam"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Admin.AdminHomeAcitivity"
+            android:name="com.NITK.ignite.Admin.AdminHomeAcitivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".LoginActivity"
+            android:name="com.NITK.ignite.LoginActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize">
 
@@ -34,12 +34,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="com.NITK.ignite.MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <service android:name=".myFirebaseMessagingService"
+        <service android:name="com.NITK.ignite.myFirebaseMessagingService"
             android:stopWithTask="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -62,7 +62,4 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.VIBRATE"/>
-
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-
 </manifest>

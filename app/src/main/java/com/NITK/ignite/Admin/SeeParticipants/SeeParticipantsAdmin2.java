@@ -1,0 +1,133 @@
+package com.NITK.ignite.Admin.SeeParticipants;
+
+
+import android.os.Bundle;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.airbnb.lottie.LottieAnimationView;
+import com.NITK.ignite.Admin.AdminHomeAcitivity;
+import com.NITK.ignite.Participation;
+import com.NITK.ignite.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class SeeParticipantsAdmin2 extends Fragment {
+
+
+    AllParticipantsAdapter allParticipantsAdapter;
+    String eventName;
+    View v;
+    HashMap<String,String > map = new HashMap<>();
+    RecyclerView recyclerView;
+    //TextView eventNameTextView;
+    LottieAnimationView lottieAnimationView;
+    ArrayList<EventWiseParticipantDetail > mList = new ArrayList<>();
+
+
+    public SeeParticipantsAdmin2() {
+        // Required empty public constructor
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+
+        v = inflater.inflate(R.layout.fragment_see_participants_admin2, container, false);
+        //eventNameTextView= v.findViewById(R.id.event_namexxx);
+        recyclerView = v.findViewById(R.id.recyclerViewxxx);
+        eventName = getArguments().getString("eventName").toString();
+        //eventNameTextView.setText(eventName);
+        ((AdminHomeAcitivity)getActivity()).getSupportActionBar().setTitle(eventName);
+        lottieAnimationView = v.findViewById(R.id.lottie_seeadmin);
+        lottieAnimationView.setVisibility(View.VISIBLE);
+
+        allParticipantsAdapter = new AllParticipantsAdapter(getContext(),mList);
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        recyclerView.setAdapter(allParticipantsAdapter);
+        FirebaseDatabase.getInstance().getReference("Users").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot: dataSnapshot.getChildren()){
+                    map.put(snapshot.getKey(),snapshot.child("college_name").getValue().toString());
+                }
+                secondListenerForValues(map);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+        return v;
+    }
+
+    private void secondListenerForValues(final HashMap<String, String > map) {
+        final int mapSize = map.size();
+        for(final String uuid : map.keySet()){
+
+            FirebaseDatabase.getInstance().getReference("Users").child(uuid).child("participation").child(eventName).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String collegeName = map.get(uuid);
+                    Participation mParticipation = dataSnapshot.getValue(Participation.class);
+                    EventWiseParticipantDetail.Builder mBuilder = new EventWiseParticipantDetail.Builder(uuid,collegeName);
+                    if(mParticipation.getParticipation() == 1){
+                            mBuilder.setEventName(mParticipation.getEvent_name());
+                            if(mParticipation.getParticipant1()!=null){
+                                mBuilder.setParticipant1(mParticipation.getParticipant1());
+                            }
+                            if(mParticipation.getParticipant2()!= null){
+                                mBuilder.setParticipant2(mParticipation.getParticipant2());
+                            }
+                            if(mParticipation.getParticipant3() != null){
+                                mBuilder.setParticipant3(mParticipation.getParticipant3());
+                            }
+                            if(mParticipation.getParticipant4() != null){
+                                mBuilder.setParticipant4(mParticipation.getParticipant4());
+                            }
+                            if(mParticipation.getParticipant5() != null){
+                                mBuilder.setParticipant5(mParticipation.getParticipant5());
+                            }
+
+                        }
+
+                        EventWiseParticipantDetail eventWiseParticipantDetail = mBuilder.build();
+                        lottieAnimationView.setVisibility(View.INVISIBLE);
+                        mList.add(eventWiseParticipantDetail);
+                        allParticipantsAdapter.notifyDataSetChanged();
+
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
+
+
+    }
+
+
+}
