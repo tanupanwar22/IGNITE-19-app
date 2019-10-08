@@ -243,7 +243,6 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="20dp"
                         android:textColorHint="@color/contrasText"
-
                         >
 
                         <me.zhanghai.android.materialedittext.MaterialEditText

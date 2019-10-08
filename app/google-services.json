@@ -92,7 +92,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:136377246359:android:4a2f45fbb1a46976d5ffd2",
         "android_client_info": {
-          "package_name": "com.example.ignite19"
+          "package_name": "com.NITK.ignite"
         }
       },
       "oauth_client": [
@@ -100,7 +100,7 @@
           "client_id": "136377246359-46udp1jk2k6og1snq01v4ecrffk5i1eg.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.ignite19",
+            "package_name": "com.NITK.ignite",
             "certificate_hash": "86b372b3243ff2988a78fafeda130bc066d2f7cd"
           }
         },

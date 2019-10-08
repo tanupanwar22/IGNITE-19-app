@@ -105,7 +105,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="12dp"
                                 android:padding="12dp"
-                                android:text="IGNITE 2k'19 welcomes you all!"
+                                android:text="IGNITE 2k19 welcomes you all!"
                                 android:textColor="@color/lime"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
